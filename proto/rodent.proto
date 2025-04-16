@@ -19,8 +19,6 @@ service RodentService {
 // RegisterRequest contains the information needed to register a Rodent node
 message RegisterRequest {
   string jwt_token = 1;        // Authentication token
-  string ip_address = 2;       // IP address of the Rodent node
-  bool is_private_network = 3; // Whether the node is behind NAT
 }
 
 // RegisterResponse contains the registration result
@@ -36,9 +34,8 @@ message RegisterResponse {
 
 // HeartbeatRequest contains periodic status information
 message HeartbeatRequest {
-  string rodent_id = 1;
-  string session_id = 2;
-  SystemInfo system_info = 3;
+  string session_id = 1;
+  SystemInfo system_info = 2;
 }
 
 // HeartbeatResponse contains any commands or config updates
@@ -59,12 +56,11 @@ message SystemInfo {
 // RodentRequest is sent from Rodent to Toggle
 message RodentRequest {
   string session_id = 1;
-  string rodent_id = 2;
-  string request_id = 3;
+  string request_id = 2;
   oneof payload {
-    CommandResponse command_response = 4;
-    EventNotification event = 5;
-    Acknowledgement ack = 6;
+    CommandResponse command_response = 3;
+    EventNotification event = 4;
+    Acknowledgement ack = 5;
   }
 }
 

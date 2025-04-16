@@ -23,12 +23,10 @@ const (
 
 // RegisterRequest contains the information needed to register a Rodent node
 type RegisterRequest struct {
-	state            protoimpl.MessageState `protogen:"open.v1"`
-	JwtToken         string                 `protobuf:"bytes,1,opt,name=jwt_token,json=jwtToken,proto3" json:"jwt_token,omitempty"`                            // Authentication token
-	IpAddress        string                 `protobuf:"bytes,2,opt,name=ip_address,json=ipAddress,proto3" json:"ip_address,omitempty"`                         // IP address of the Rodent node
-	IsPrivateNetwork bool                   `protobuf:"varint,3,opt,name=is_private_network,json=isPrivateNetwork,proto3" json:"is_private_network,omitempty"` // Whether the node is behind NAT
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	JwtToken      string                 `protobuf:"bytes,1,opt,name=jwt_token,json=jwtToken,proto3" json:"jwt_token,omitempty"` // Authentication token
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *RegisterRequest) Reset() {
@@ -66,20 +64,6 @@ func (x *RegisterRequest) GetJwtToken() string {
 		return x.JwtToken
 	}
 	return ""
-}
-
-func (x *RegisterRequest) GetIpAddress() string {
-	if x != nil {
-		return x.IpAddress
-	}
-	return ""
-}
-
-func (x *RegisterRequest) GetIsPrivateNetwork() bool {
-	if x != nil {
-		return x.IsPrivateNetwork
-	}
-	return false
 }
 
 // RegisterResponse contains the registration result
@@ -178,9 +162,8 @@ func (x *RegisterResponse) GetDevMode() bool {
 // HeartbeatRequest contains periodic status information
 type HeartbeatRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	RodentId      string                 `protobuf:"bytes,1,opt,name=rodent_id,json=rodentId,proto3" json:"rodent_id,omitempty"`
-	SessionId     string                 `protobuf:"bytes,2,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
-	SystemInfo    *SystemInfo            `protobuf:"bytes,3,opt,name=system_info,json=systemInfo,proto3" json:"system_info,omitempty"`
+	SessionId     string                 `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
+	SystemInfo    *SystemInfo            `protobuf:"bytes,2,opt,name=system_info,json=systemInfo,proto3" json:"system_info,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -213,13 +196,6 @@ func (x *HeartbeatRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use HeartbeatRequest.ProtoReflect.Descriptor instead.
 func (*HeartbeatRequest) Descriptor() ([]byte, []int) {
 	return file_proto_rodent_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *HeartbeatRequest) GetRodentId() string {
-	if x != nil {
-		return x.RodentId
-	}
-	return ""
 }
 
 func (x *HeartbeatRequest) GetSessionId() string {
@@ -370,8 +346,7 @@ func (x *SystemInfo) GetErrors() []string {
 type RodentRequest struct {
 	state     protoimpl.MessageState `protogen:"open.v1"`
 	SessionId string                 `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
-	RodentId  string                 `protobuf:"bytes,2,opt,name=rodent_id,json=rodentId,proto3" json:"rodent_id,omitempty"`
-	RequestId string                 `protobuf:"bytes,3,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	RequestId string                 `protobuf:"bytes,2,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
 	// Types that are valid to be assigned to Payload:
 	//
 	//	*RodentRequest_CommandResponse
@@ -415,13 +390,6 @@ func (*RodentRequest) Descriptor() ([]byte, []int) {
 func (x *RodentRequest) GetSessionId() string {
 	if x != nil {
 		return x.SessionId
-	}
-	return ""
-}
-
-func (x *RodentRequest) GetRodentId() string {
-	if x != nil {
-		return x.RodentId
 	}
 	return ""
 }
@@ -472,15 +440,15 @@ type isRodentRequest_Payload interface {
 }
 
 type RodentRequest_CommandResponse struct {
-	CommandResponse *CommandResponse `protobuf:"bytes,4,opt,name=command_response,json=commandResponse,proto3,oneof"`
+	CommandResponse *CommandResponse `protobuf:"bytes,3,opt,name=command_response,json=commandResponse,proto3,oneof"`
 }
 
 type RodentRequest_Event struct {
-	Event *EventNotification `protobuf:"bytes,5,opt,name=event,proto3,oneof"`
+	Event *EventNotification `protobuf:"bytes,4,opt,name=event,proto3,oneof"`
 }
 
 type RodentRequest_Ack struct {
-	Ack *Acknowledgement `protobuf:"bytes,6,opt,name=ack,proto3,oneof"`
+	Ack *Acknowledgement `protobuf:"bytes,5,opt,name=ack,proto3,oneof"`
 }
 
 func (*RodentRequest_CommandResponse) isRodentRequest_Payload() {}
@@ -913,12 +881,9 @@ var File_proto_rodent_proto protoreflect.FileDescriptor
 
 const file_proto_rodent_proto_rawDesc = "" +
 	"\n" +
-	"\x12proto/rodent.proto\x12\x06rodent\"{\n" +
+	"\x12proto/rodent.proto\x12\x06rodent\".\n" +
 	"\x0fRegisterRequest\x12\x1b\n" +
-	"\tjwt_token\x18\x01 \x01(\tR\bjwtToken\x12\x1d\n" +
-	"\n" +
-	"ip_address\x18\x02 \x01(\tR\tipAddress\x12,\n" +
-	"\x12is_private_network\x18\x03 \x01(\bR\x10isPrivateNetwork\"\xdb\x01\n" +
+	"\tjwt_token\x18\x01 \x01(\tR\bjwtToken\"\xdb\x01\n" +
 	"\x10RegisterResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x16\n" +
@@ -928,12 +893,11 @@ const file_proto_rodent_proto_rawDesc = "" +
 	"privateKey\x12\x1d\n" +
 	"\n" +
 	"expires_on\x18\x06 \x01(\tR\texpiresOn\x12\x19\n" +
-	"\bdev_mode\x18\a \x01(\bR\adevMode\"\x83\x01\n" +
-	"\x10HeartbeatRequest\x12\x1b\n" +
-	"\trodent_id\x18\x01 \x01(\tR\brodentId\x12\x1d\n" +
+	"\bdev_mode\x18\a \x01(\bR\adevMode\"f\n" +
+	"\x10HeartbeatRequest\x12\x1d\n" +
 	"\n" +
-	"session_id\x18\x02 \x01(\tR\tsessionId\x123\n" +
-	"\vsystem_info\x18\x03 \x01(\v2\x12.rodent.SystemInfoR\n" +
+	"session_id\x18\x01 \x01(\tR\tsessionId\x123\n" +
+	"\vsystem_info\x18\x02 \x01(\v2\x12.rodent.SystemInfoR\n" +
 	"systemInfo\"G\n" +
 	"\x11HeartbeatResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
@@ -945,16 +909,15 @@ const file_proto_rodent_proto_rawDesc = "" +
 	"\n" +
 	"disk_usage\x18\x03 \x01(\x01R\tdiskUsage\x12\x1a\n" +
 	"\bwarnings\x18\x04 \x03(\tR\bwarnings\x12\x16\n" +
-	"\x06errors\x18\x05 \x03(\tR\x06errors\"\x9b\x02\n" +
+	"\x06errors\x18\x05 \x03(\tR\x06errors\"\xfe\x01\n" +
 	"\rRodentRequest\x12\x1d\n" +
 	"\n" +
-	"session_id\x18\x01 \x01(\tR\tsessionId\x12\x1b\n" +
-	"\trodent_id\x18\x02 \x01(\tR\brodentId\x12\x1d\n" +
+	"session_id\x18\x01 \x01(\tR\tsessionId\x12\x1d\n" +
 	"\n" +
-	"request_id\x18\x03 \x01(\tR\trequestId\x12D\n" +
-	"\x10command_response\x18\x04 \x01(\v2\x17.rodent.CommandResponseH\x00R\x0fcommandResponse\x121\n" +
-	"\x05event\x18\x05 \x01(\v2\x19.rodent.EventNotificationH\x00R\x05event\x12+\n" +
-	"\x03ack\x18\x06 \x01(\v2\x17.rodent.AcknowledgementH\x00R\x03ackB\t\n" +
+	"request_id\x18\x02 \x01(\tR\trequestId\x12D\n" +
+	"\x10command_response\x18\x03 \x01(\v2\x17.rodent.CommandResponseH\x00R\x0fcommandResponse\x121\n" +
+	"\x05event\x18\x04 \x01(\v2\x19.rodent.EventNotificationH\x00R\x05event\x12+\n" +
+	"\x03ack\x18\x05 \x01(\v2\x17.rodent.AcknowledgementH\x00R\x03ackB\t\n" +
 	"\apayload\"\xca\x01\n" +
 	"\rToggleRequest\x12\x1d\n" +
 	"\n" +
