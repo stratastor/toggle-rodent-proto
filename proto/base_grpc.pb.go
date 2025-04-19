@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v5.29.3
-// source: proto/rodent.proto
+// source: proto/base.proto
 
 package proto
 
@@ -19,9 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	RodentService_Register_FullMethodName  = "/rodent.RodentService/Register"
-	RodentService_Heartbeat_FullMethodName = "/rodent.RodentService/Heartbeat"
-	RodentService_Connect_FullMethodName   = "/rodent.RodentService/Connect"
+	RodentService_Register_FullMethodName = "/rodent.RodentService/Register"
+	RodentService_Connect_FullMethodName  = "/rodent.RodentService/Connect"
 )
 
 // RodentServiceClient is the client API for RodentService service.
@@ -31,10 +30,12 @@ const (
 // RodentService defines the gRPC service for Toggle-Rodent communication
 type RodentServiceClient interface {
 	// Register allows a Rodent node to register with Toggle
+	// Authentication is handled via JWT token in request metadata
 	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
-	// Heartbeat allows Rodent to periodically report its status
-	Heartbeat(ctx context.Context, in *HeartbeatRequest, opts ...grpc.CallOption) (*HeartbeatResponse, error)
 	// Connect establishes a long-lived bidirectional connection
+	// This is the primary channel for all communication after registration
+	// Toggle will send commands over this stream and Rodent will respond
+	// Status/heartbeat information should be sent as responses to Toggle's status requests
 	Connect(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[RodentRequest, ToggleRequest], error)
 }
 
@@ -50,16 +51,6 @@ func (c *rodentServiceClient) Register(ctx context.Context, in *RegisterRequest,
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(RegisterResponse)
 	err := c.cc.Invoke(ctx, RodentService_Register_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *rodentServiceClient) Heartbeat(ctx context.Context, in *HeartbeatRequest, opts ...grpc.CallOption) (*HeartbeatResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(HeartbeatResponse)
-	err := c.cc.Invoke(ctx, RodentService_Heartbeat_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -86,10 +77,12 @@ type RodentService_ConnectClient = grpc.BidiStreamingClient[RodentRequest, Toggl
 // RodentService defines the gRPC service for Toggle-Rodent communication
 type RodentServiceServer interface {
 	// Register allows a Rodent node to register with Toggle
+	// Authentication is handled via JWT token in request metadata
 	Register(context.Context, *RegisterRequest) (*RegisterResponse, error)
-	// Heartbeat allows Rodent to periodically report its status
-	Heartbeat(context.Context, *HeartbeatRequest) (*HeartbeatResponse, error)
 	// Connect establishes a long-lived bidirectional connection
+	// This is the primary channel for all communication after registration
+	// Toggle will send commands over this stream and Rodent will respond
+	// Status/heartbeat information should be sent as responses to Toggle's status requests
 	Connect(grpc.BidiStreamingServer[RodentRequest, ToggleRequest]) error
 	mustEmbedUnimplementedRodentServiceServer()
 }
@@ -103,9 +96,6 @@ type UnimplementedRodentServiceServer struct{}
 
 func (UnimplementedRodentServiceServer) Register(context.Context, *RegisterRequest) (*RegisterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Register not implemented")
-}
-func (UnimplementedRodentServiceServer) Heartbeat(context.Context, *HeartbeatRequest) (*HeartbeatResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Heartbeat not implemented")
 }
 func (UnimplementedRodentServiceServer) Connect(grpc.BidiStreamingServer[RodentRequest, ToggleRequest]) error {
 	return status.Errorf(codes.Unimplemented, "method Connect not implemented")
@@ -149,24 +139,6 @@ func _RodentService_Register_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RodentService_Heartbeat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HeartbeatRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(RodentServiceServer).Heartbeat(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: RodentService_Heartbeat_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RodentServiceServer).Heartbeat(ctx, req.(*HeartbeatRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _RodentService_Connect_Handler(srv interface{}, stream grpc.ServerStream) error {
 	return srv.(RodentServiceServer).Connect(&grpc.GenericServerStream[RodentRequest, ToggleRequest]{ServerStream: stream})
 }
@@ -185,10 +157,6 @@ var RodentService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "Register",
 			Handler:    _RodentService_Register_Handler,
 		},
-		{
-			MethodName: "Heartbeat",
-			Handler:    _RodentService_Heartbeat_Handler,
-		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
@@ -198,5 +166,5 @@ var RodentService_ServiceDesc = grpc.ServiceDesc{
 			ClientStreams: true,
 		},
 	},
-	Metadata: "proto/rodent.proto",
+	Metadata: "proto/base.proto",
 }

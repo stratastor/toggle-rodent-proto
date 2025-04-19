@@ -7,18 +7,24 @@ option go_package = "github.com/stratastor/toggle-rodent-proto/proto";
 // RodentService defines the gRPC service for Toggle-Rodent communication
 service RodentService {
   // Register allows a Rodent node to register with Toggle
+  // Authentication is handled via JWT token in request metadata
   rpc Register(RegisterRequest) returns (RegisterResponse);
   
-  // Heartbeat allows Rodent to periodically report its status
-  rpc Heartbeat(HeartbeatRequest) returns (HeartbeatResponse);
-  
   // Connect establishes a long-lived bidirectional connection
+  // This is the primary channel for all communication after registration
+  // Toggle will send commands over this stream and Rodent will respond
+  // Status/heartbeat information should be sent as responses to Toggle's status requests
   rpc Connect(stream RodentRequest) returns (stream ToggleRequest);
 }
 
 // RegisterRequest contains the information needed to register a Rodent node
+// Note: Authentication and network type are handled via JWT token in metadata
 message RegisterRequest {
-  string jwt_token = 1;        // Authentication token
+  // System information about the registering node
+  SystemInfo system_info = 1;
+  
+  // Reserved fields (2-10) for future expansion without breaking changes
+  reserved 2 to 10;
 }
 
 // RegisterResponse contains the registration result
@@ -29,7 +35,6 @@ message RegisterResponse {
   string certificate = 4;
   string private_key = 5;
   string expires_on = 6;
-  bool dev_mode = 7;
 }
 
 // HeartbeatRequest contains periodic status information
@@ -76,9 +81,11 @@ message ToggleRequest {
 
 // CommandRequest represents a command sent to a Rodent node
 message CommandRequest {
-  string command_type = 1; // E.g., "zfs.dataset.create", "ad.user.add"
+  string command_type = 1; // E.g., "zfs.dataset.create", "ad.user.add", "system.status"
   string target = 2;       // Target resource
   bytes payload = 3;       // JSON-encoded command parameters
+  // The "system.status" command_type should be used by Toggle to request 
+  // status/heartbeat information instead of having Rodent initiate heartbeats
 }
 
 // CommandResponse is the response to a CommandRequest
