@@ -153,112 +153,6 @@ func (x *RegisterResponse) GetExpiresOn() string {
 	return ""
 }
 
-// HeartbeatRequest contains periodic status information
-type HeartbeatRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	SessionId     string                 `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
-	SystemInfo    *SystemInfo            `protobuf:"bytes,2,opt,name=system_info,json=systemInfo,proto3" json:"system_info,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *HeartbeatRequest) Reset() {
-	*x = HeartbeatRequest{}
-	mi := &file_proto_base_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *HeartbeatRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*HeartbeatRequest) ProtoMessage() {}
-
-func (x *HeartbeatRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_base_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use HeartbeatRequest.ProtoReflect.Descriptor instead.
-func (*HeartbeatRequest) Descriptor() ([]byte, []int) {
-	return file_proto_base_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *HeartbeatRequest) GetSessionId() string {
-	if x != nil {
-		return x.SessionId
-	}
-	return ""
-}
-
-func (x *HeartbeatRequest) GetSystemInfo() *SystemInfo {
-	if x != nil {
-		return x.SystemInfo
-	}
-	return nil
-}
-
-// HeartbeatResponse contains any commands or config updates
-type HeartbeatResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *HeartbeatResponse) Reset() {
-	*x = HeartbeatResponse{}
-	mi := &file_proto_base_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *HeartbeatResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*HeartbeatResponse) ProtoMessage() {}
-
-func (x *HeartbeatResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_base_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use HeartbeatResponse.ProtoReflect.Descriptor instead.
-func (*HeartbeatResponse) Descriptor() ([]byte, []int) {
-	return file_proto_base_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *HeartbeatResponse) GetSuccess() bool {
-	if x != nil {
-		return x.Success
-	}
-	return false
-}
-
-func (x *HeartbeatResponse) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
-
 // SystemInfo contains system statistics and health information
 type SystemInfo struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -273,7 +167,7 @@ type SystemInfo struct {
 
 func (x *SystemInfo) Reset() {
 	*x = SystemInfo{}
-	mi := &file_proto_base_proto_msgTypes[4]
+	mi := &file_proto_base_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -285,7 +179,7 @@ func (x *SystemInfo) String() string {
 func (*SystemInfo) ProtoMessage() {}
 
 func (x *SystemInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_base_proto_msgTypes[4]
+	mi := &file_proto_base_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -298,7 +192,7 @@ func (x *SystemInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SystemInfo.ProtoReflect.Descriptor instead.
 func (*SystemInfo) Descriptor() ([]byte, []int) {
-	return file_proto_base_proto_rawDescGZIP(), []int{4}
+	return file_proto_base_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *SystemInfo) GetCpuUsage() float64 {
@@ -339,8 +233,7 @@ func (x *SystemInfo) GetErrors() []string {
 // RodentRequest is sent from Rodent to Toggle
 type RodentRequest struct {
 	state     protoimpl.MessageState `protogen:"open.v1"`
-	SessionId string                 `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
-	RequestId string                 `protobuf:"bytes,2,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	RequestId string                 `protobuf:"bytes,1,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
 	// Types that are valid to be assigned to Payload:
 	//
 	//	*RodentRequest_CommandResponse
@@ -353,7 +246,7 @@ type RodentRequest struct {
 
 func (x *RodentRequest) Reset() {
 	*x = RodentRequest{}
-	mi := &file_proto_base_proto_msgTypes[5]
+	mi := &file_proto_base_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -365,7 +258,7 @@ func (x *RodentRequest) String() string {
 func (*RodentRequest) ProtoMessage() {}
 
 func (x *RodentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_base_proto_msgTypes[5]
+	mi := &file_proto_base_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -378,14 +271,7 @@ func (x *RodentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RodentRequest.ProtoReflect.Descriptor instead.
 func (*RodentRequest) Descriptor() ([]byte, []int) {
-	return file_proto_base_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *RodentRequest) GetSessionId() string {
-	if x != nil {
-		return x.SessionId
-	}
-	return ""
+	return file_proto_base_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *RodentRequest) GetRequestId() string {
@@ -434,15 +320,15 @@ type isRodentRequest_Payload interface {
 }
 
 type RodentRequest_CommandResponse struct {
-	CommandResponse *CommandResponse `protobuf:"bytes,3,opt,name=command_response,json=commandResponse,proto3,oneof"`
+	CommandResponse *CommandResponse `protobuf:"bytes,2,opt,name=command_response,json=commandResponse,proto3,oneof"`
 }
 
 type RodentRequest_Event struct {
-	Event *EventNotification `protobuf:"bytes,4,opt,name=event,proto3,oneof"`
+	Event *EventNotification `protobuf:"bytes,3,opt,name=event,proto3,oneof"`
 }
 
 type RodentRequest_Ack struct {
-	Ack *Acknowledgement `protobuf:"bytes,5,opt,name=ack,proto3,oneof"`
+	Ack *Acknowledgement `protobuf:"bytes,4,opt,name=ack,proto3,oneof"`
 }
 
 func (*RodentRequest_CommandResponse) isRodentRequest_Payload() {}
@@ -467,7 +353,7 @@ type ToggleRequest struct {
 
 func (x *ToggleRequest) Reset() {
 	*x = ToggleRequest{}
-	mi := &file_proto_base_proto_msgTypes[6]
+	mi := &file_proto_base_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -479,7 +365,7 @@ func (x *ToggleRequest) String() string {
 func (*ToggleRequest) ProtoMessage() {}
 
 func (x *ToggleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_base_proto_msgTypes[6]
+	mi := &file_proto_base_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -492,7 +378,7 @@ func (x *ToggleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ToggleRequest.ProtoReflect.Descriptor instead.
 func (*ToggleRequest) Descriptor() ([]byte, []int) {
-	return file_proto_base_proto_rawDescGZIP(), []int{6}
+	return file_proto_base_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *ToggleRequest) GetRequestId() string {
@@ -570,7 +456,7 @@ type CommandRequest struct {
 
 func (x *CommandRequest) Reset() {
 	*x = CommandRequest{}
-	mi := &file_proto_base_proto_msgTypes[7]
+	mi := &file_proto_base_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -582,7 +468,7 @@ func (x *CommandRequest) String() string {
 func (*CommandRequest) ProtoMessage() {}
 
 func (x *CommandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_base_proto_msgTypes[7]
+	mi := &file_proto_base_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -595,7 +481,7 @@ func (x *CommandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CommandRequest.ProtoReflect.Descriptor instead.
 func (*CommandRequest) Descriptor() ([]byte, []int) {
-	return file_proto_base_proto_rawDescGZIP(), []int{7}
+	return file_proto_base_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *CommandRequest) GetCommandType() string {
@@ -632,7 +518,7 @@ type CommandResponse struct {
 
 func (x *CommandResponse) Reset() {
 	*x = CommandResponse{}
-	mi := &file_proto_base_proto_msgTypes[8]
+	mi := &file_proto_base_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -644,7 +530,7 @@ func (x *CommandResponse) String() string {
 func (*CommandResponse) ProtoMessage() {}
 
 func (x *CommandResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_base_proto_msgTypes[8]
+	mi := &file_proto_base_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -657,7 +543,7 @@ func (x *CommandResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CommandResponse.ProtoReflect.Descriptor instead.
 func (*CommandResponse) Descriptor() ([]byte, []int) {
-	return file_proto_base_proto_rawDescGZIP(), []int{8}
+	return file_proto_base_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *CommandResponse) GetRequestId() string {
@@ -701,7 +587,7 @@ type EventNotification struct {
 
 func (x *EventNotification) Reset() {
 	*x = EventNotification{}
-	mi := &file_proto_base_proto_msgTypes[9]
+	mi := &file_proto_base_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -713,7 +599,7 @@ func (x *EventNotification) String() string {
 func (*EventNotification) ProtoMessage() {}
 
 func (x *EventNotification) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_base_proto_msgTypes[9]
+	mi := &file_proto_base_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -726,7 +612,7 @@ func (x *EventNotification) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EventNotification.ProtoReflect.Descriptor instead.
 func (*EventNotification) Descriptor() ([]byte, []int) {
-	return file_proto_base_proto_rawDescGZIP(), []int{9}
+	return file_proto_base_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *EventNotification) GetEventType() string {
@@ -768,7 +654,7 @@ type ConfigUpdate struct {
 
 func (x *ConfigUpdate) Reset() {
 	*x = ConfigUpdate{}
-	mi := &file_proto_base_proto_msgTypes[10]
+	mi := &file_proto_base_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -780,7 +666,7 @@ func (x *ConfigUpdate) String() string {
 func (*ConfigUpdate) ProtoMessage() {}
 
 func (x *ConfigUpdate) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_base_proto_msgTypes[10]
+	mi := &file_proto_base_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -793,7 +679,7 @@ func (x *ConfigUpdate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigUpdate.ProtoReflect.Descriptor instead.
 func (*ConfigUpdate) Descriptor() ([]byte, []int) {
-	return file_proto_base_proto_rawDescGZIP(), []int{10}
+	return file_proto_base_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *ConfigUpdate) GetConfigType() string {
@@ -822,7 +708,7 @@ type Acknowledgement struct {
 
 func (x *Acknowledgement) Reset() {
 	*x = Acknowledgement{}
-	mi := &file_proto_base_proto_msgTypes[11]
+	mi := &file_proto_base_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -834,7 +720,7 @@ func (x *Acknowledgement) String() string {
 func (*Acknowledgement) ProtoMessage() {}
 
 func (x *Acknowledgement) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_base_proto_msgTypes[11]
+	mi := &file_proto_base_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -847,7 +733,7 @@ func (x *Acknowledgement) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Acknowledgement.ProtoReflect.Descriptor instead.
 func (*Acknowledgement) Descriptor() ([]byte, []int) {
-	return file_proto_base_proto_rawDescGZIP(), []int{11}
+	return file_proto_base_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *Acknowledgement) GetRequestId() string {
@@ -887,15 +773,7 @@ const file_proto_base_proto_rawDesc = "" +
 	"\vprivate_key\x18\x05 \x01(\tR\n" +
 	"privateKey\x12\x1d\n" +
 	"\n" +
-	"expires_on\x18\x06 \x01(\tR\texpiresOn\"f\n" +
-	"\x10HeartbeatRequest\x12\x1d\n" +
-	"\n" +
-	"session_id\x18\x01 \x01(\tR\tsessionId\x123\n" +
-	"\vsystem_info\x18\x02 \x01(\v2\x12.rodent.SystemInfoR\n" +
-	"systemInfo\"G\n" +
-	"\x11HeartbeatResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"\x9f\x01\n" +
+	"expires_on\x18\x06 \x01(\tR\texpiresOn\"\x9f\x01\n" +
 	"\n" +
 	"SystemInfo\x12\x1b\n" +
 	"\tcpu_usage\x18\x01 \x01(\x01R\bcpuUsage\x12!\n" +
@@ -903,15 +781,13 @@ const file_proto_base_proto_rawDesc = "" +
 	"\n" +
 	"disk_usage\x18\x03 \x01(\x01R\tdiskUsage\x12\x1a\n" +
 	"\bwarnings\x18\x04 \x03(\tR\bwarnings\x12\x16\n" +
-	"\x06errors\x18\x05 \x03(\tR\x06errors\"\xfe\x01\n" +
+	"\x06errors\x18\x05 \x03(\tR\x06errors\"\xdf\x01\n" +
 	"\rRodentRequest\x12\x1d\n" +
 	"\n" +
-	"session_id\x18\x01 \x01(\tR\tsessionId\x12\x1d\n" +
-	"\n" +
-	"request_id\x18\x02 \x01(\tR\trequestId\x12D\n" +
-	"\x10command_response\x18\x03 \x01(\v2\x17.rodent.CommandResponseH\x00R\x0fcommandResponse\x121\n" +
-	"\x05event\x18\x04 \x01(\v2\x19.rodent.EventNotificationH\x00R\x05event\x12+\n" +
-	"\x03ack\x18\x05 \x01(\v2\x17.rodent.AcknowledgementH\x00R\x03ackB\t\n" +
+	"request_id\x18\x01 \x01(\tR\trequestId\x12D\n" +
+	"\x10command_response\x18\x02 \x01(\v2\x17.rodent.CommandResponseH\x00R\x0fcommandResponse\x121\n" +
+	"\x05event\x18\x03 \x01(\v2\x19.rodent.EventNotificationH\x00R\x05event\x12+\n" +
+	"\x03ack\x18\x04 \x01(\v2\x17.rodent.AcknowledgementH\x00R\x03ackB\t\n" +
 	"\apayload\"\xca\x01\n" +
 	"\rToggleRequest\x12\x1d\n" +
 	"\n" +
@@ -961,39 +837,36 @@ func file_proto_base_proto_rawDescGZIP() []byte {
 	return file_proto_base_proto_rawDescData
 }
 
-var file_proto_base_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_proto_base_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_proto_base_proto_goTypes = []any{
 	(*RegisterRequest)(nil),   // 0: rodent.RegisterRequest
 	(*RegisterResponse)(nil),  // 1: rodent.RegisterResponse
-	(*HeartbeatRequest)(nil),  // 2: rodent.HeartbeatRequest
-	(*HeartbeatResponse)(nil), // 3: rodent.HeartbeatResponse
-	(*SystemInfo)(nil),        // 4: rodent.SystemInfo
-	(*RodentRequest)(nil),     // 5: rodent.RodentRequest
-	(*ToggleRequest)(nil),     // 6: rodent.ToggleRequest
-	(*CommandRequest)(nil),    // 7: rodent.CommandRequest
-	(*CommandResponse)(nil),   // 8: rodent.CommandResponse
-	(*EventNotification)(nil), // 9: rodent.EventNotification
-	(*ConfigUpdate)(nil),      // 10: rodent.ConfigUpdate
-	(*Acknowledgement)(nil),   // 11: rodent.Acknowledgement
+	(*SystemInfo)(nil),        // 2: rodent.SystemInfo
+	(*RodentRequest)(nil),     // 3: rodent.RodentRequest
+	(*ToggleRequest)(nil),     // 4: rodent.ToggleRequest
+	(*CommandRequest)(nil),    // 5: rodent.CommandRequest
+	(*CommandResponse)(nil),   // 6: rodent.CommandResponse
+	(*EventNotification)(nil), // 7: rodent.EventNotification
+	(*ConfigUpdate)(nil),      // 8: rodent.ConfigUpdate
+	(*Acknowledgement)(nil),   // 9: rodent.Acknowledgement
 }
 var file_proto_base_proto_depIdxs = []int32{
-	4,  // 0: rodent.RegisterRequest.system_info:type_name -> rodent.SystemInfo
-	4,  // 1: rodent.HeartbeatRequest.system_info:type_name -> rodent.SystemInfo
-	8,  // 2: rodent.RodentRequest.command_response:type_name -> rodent.CommandResponse
-	9,  // 3: rodent.RodentRequest.event:type_name -> rodent.EventNotification
-	11, // 4: rodent.RodentRequest.ack:type_name -> rodent.Acknowledgement
-	7,  // 5: rodent.ToggleRequest.command:type_name -> rodent.CommandRequest
-	10, // 6: rodent.ToggleRequest.config:type_name -> rodent.ConfigUpdate
-	11, // 7: rodent.ToggleRequest.ack:type_name -> rodent.Acknowledgement
-	0,  // 8: rodent.RodentService.Register:input_type -> rodent.RegisterRequest
-	5,  // 9: rodent.RodentService.Connect:input_type -> rodent.RodentRequest
-	1,  // 10: rodent.RodentService.Register:output_type -> rodent.RegisterResponse
-	6,  // 11: rodent.RodentService.Connect:output_type -> rodent.ToggleRequest
-	10, // [10:12] is the sub-list for method output_type
-	8,  // [8:10] is the sub-list for method input_type
-	8,  // [8:8] is the sub-list for extension type_name
-	8,  // [8:8] is the sub-list for extension extendee
-	0,  // [0:8] is the sub-list for field type_name
+	2, // 0: rodent.RegisterRequest.system_info:type_name -> rodent.SystemInfo
+	6, // 1: rodent.RodentRequest.command_response:type_name -> rodent.CommandResponse
+	7, // 2: rodent.RodentRequest.event:type_name -> rodent.EventNotification
+	9, // 3: rodent.RodentRequest.ack:type_name -> rodent.Acknowledgement
+	5, // 4: rodent.ToggleRequest.command:type_name -> rodent.CommandRequest
+	8, // 5: rodent.ToggleRequest.config:type_name -> rodent.ConfigUpdate
+	9, // 6: rodent.ToggleRequest.ack:type_name -> rodent.Acknowledgement
+	0, // 7: rodent.RodentService.Register:input_type -> rodent.RegisterRequest
+	3, // 8: rodent.RodentService.Connect:input_type -> rodent.RodentRequest
+	1, // 9: rodent.RodentService.Register:output_type -> rodent.RegisterResponse
+	4, // 10: rodent.RodentService.Connect:output_type -> rodent.ToggleRequest
+	9, // [9:11] is the sub-list for method output_type
+	7, // [7:9] is the sub-list for method input_type
+	7, // [7:7] is the sub-list for extension type_name
+	7, // [7:7] is the sub-list for extension extendee
+	0, // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_proto_base_proto_init() }
@@ -1001,12 +874,12 @@ func file_proto_base_proto_init() {
 	if File_proto_base_proto != nil {
 		return
 	}
-	file_proto_base_proto_msgTypes[5].OneofWrappers = []any{
+	file_proto_base_proto_msgTypes[3].OneofWrappers = []any{
 		(*RodentRequest_CommandResponse)(nil),
 		(*RodentRequest_Event)(nil),
 		(*RodentRequest_Ack)(nil),
 	}
-	file_proto_base_proto_msgTypes[6].OneofWrappers = []any{
+	file_proto_base_proto_msgTypes[4].OneofWrappers = []any{
 		(*ToggleRequest_Command)(nil),
 		(*ToggleRequest_Config)(nil),
 		(*ToggleRequest_Ack)(nil),
@@ -1017,7 +890,7 @@ func file_proto_base_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_base_proto_rawDesc), len(file_proto_base_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

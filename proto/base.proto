@@ -37,18 +37,6 @@ message RegisterResponse {
   string expires_on = 6;
 }
 
-// HeartbeatRequest contains periodic status information
-message HeartbeatRequest {
-  string session_id = 1;
-  SystemInfo system_info = 2;
-}
-
-// HeartbeatResponse contains any commands or config updates
-message HeartbeatResponse {
-  bool success = 1;
-  string message = 2;
-}
-
 // SystemInfo contains system statistics and health information
 message SystemInfo {
   double cpu_usage = 1;
@@ -60,12 +48,11 @@ message SystemInfo {
 
 // RodentRequest is sent from Rodent to Toggle
 message RodentRequest {
-  string session_id = 1;
-  string request_id = 2;
+  string request_id = 1;
   oneof payload {
-    CommandResponse command_response = 3;
-    EventNotification event = 4;
-    Acknowledgement ack = 5;
+    CommandResponse command_response = 2;
+    EventNotification event = 3;
+    Acknowledgement ack = 4;
   }
 }
 
