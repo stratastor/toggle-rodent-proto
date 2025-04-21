@@ -81,6 +81,21 @@ message CommandResponse {
   bool success = 2;
   string message = 3;
   bytes payload = 4;       // JSON-encoded response data
+  
+  // Error information when success = false
+  RodentError error = 5;   // Structured error information
+}
+
+// RodentError represents a structured error from Rodent
+// This matches the pkg/errors.RodentError structure
+message RodentError {
+  int32 code = 1;         // Error code (consistent with pkg/errors.ErrorCode)
+  string domain = 2;      // Error domain (e.g., "ZFS", "SERVER", etc.)
+  string message = 3;     // Error message
+  string details = 4;     // Optional detailed error explanation
+  
+  // Additional error metadata
+  map<string, string> metadata = 5;  // Metadata map for additional context
 }
 
 // EventNotification represents an event from Rodent
@@ -103,3 +118,4 @@ message Acknowledgement {
   bool success = 2;
   string message = 3;
 }
+
