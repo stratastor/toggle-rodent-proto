@@ -93,9 +93,10 @@ message RodentError {
   string domain = 2;      // Error domain (e.g., "ZFS", "SERVER", etc.)
   string message = 3;     // Error message
   string details = 4;     // Optional detailed error explanation
+  int32 http_status = 5;  // Applicable HTTP Status code
   
   // Additional error metadata
-  map<string, string> metadata = 5;  // Metadata map for additional context
+  map<string, string> metadata = 6;  // Metadata map for additional context
 }
 
 // EventNotification represents an event from Rodent

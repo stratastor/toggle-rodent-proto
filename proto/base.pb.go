@@ -586,13 +586,14 @@ func (x *CommandResponse) GetError() *RodentError {
 // RodentError represents a structured error from Rodent
 // This matches the pkg/errors.RodentError structure
 type RodentError struct {
-	state   protoimpl.MessageState `protogen:"open.v1"`
-	Code    int32                  `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`      // Error code (consistent with pkg/errors.ErrorCode)
-	Domain  string                 `protobuf:"bytes,2,opt,name=domain,proto3" json:"domain,omitempty"`   // Error domain (e.g., "ZFS", "SERVER", etc.)
-	Message string                 `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"` // Error message
-	Details string                 `protobuf:"bytes,4,opt,name=details,proto3" json:"details,omitempty"` // Optional detailed error explanation
+	state      protoimpl.MessageState `protogen:"open.v1"`
+	Code       int32                  `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`                               // Error code (consistent with pkg/errors.ErrorCode)
+	Domain     string                 `protobuf:"bytes,2,opt,name=domain,proto3" json:"domain,omitempty"`                            // Error domain (e.g., "ZFS", "SERVER", etc.)
+	Message    string                 `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`                          // Error message
+	Details    string                 `protobuf:"bytes,4,opt,name=details,proto3" json:"details,omitempty"`                          // Optional detailed error explanation
+	HttpStatus int32                  `protobuf:"varint,5,opt,name=http_status,json=httpStatus,proto3" json:"http_status,omitempty"` // Applicable HTTP Status code
 	// Additional error metadata
-	Metadata      map[string]string `protobuf:"bytes,5,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"` // Metadata map for additional context
+	Metadata      map[string]string `protobuf:"bytes,6,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"` // Metadata map for additional context
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -653,6 +654,13 @@ func (x *RodentError) GetDetails() string {
 		return x.Details
 	}
 	return ""
+}
+
+func (x *RodentError) GetHttpStatus() int32 {
+	if x != nil {
+		return x.HttpStatus
+	}
+	return 0
 }
 
 func (x *RodentError) GetMetadata() map[string]string {
@@ -894,13 +902,15 @@ const file_proto_base_proto_rawDesc = "" +
 	"\asuccess\x18\x02 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x03 \x01(\tR\amessage\x12\x18\n" +
 	"\apayload\x18\x04 \x01(\fR\apayload\x12)\n" +
-	"\x05error\x18\x05 \x01(\v2\x13.rodent.RodentErrorR\x05error\"\xe9\x01\n" +
+	"\x05error\x18\x05 \x01(\v2\x13.rodent.RodentErrorR\x05error\"\x8a\x02\n" +
 	"\vRodentError\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\x05R\x04code\x12\x16\n" +
 	"\x06domain\x18\x02 \x01(\tR\x06domain\x12\x18\n" +
 	"\amessage\x18\x03 \x01(\tR\amessage\x12\x18\n" +
-	"\adetails\x18\x04 \x01(\tR\adetails\x12=\n" +
-	"\bmetadata\x18\x05 \x03(\v2!.rodent.RodentError.MetadataEntryR\bmetadata\x1a;\n" +
+	"\adetails\x18\x04 \x01(\tR\adetails\x12\x1f\n" +
+	"\vhttp_status\x18\x05 \x01(\x05R\n" +
+	"httpStatus\x12=\n" +
+	"\bmetadata\x18\x06 \x03(\v2!.rodent.RodentError.MetadataEntryR\bmetadata\x1a;\n" +
 	"\rMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x82\x01\n" +
