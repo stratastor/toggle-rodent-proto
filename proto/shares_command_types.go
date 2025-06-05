@@ -19,6 +19,8 @@ const (
 	CmdSharesSMBGlobalGet    = "shares.smb.global.get"
 	CmdSharesSMBGlobalUpdate = "shares.smb.global.update"
 
+	CmdSharesSMBRegenerateConfig = "shares.smb.regenerate"
+
 	// SMB Service operations
 	CmdSharesSMBServiceStatus  = "shares.smb.service.status"
 	CmdSharesSMBServiceStart   = "shares.smb.service.start"
