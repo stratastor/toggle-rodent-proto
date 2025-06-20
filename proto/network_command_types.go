@@ -32,9 +32,12 @@ const (
 	CmdNetworkNetplanDiff      = "network.netplan.diff"
 
 	// Backup and restore commands
-	CmdNetworkBackupsList    = "network.backups.list"
-	CmdNetworkBackupsCreate  = "network.backups.create"
-	CmdNetworkBackupsRestore = "network.backups.restore"
+	CmdNetworkBackupsList      = "network.backups.list"
+	CmdNetworkBackupsCreate    = "network.backups.create"
+	CmdNetworkBackupsGet       = "network.backups.get"
+	CmdNetworkBackupsDelete    = "network.backups.delete"
+	CmdNetworkBackupsDeleteAll = "network.backups.purge"
+	CmdNetworkBackupsRestore   = "network.backups.restore"
 
 	// System information commands
 	CmdNetworkSystemInfo = "network.system.info"

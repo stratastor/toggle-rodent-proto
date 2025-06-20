@@ -71,4 +71,13 @@ const (
 	// Data transfer operations
 	ZFSCmdTransferSend        = "zfs.transfer.send"
 	ZFSCmdTransferResumeToken = "zfs.transfer.resume_token"
+
+	// Managed transfer operations
+	ZFSCmdTransferStart  = "zfs.transfer.start"
+	ZFSCmdTransferList   = "zfs.transfer.list"
+	ZFSCmdTransferGet    = "zfs.transfer.get"
+	ZFSCmdTransferPause  = "zfs.transfer.pause"
+	ZFSCmdTransferResume = "zfs.transfer.resume"
+	ZFSCmdTransferStop   = "zfs.transfer.stop"
+	ZFSCmdTransferDelete = "zfs.transfer.delete"
 )
