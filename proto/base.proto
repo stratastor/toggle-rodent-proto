@@ -15,6 +15,11 @@ service RodentService {
   // Toggle will send commands over this stream and Rodent will respond
   // Status/heartbeat information should be sent as responses to Toggle's status requests
   rpc Connect(stream RodentRequest) returns (stream ToggleRequest);
+  
+  // SendEvents sends batched events to Toggle (unary RPC)
+  // Uses JWT authentication via metadata
+  // Returns acknowledgment for event processing status
+  rpc SendEvents(EventBatch) returns (EventBatchResponse);
 }
 
 // RegisterRequest contains the information needed to register a Rodent node
@@ -118,5 +123,49 @@ message Acknowledgement {
   string request_id = 1;
   bool success = 2;
   string message = 3;
+}
+
+// Event batch for efficient transmission
+message EventBatch {
+  repeated Event events = 1;
+  int64 batch_timestamp = 2;  // When batch was created
+  string batch_id = 3;        // Unique batch identifier for deduplication
+}
+
+// Individual event structure
+message Event {
+  string event_id = 1;        // Unique event identifier
+  string event_type = 2;      // e.g., "storage.dataset.created"
+  EventLevel level = 3;       // severity level
+  EventCategory category = 4; // domain category
+  string source = 5;          // source module/component
+  int64 timestamp = 6;        // Unix timestamp in milliseconds
+  bytes payload = 7;          // JSON-encoded event data
+  map<string, string> metadata = 8; // Additional context
+}
+
+// Event severity levels
+enum EventLevel {
+  EVENT_LEVEL_UNSPECIFIED = 0;
+  EVENT_LEVEL_INFO = 1;
+  EVENT_LEVEL_WARN = 2;
+  EVENT_LEVEL_ERROR = 3;
+  EVENT_LEVEL_CRITICAL = 4;
+}
+
+// Event domain categories
+enum EventCategory {
+  EVENT_CATEGORY_UNSPECIFIED = 0;
+  EVENT_CATEGORY_SYSTEM = 1;
+  EVENT_CATEGORY_STORAGE = 2;
+  EVENT_CATEGORY_NETWORK = 3;
+  EVENT_CATEGORY_SECURITY = 4;
+  EVENT_CATEGORY_SERVICE = 5;
+}
+
+// Response for event batch processing
+message EventBatchResponse {
+  bool success = 1;           // Simple success/failure
+  string message = 2;         // Optional error message
 }
 

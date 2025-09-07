@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	RodentService_Register_FullMethodName = "/rodent.RodentService/Register"
-	RodentService_Connect_FullMethodName  = "/rodent.RodentService/Connect"
+	RodentService_Register_FullMethodName   = "/rodent.RodentService/Register"
+	RodentService_Connect_FullMethodName    = "/rodent.RodentService/Connect"
+	RodentService_SendEvents_FullMethodName = "/rodent.RodentService/SendEvents"
 )
 
 // RodentServiceClient is the client API for RodentService service.
@@ -37,6 +38,10 @@ type RodentServiceClient interface {
 	// Toggle will send commands over this stream and Rodent will respond
 	// Status/heartbeat information should be sent as responses to Toggle's status requests
 	Connect(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[RodentRequest, ToggleRequest], error)
+	// SendEvents sends batched events to Toggle (unary RPC)
+	// Uses JWT authentication via metadata
+	// Returns acknowledgment for event processing status
+	SendEvents(ctx context.Context, in *EventBatch, opts ...grpc.CallOption) (*EventBatchResponse, error)
 }
 
 type rodentServiceClient struct {
@@ -70,6 +75,16 @@ func (c *rodentServiceClient) Connect(ctx context.Context, opts ...grpc.CallOpti
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type RodentService_ConnectClient = grpc.BidiStreamingClient[RodentRequest, ToggleRequest]
 
+func (c *rodentServiceClient) SendEvents(ctx context.Context, in *EventBatch, opts ...grpc.CallOption) (*EventBatchResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EventBatchResponse)
+	err := c.cc.Invoke(ctx, RodentService_SendEvents_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // RodentServiceServer is the server API for RodentService service.
 // All implementations must embed UnimplementedRodentServiceServer
 // for forward compatibility.
@@ -84,6 +99,10 @@ type RodentServiceServer interface {
 	// Toggle will send commands over this stream and Rodent will respond
 	// Status/heartbeat information should be sent as responses to Toggle's status requests
 	Connect(grpc.BidiStreamingServer[RodentRequest, ToggleRequest]) error
+	// SendEvents sends batched events to Toggle (unary RPC)
+	// Uses JWT authentication via metadata
+	// Returns acknowledgment for event processing status
+	SendEvents(context.Context, *EventBatch) (*EventBatchResponse, error)
 	mustEmbedUnimplementedRodentServiceServer()
 }
 
@@ -99,6 +118,9 @@ func (UnimplementedRodentServiceServer) Register(context.Context, *RegisterReque
 }
 func (UnimplementedRodentServiceServer) Connect(grpc.BidiStreamingServer[RodentRequest, ToggleRequest]) error {
 	return status.Errorf(codes.Unimplemented, "method Connect not implemented")
+}
+func (UnimplementedRodentServiceServer) SendEvents(context.Context, *EventBatch) (*EventBatchResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendEvents not implemented")
 }
 func (UnimplementedRodentServiceServer) mustEmbedUnimplementedRodentServiceServer() {}
 func (UnimplementedRodentServiceServer) testEmbeddedByValue()                       {}
@@ -146,6 +168,24 @@ func _RodentService_Connect_Handler(srv interface{}, stream grpc.ServerStream) e
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type RodentService_ConnectServer = grpc.BidiStreamingServer[RodentRequest, ToggleRequest]
 
+func _RodentService_SendEvents_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EventBatch)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RodentServiceServer).SendEvents(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: RodentService_SendEvents_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RodentServiceServer).SendEvents(ctx, req.(*EventBatch))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // RodentService_ServiceDesc is the grpc.ServiceDesc for RodentService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -156,6 +196,10 @@ var RodentService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Register",
 			Handler:    _RodentService_Register_Handler,
+		},
+		{
+			MethodName: "SendEvents",
+			Handler:    _RodentService_SendEvents_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
