@@ -87,6 +87,9 @@ const (
 	EventCategory_EVENT_CATEGORY_NETWORK     EventCategory = 3
 	EventCategory_EVENT_CATEGORY_SECURITY    EventCategory = 4
 	EventCategory_EVENT_CATEGORY_SERVICE     EventCategory = 5
+	EventCategory_EVENT_CATEGORY_IDENTITY    EventCategory = 6 // AD/LDAP user/group/computer management
+	EventCategory_EVENT_CATEGORY_ACCESS      EventCategory = 7 // ACL, permissions, access control
+	EventCategory_EVENT_CATEGORY_SHARING     EventCategory = 8 // SMB/NFS shares, connections
 )
 
 // Enum value maps for EventCategory.
@@ -98,6 +101,9 @@ var (
 		3: "EVENT_CATEGORY_NETWORK",
 		4: "EVENT_CATEGORY_SECURITY",
 		5: "EVENT_CATEGORY_SERVICE",
+		6: "EVENT_CATEGORY_IDENTITY",
+		7: "EVENT_CATEGORY_ACCESS",
+		8: "EVENT_CATEGORY_SHARING",
 	}
 	EventCategory_value = map[string]int32{
 		"EVENT_CATEGORY_UNSPECIFIED": 0,
@@ -106,6 +112,9 @@ var (
 		"EVENT_CATEGORY_NETWORK":     3,
 		"EVENT_CATEGORY_SECURITY":    4,
 		"EVENT_CATEGORY_SERVICE":     5,
+		"EVENT_CATEGORY_IDENTITY":    6,
+		"EVENT_CATEGORY_ACCESS":      7,
+		"EVENT_CATEGORY_SHARING":     8,
 	}
 )
 
@@ -1038,7 +1047,7 @@ type Event struct {
 	Category      EventCategory          `protobuf:"varint,4,opt,name=category,proto3,enum=rodent.EventCategory" json:"category,omitempty"`                                                // domain category
 	Source        string                 `protobuf:"bytes,5,opt,name=source,proto3" json:"source,omitempty"`                                                                               // source module/component
 	Timestamp     int64                  `protobuf:"varint,6,opt,name=timestamp,proto3" json:"timestamp,omitempty"`                                                                        // Unix timestamp in milliseconds
-	Payload       []byte                 `protobuf:"bytes,7,opt,name=payload,proto3" json:"payload,omitempty"`                                                                             // JSON-encoded event data
+	Payload       []byte                 `protobuf:"bytes,7,opt,name=payload,proto3" json:"payload,omitempty"`                                                                             // JSON-encoded structured payload (see events.proto)
 	Metadata      map[string]string      `protobuf:"bytes,8,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"` // Additional context
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1263,7 +1272,7 @@ const file_proto_base_proto_rawDesc = "" +
 	"EventBatch\x12%\n" +
 	"\x06events\x18\x01 \x03(\v2\r.rodent.EventR\x06events\x12'\n" +
 	"\x0fbatch_timestamp\x18\x02 \x01(\x03R\x0ebatchTimestamp\x12\x19\n" +
-	"\bbatch_id\x18\x03 \x01(\tR\abatchId\"\xe4\x02\n" +
+	"\bbatch_id\x18\x03 \x01(\tR\abatchId\"\xea\x02\n" +
 	"\x05Event\x12\x19\n" +
 	"\bevent_id\x18\x01 \x01(\tR\aeventId\x12\x1d\n" +
 	"\n" +
@@ -1276,7 +1285,7 @@ const file_proto_base_proto_rawDesc = "" +
 	"\bmetadata\x18\b \x03(\v2\x1b.rodent.Event.MetadataEntryR\bmetadata\x1a;\n" +
 	"\rMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"H\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01J\x04\b\t\x10\x15\"H\n" +
 	"\x12EventBatchResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage*\x86\x01\n" +
@@ -1286,14 +1295,17 @@ const file_proto_base_proto_rawDesc = "" +
 	"\x10EVENT_LEVEL_INFO\x10\x01\x12\x14\n" +
 	"\x10EVENT_LEVEL_WARN\x10\x02\x12\x15\n" +
 	"\x11EVENT_LEVEL_ERROR\x10\x03\x12\x18\n" +
-	"\x14EVENT_LEVEL_CRITICAL\x10\x04*\xbb\x01\n" +
+	"\x14EVENT_LEVEL_CRITICAL\x10\x04*\x8f\x02\n" +
 	"\rEventCategory\x12\x1e\n" +
 	"\x1aEVENT_CATEGORY_UNSPECIFIED\x10\x00\x12\x19\n" +
 	"\x15EVENT_CATEGORY_SYSTEM\x10\x01\x12\x1a\n" +
 	"\x16EVENT_CATEGORY_STORAGE\x10\x02\x12\x1a\n" +
 	"\x16EVENT_CATEGORY_NETWORK\x10\x03\x12\x1b\n" +
 	"\x17EVENT_CATEGORY_SECURITY\x10\x04\x12\x1a\n" +
-	"\x16EVENT_CATEGORY_SERVICE\x10\x052\xc9\x01\n" +
+	"\x16EVENT_CATEGORY_SERVICE\x10\x05\x12\x1b\n" +
+	"\x17EVENT_CATEGORY_IDENTITY\x10\x06\x12\x19\n" +
+	"\x15EVENT_CATEGORY_ACCESS\x10\a\x12\x1a\n" +
+	"\x16EVENT_CATEGORY_SHARING\x10\b2\xc9\x01\n" +
 	"\rRodentService\x12=\n" +
 	"\bRegister\x12\x17.rodent.RegisterRequest\x1a\x18.rodent.RegisterResponse\x12;\n" +
 	"\aConnect\x12\x15.rodent.RodentRequest\x1a\x15.rodent.ToggleRequest(\x010\x01\x12<\n" +

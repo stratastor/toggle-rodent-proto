@@ -140,8 +140,11 @@ message Event {
   EventCategory category = 4; // domain category
   string source = 5;          // source module/component
   int64 timestamp = 6;        // Unix timestamp in milliseconds
-  bytes payload = 7;          // JSON-encoded event data
+  bytes payload = 7;          // JSON-encoded structured payload (see events.proto)
   map<string, string> metadata = 8; // Additional context
+
+  // Reserved fields for future structured event types (optional enhancement)
+  reserved 9 to 20;
 }
 
 // Event severity levels
@@ -161,6 +164,9 @@ enum EventCategory {
   EVENT_CATEGORY_NETWORK = 3;
   EVENT_CATEGORY_SECURITY = 4;
   EVENT_CATEGORY_SERVICE = 5;
+  EVENT_CATEGORY_IDENTITY = 6;      // AD/LDAP user/group/computer management
+  EVENT_CATEGORY_ACCESS = 7;        // ACL, permissions, access control
+  EVENT_CATEGORY_SHARING = 8;       // SMB/NFS shares, connections
 }
 
 // Response for event batch processing
