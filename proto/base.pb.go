@@ -7,6 +7,7 @@
 package proto
 
 import (
+	events "github.com/stratastor/toggle-rodent-proto/proto/events"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -20,130 +21,6 @@ const (
 	// Verify that runtime/protoimpl is sufficiently up-to-date.
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
-
-// Event severity levels
-type EventLevel int32
-
-const (
-	EventLevel_EVENT_LEVEL_UNSPECIFIED EventLevel = 0
-	EventLevel_EVENT_LEVEL_INFO        EventLevel = 1
-	EventLevel_EVENT_LEVEL_WARN        EventLevel = 2
-	EventLevel_EVENT_LEVEL_ERROR       EventLevel = 3
-	EventLevel_EVENT_LEVEL_CRITICAL    EventLevel = 4
-)
-
-// Enum value maps for EventLevel.
-var (
-	EventLevel_name = map[int32]string{
-		0: "EVENT_LEVEL_UNSPECIFIED",
-		1: "EVENT_LEVEL_INFO",
-		2: "EVENT_LEVEL_WARN",
-		3: "EVENT_LEVEL_ERROR",
-		4: "EVENT_LEVEL_CRITICAL",
-	}
-	EventLevel_value = map[string]int32{
-		"EVENT_LEVEL_UNSPECIFIED": 0,
-		"EVENT_LEVEL_INFO":        1,
-		"EVENT_LEVEL_WARN":        2,
-		"EVENT_LEVEL_ERROR":       3,
-		"EVENT_LEVEL_CRITICAL":    4,
-	}
-)
-
-func (x EventLevel) Enum() *EventLevel {
-	p := new(EventLevel)
-	*p = x
-	return p
-}
-
-func (x EventLevel) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (EventLevel) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_base_proto_enumTypes[0].Descriptor()
-}
-
-func (EventLevel) Type() protoreflect.EnumType {
-	return &file_proto_base_proto_enumTypes[0]
-}
-
-func (x EventLevel) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use EventLevel.Descriptor instead.
-func (EventLevel) EnumDescriptor() ([]byte, []int) {
-	return file_proto_base_proto_rawDescGZIP(), []int{0}
-}
-
-// Event domain categories
-type EventCategory int32
-
-const (
-	EventCategory_EVENT_CATEGORY_UNSPECIFIED EventCategory = 0
-	EventCategory_EVENT_CATEGORY_SYSTEM      EventCategory = 1
-	EventCategory_EVENT_CATEGORY_STORAGE     EventCategory = 2
-	EventCategory_EVENT_CATEGORY_NETWORK     EventCategory = 3
-	EventCategory_EVENT_CATEGORY_SECURITY    EventCategory = 4
-	EventCategory_EVENT_CATEGORY_SERVICE     EventCategory = 5
-	EventCategory_EVENT_CATEGORY_IDENTITY    EventCategory = 6 // AD/LDAP user/group/computer management
-	EventCategory_EVENT_CATEGORY_ACCESS      EventCategory = 7 // ACL, permissions, access control
-	EventCategory_EVENT_CATEGORY_SHARING     EventCategory = 8 // SMB/NFS shares, connections
-)
-
-// Enum value maps for EventCategory.
-var (
-	EventCategory_name = map[int32]string{
-		0: "EVENT_CATEGORY_UNSPECIFIED",
-		1: "EVENT_CATEGORY_SYSTEM",
-		2: "EVENT_CATEGORY_STORAGE",
-		3: "EVENT_CATEGORY_NETWORK",
-		4: "EVENT_CATEGORY_SECURITY",
-		5: "EVENT_CATEGORY_SERVICE",
-		6: "EVENT_CATEGORY_IDENTITY",
-		7: "EVENT_CATEGORY_ACCESS",
-		8: "EVENT_CATEGORY_SHARING",
-	}
-	EventCategory_value = map[string]int32{
-		"EVENT_CATEGORY_UNSPECIFIED": 0,
-		"EVENT_CATEGORY_SYSTEM":      1,
-		"EVENT_CATEGORY_STORAGE":     2,
-		"EVENT_CATEGORY_NETWORK":     3,
-		"EVENT_CATEGORY_SECURITY":    4,
-		"EVENT_CATEGORY_SERVICE":     5,
-		"EVENT_CATEGORY_IDENTITY":    6,
-		"EVENT_CATEGORY_ACCESS":      7,
-		"EVENT_CATEGORY_SHARING":     8,
-	}
-)
-
-func (x EventCategory) Enum() *EventCategory {
-	p := new(EventCategory)
-	*p = x
-	return p
-}
-
-func (x EventCategory) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (EventCategory) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_base_proto_enumTypes[1].Descriptor()
-}
-
-func (EventCategory) Type() protoreflect.EnumType {
-	return &file_proto_base_proto_enumTypes[1]
-}
-
-func (x EventCategory) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use EventCategory.Descriptor instead.
-func (EventCategory) EnumDescriptor() ([]byte, []int) {
-	return file_proto_base_proto_rawDescGZIP(), []int{1}
-}
 
 // RegisterRequest contains the information needed to register a Rodent node
 // Note: Authentication and network type are handled via JWT token in metadata
@@ -980,7 +857,7 @@ func (x *Acknowledgement) GetMessage() string {
 // Event batch for efficient transmission
 type EventBatch struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	Events         []*Event               `protobuf:"bytes,1,rep,name=events,proto3" json:"events,omitempty"`
+	Events         []*events.Event        `protobuf:"bytes,1,rep,name=events,proto3" json:"events,omitempty"`                                        // Use the type-safe Event from events package
 	BatchTimestamp int64                  `protobuf:"varint,2,opt,name=batch_timestamp,json=batchTimestamp,proto3" json:"batch_timestamp,omitempty"` // When batch was created
 	BatchId        string                 `protobuf:"bytes,3,opt,name=batch_id,json=batchId,proto3" json:"batch_id,omitempty"`                       // Unique batch identifier for deduplication
 	unknownFields  protoimpl.UnknownFields
@@ -1017,7 +894,7 @@ func (*EventBatch) Descriptor() ([]byte, []int) {
 	return file_proto_base_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *EventBatch) GetEvents() []*Event {
+func (x *EventBatch) GetEvents() []*events.Event {
 	if x != nil {
 		return x.Events
 	}
@@ -1038,107 +915,6 @@ func (x *EventBatch) GetBatchId() string {
 	return ""
 }
 
-// Individual event structure
-type Event struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	EventId       string                 `protobuf:"bytes,1,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`                                                              // Unique event identifier
-	EventType     string                 `protobuf:"bytes,2,opt,name=event_type,json=eventType,proto3" json:"event_type,omitempty"`                                                        // e.g., "storage.dataset.created"
-	Level         EventLevel             `protobuf:"varint,3,opt,name=level,proto3,enum=rodent.EventLevel" json:"level,omitempty"`                                                         // severity level
-	Category      EventCategory          `protobuf:"varint,4,opt,name=category,proto3,enum=rodent.EventCategory" json:"category,omitempty"`                                                // domain category
-	Source        string                 `protobuf:"bytes,5,opt,name=source,proto3" json:"source,omitempty"`                                                                               // source module/component
-	Timestamp     int64                  `protobuf:"varint,6,opt,name=timestamp,proto3" json:"timestamp,omitempty"`                                                                        // Unix timestamp in milliseconds
-	Payload       []byte                 `protobuf:"bytes,7,opt,name=payload,proto3" json:"payload,omitempty"`                                                                             // JSON-encoded structured payload (see events.proto)
-	Metadata      map[string]string      `protobuf:"bytes,8,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"` // Additional context
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Event) Reset() {
-	*x = Event{}
-	mi := &file_proto_base_proto_msgTypes[12]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Event) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Event) ProtoMessage() {}
-
-func (x *Event) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_base_proto_msgTypes[12]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Event.ProtoReflect.Descriptor instead.
-func (*Event) Descriptor() ([]byte, []int) {
-	return file_proto_base_proto_rawDescGZIP(), []int{12}
-}
-
-func (x *Event) GetEventId() string {
-	if x != nil {
-		return x.EventId
-	}
-	return ""
-}
-
-func (x *Event) GetEventType() string {
-	if x != nil {
-		return x.EventType
-	}
-	return ""
-}
-
-func (x *Event) GetLevel() EventLevel {
-	if x != nil {
-		return x.Level
-	}
-	return EventLevel_EVENT_LEVEL_UNSPECIFIED
-}
-
-func (x *Event) GetCategory() EventCategory {
-	if x != nil {
-		return x.Category
-	}
-	return EventCategory_EVENT_CATEGORY_UNSPECIFIED
-}
-
-func (x *Event) GetSource() string {
-	if x != nil {
-		return x.Source
-	}
-	return ""
-}
-
-func (x *Event) GetTimestamp() int64 {
-	if x != nil {
-		return x.Timestamp
-	}
-	return 0
-}
-
-func (x *Event) GetPayload() []byte {
-	if x != nil {
-		return x.Payload
-	}
-	return nil
-}
-
-func (x *Event) GetMetadata() map[string]string {
-	if x != nil {
-		return x.Metadata
-	}
-	return nil
-}
-
 // Response for event batch processing
 type EventBatchResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -1150,7 +926,7 @@ type EventBatchResponse struct {
 
 func (x *EventBatchResponse) Reset() {
 	*x = EventBatchResponse{}
-	mi := &file_proto_base_proto_msgTypes[13]
+	mi := &file_proto_base_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1162,7 +938,7 @@ func (x *EventBatchResponse) String() string {
 func (*EventBatchResponse) ProtoMessage() {}
 
 func (x *EventBatchResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_base_proto_msgTypes[13]
+	mi := &file_proto_base_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1175,7 +951,7 @@ func (x *EventBatchResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EventBatchResponse.ProtoReflect.Descriptor instead.
 func (*EventBatchResponse) Descriptor() ([]byte, []int) {
-	return file_proto_base_proto_rawDescGZIP(), []int{13}
+	return file_proto_base_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *EventBatchResponse) GetSuccess() bool {
@@ -1196,7 +972,7 @@ var File_proto_base_proto protoreflect.FileDescriptor
 
 const file_proto_base_proto_rawDesc = "" +
 	"\n" +
-	"\x10proto/base.proto\x12\x06rodent\"L\n" +
+	"\x10proto/base.proto\x12\x06rodent\x1a!proto/events/event_messages.proto\"L\n" +
 	"\x0fRegisterRequest\x123\n" +
 	"\vsystem_info\x18\x01 \x01(\v2\x12.rodent.SystemInfoR\n" +
 	"systemInfoJ\x04\b\x02\x10\v\"\xc0\x01\n" +
@@ -1267,45 +1043,15 @@ const file_proto_base_proto_rawDesc = "" +
 	"\n" +
 	"request_id\x18\x01 \x01(\tR\trequestId\x12\x18\n" +
 	"\asuccess\x18\x02 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x03 \x01(\tR\amessage\"w\n" +
+	"\amessage\x18\x03 \x01(\tR\amessage\"~\n" +
 	"\n" +
-	"EventBatch\x12%\n" +
-	"\x06events\x18\x01 \x03(\v2\r.rodent.EventR\x06events\x12'\n" +
+	"EventBatch\x12,\n" +
+	"\x06events\x18\x01 \x03(\v2\x14.rodent.events.EventR\x06events\x12'\n" +
 	"\x0fbatch_timestamp\x18\x02 \x01(\x03R\x0ebatchTimestamp\x12\x19\n" +
-	"\bbatch_id\x18\x03 \x01(\tR\abatchId\"\xea\x02\n" +
-	"\x05Event\x12\x19\n" +
-	"\bevent_id\x18\x01 \x01(\tR\aeventId\x12\x1d\n" +
-	"\n" +
-	"event_type\x18\x02 \x01(\tR\teventType\x12(\n" +
-	"\x05level\x18\x03 \x01(\x0e2\x12.rodent.EventLevelR\x05level\x121\n" +
-	"\bcategory\x18\x04 \x01(\x0e2\x15.rodent.EventCategoryR\bcategory\x12\x16\n" +
-	"\x06source\x18\x05 \x01(\tR\x06source\x12\x1c\n" +
-	"\ttimestamp\x18\x06 \x01(\x03R\ttimestamp\x12\x18\n" +
-	"\apayload\x18\a \x01(\fR\apayload\x127\n" +
-	"\bmetadata\x18\b \x03(\v2\x1b.rodent.Event.MetadataEntryR\bmetadata\x1a;\n" +
-	"\rMetadataEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01J\x04\b\t\x10\x15\"H\n" +
+	"\bbatch_id\x18\x03 \x01(\tR\abatchId\"H\n" +
 	"\x12EventBatchResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage*\x86\x01\n" +
-	"\n" +
-	"EventLevel\x12\x1b\n" +
-	"\x17EVENT_LEVEL_UNSPECIFIED\x10\x00\x12\x14\n" +
-	"\x10EVENT_LEVEL_INFO\x10\x01\x12\x14\n" +
-	"\x10EVENT_LEVEL_WARN\x10\x02\x12\x15\n" +
-	"\x11EVENT_LEVEL_ERROR\x10\x03\x12\x18\n" +
-	"\x14EVENT_LEVEL_CRITICAL\x10\x04*\x8f\x02\n" +
-	"\rEventCategory\x12\x1e\n" +
-	"\x1aEVENT_CATEGORY_UNSPECIFIED\x10\x00\x12\x19\n" +
-	"\x15EVENT_CATEGORY_SYSTEM\x10\x01\x12\x1a\n" +
-	"\x16EVENT_CATEGORY_STORAGE\x10\x02\x12\x1a\n" +
-	"\x16EVENT_CATEGORY_NETWORK\x10\x03\x12\x1b\n" +
-	"\x17EVENT_CATEGORY_SECURITY\x10\x04\x12\x1a\n" +
-	"\x16EVENT_CATEGORY_SERVICE\x10\x05\x12\x1b\n" +
-	"\x17EVENT_CATEGORY_IDENTITY\x10\x06\x12\x19\n" +
-	"\x15EVENT_CATEGORY_ACCESS\x10\a\x12\x1a\n" +
-	"\x16EVENT_CATEGORY_SHARING\x10\b2\xc9\x01\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage2\xc9\x01\n" +
 	"\rRodentService\x12=\n" +
 	"\bRegister\x12\x17.rodent.RegisterRequest\x1a\x18.rodent.RegisterResponse\x12;\n" +
 	"\aConnect\x12\x15.rodent.RodentRequest\x1a\x15.rodent.ToggleRequest(\x010\x01\x12<\n" +
@@ -1324,53 +1070,46 @@ func file_proto_base_proto_rawDescGZIP() []byte {
 	return file_proto_base_proto_rawDescData
 }
 
-var file_proto_base_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_proto_base_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
+var file_proto_base_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_proto_base_proto_goTypes = []any{
-	(EventLevel)(0),            // 0: rodent.EventLevel
-	(EventCategory)(0),         // 1: rodent.EventCategory
-	(*RegisterRequest)(nil),    // 2: rodent.RegisterRequest
-	(*RegisterResponse)(nil),   // 3: rodent.RegisterResponse
-	(*SystemInfo)(nil),         // 4: rodent.SystemInfo
-	(*RodentRequest)(nil),      // 5: rodent.RodentRequest
-	(*ToggleRequest)(nil),      // 6: rodent.ToggleRequest
-	(*CommandRequest)(nil),     // 7: rodent.CommandRequest
-	(*CommandResponse)(nil),    // 8: rodent.CommandResponse
-	(*RodentError)(nil),        // 9: rodent.RodentError
-	(*EventNotification)(nil),  // 10: rodent.EventNotification
-	(*ConfigUpdate)(nil),       // 11: rodent.ConfigUpdate
-	(*Acknowledgement)(nil),    // 12: rodent.Acknowledgement
-	(*EventBatch)(nil),         // 13: rodent.EventBatch
-	(*Event)(nil),              // 14: rodent.Event
-	(*EventBatchResponse)(nil), // 15: rodent.EventBatchResponse
-	nil,                        // 16: rodent.RodentError.MetadataEntry
-	nil,                        // 17: rodent.Event.MetadataEntry
+	(*RegisterRequest)(nil),    // 0: rodent.RegisterRequest
+	(*RegisterResponse)(nil),   // 1: rodent.RegisterResponse
+	(*SystemInfo)(nil),         // 2: rodent.SystemInfo
+	(*RodentRequest)(nil),      // 3: rodent.RodentRequest
+	(*ToggleRequest)(nil),      // 4: rodent.ToggleRequest
+	(*CommandRequest)(nil),     // 5: rodent.CommandRequest
+	(*CommandResponse)(nil),    // 6: rodent.CommandResponse
+	(*RodentError)(nil),        // 7: rodent.RodentError
+	(*EventNotification)(nil),  // 8: rodent.EventNotification
+	(*ConfigUpdate)(nil),       // 9: rodent.ConfigUpdate
+	(*Acknowledgement)(nil),    // 10: rodent.Acknowledgement
+	(*EventBatch)(nil),         // 11: rodent.EventBatch
+	(*EventBatchResponse)(nil), // 12: rodent.EventBatchResponse
+	nil,                        // 13: rodent.RodentError.MetadataEntry
+	(*events.Event)(nil),       // 14: rodent.events.Event
 }
 var file_proto_base_proto_depIdxs = []int32{
-	4,  // 0: rodent.RegisterRequest.system_info:type_name -> rodent.SystemInfo
-	8,  // 1: rodent.RodentRequest.command_response:type_name -> rodent.CommandResponse
-	10, // 2: rodent.RodentRequest.event:type_name -> rodent.EventNotification
-	12, // 3: rodent.RodentRequest.ack:type_name -> rodent.Acknowledgement
-	7,  // 4: rodent.ToggleRequest.command:type_name -> rodent.CommandRequest
-	11, // 5: rodent.ToggleRequest.config:type_name -> rodent.ConfigUpdate
-	12, // 6: rodent.ToggleRequest.ack:type_name -> rodent.Acknowledgement
-	9,  // 7: rodent.CommandResponse.error:type_name -> rodent.RodentError
-	16, // 8: rodent.RodentError.metadata:type_name -> rodent.RodentError.MetadataEntry
-	14, // 9: rodent.EventBatch.events:type_name -> rodent.Event
-	0,  // 10: rodent.Event.level:type_name -> rodent.EventLevel
-	1,  // 11: rodent.Event.category:type_name -> rodent.EventCategory
-	17, // 12: rodent.Event.metadata:type_name -> rodent.Event.MetadataEntry
-	2,  // 13: rodent.RodentService.Register:input_type -> rodent.RegisterRequest
-	5,  // 14: rodent.RodentService.Connect:input_type -> rodent.RodentRequest
-	13, // 15: rodent.RodentService.SendEvents:input_type -> rodent.EventBatch
-	3,  // 16: rodent.RodentService.Register:output_type -> rodent.RegisterResponse
-	6,  // 17: rodent.RodentService.Connect:output_type -> rodent.ToggleRequest
-	15, // 18: rodent.RodentService.SendEvents:output_type -> rodent.EventBatchResponse
-	16, // [16:19] is the sub-list for method output_type
-	13, // [13:16] is the sub-list for method input_type
-	13, // [13:13] is the sub-list for extension type_name
-	13, // [13:13] is the sub-list for extension extendee
-	0,  // [0:13] is the sub-list for field type_name
+	2,  // 0: rodent.RegisterRequest.system_info:type_name -> rodent.SystemInfo
+	6,  // 1: rodent.RodentRequest.command_response:type_name -> rodent.CommandResponse
+	8,  // 2: rodent.RodentRequest.event:type_name -> rodent.EventNotification
+	10, // 3: rodent.RodentRequest.ack:type_name -> rodent.Acknowledgement
+	5,  // 4: rodent.ToggleRequest.command:type_name -> rodent.CommandRequest
+	9,  // 5: rodent.ToggleRequest.config:type_name -> rodent.ConfigUpdate
+	10, // 6: rodent.ToggleRequest.ack:type_name -> rodent.Acknowledgement
+	7,  // 7: rodent.CommandResponse.error:type_name -> rodent.RodentError
+	13, // 8: rodent.RodentError.metadata:type_name -> rodent.RodentError.MetadataEntry
+	14, // 9: rodent.EventBatch.events:type_name -> rodent.events.Event
+	0,  // 10: rodent.RodentService.Register:input_type -> rodent.RegisterRequest
+	3,  // 11: rodent.RodentService.Connect:input_type -> rodent.RodentRequest
+	11, // 12: rodent.RodentService.SendEvents:input_type -> rodent.EventBatch
+	1,  // 13: rodent.RodentService.Register:output_type -> rodent.RegisterResponse
+	4,  // 14: rodent.RodentService.Connect:output_type -> rodent.ToggleRequest
+	12, // 15: rodent.RodentService.SendEvents:output_type -> rodent.EventBatchResponse
+	13, // [13:16] is the sub-list for method output_type
+	10, // [10:13] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
 func init() { file_proto_base_proto_init() }
@@ -1393,14 +1132,13 @@ func file_proto_base_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_base_proto_rawDesc), len(file_proto_base_proto_rawDesc)),
-			NumEnums:      2,
-			NumMessages:   16,
+			NumEnums:      0,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_proto_base_proto_goTypes,
 		DependencyIndexes: file_proto_base_proto_depIdxs,
-		EnumInfos:         file_proto_base_proto_enumTypes,
 		MessageInfos:      file_proto_base_proto_msgTypes,
 	}.Build()
 	File_proto_base_proto = out.File

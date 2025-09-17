@@ -4,6 +4,8 @@ package rodent;
 
 option go_package = "github.com/stratastor/toggle-rodent-proto/proto";
 
+import "proto/events/event_messages.proto";
+
 // RodentService defines the gRPC service for Toggle-Rodent communication
 service RodentService {
   // Register allows a Rodent node to register with Toggle
@@ -127,46 +129,9 @@ message Acknowledgement {
 
 // Event batch for efficient transmission
 message EventBatch {
-  repeated Event events = 1;
-  int64 batch_timestamp = 2;  // When batch was created
-  string batch_id = 3;        // Unique batch identifier for deduplication
-}
-
-// Individual event structure
-message Event {
-  string event_id = 1;        // Unique event identifier
-  string event_type = 2;      // e.g., "storage.dataset.created"
-  EventLevel level = 3;       // severity level
-  EventCategory category = 4; // domain category
-  string source = 5;          // source module/component
-  int64 timestamp = 6;        // Unix timestamp in milliseconds
-  bytes payload = 7;          // JSON-encoded structured payload (see events.proto)
-  map<string, string> metadata = 8; // Additional context
-
-  // Reserved fields for future structured event types (optional enhancement)
-  reserved 9 to 20;
-}
-
-// Event severity levels
-enum EventLevel {
-  EVENT_LEVEL_UNSPECIFIED = 0;
-  EVENT_LEVEL_INFO = 1;
-  EVENT_LEVEL_WARN = 2;
-  EVENT_LEVEL_ERROR = 3;
-  EVENT_LEVEL_CRITICAL = 4;
-}
-
-// Event domain categories
-enum EventCategory {
-  EVENT_CATEGORY_UNSPECIFIED = 0;
-  EVENT_CATEGORY_SYSTEM = 1;
-  EVENT_CATEGORY_STORAGE = 2;
-  EVENT_CATEGORY_NETWORK = 3;
-  EVENT_CATEGORY_SECURITY = 4;
-  EVENT_CATEGORY_SERVICE = 5;
-  EVENT_CATEGORY_IDENTITY = 6;      // AD/LDAP user/group/computer management
-  EVENT_CATEGORY_ACCESS = 7;        // ACL, permissions, access control
-  EVENT_CATEGORY_SHARING = 8;       // SMB/NFS shares, connections
+  repeated rodent.events.Event events = 1;  // Use the type-safe Event from events package
+  int64 batch_timestamp = 2;                // When batch was created
+  string batch_id = 3;                      // Unique batch identifier for deduplication
 }
 
 // Response for event batch processing

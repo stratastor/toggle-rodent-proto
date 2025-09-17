@@ -1,0 +1,598 @@
+// Copyright 2025 The StrataSTOR Authors and Contributors
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package rodent.events;
+
+option go_package = "github.com/stratastor/toggle-rodent-proto/proto/events";
+
+// This file defines the complete structured event system with type-safe oneof payloads
+
+// =============================================================================
+// TYPE-SAFE EVENT MESSAGE DEFINITIONS
+// =============================================================================
+
+// Main Event message with structured type-safe payloads
+message Event {
+  string event_id = 1;        // Unique event identifier (UUID7)
+  EventLevel level = 2;       // Severity level
+  EventCategory category = 3; // Domain category
+  string source = 4;          // Source module/component
+  int64 timestamp = 5;        // Unix timestamp in milliseconds
+  map<string, string> metadata = 6; // Additional context
+
+  // Type-safe event payload using oneof for compile-time validation
+  oneof event_payload {
+    SystemEvent system_event = 10;
+    StorageEvent storage_event = 11;
+    NetworkEvent network_event = 12;
+    SecurityEvent security_event = 13;
+    ServiceEvent service_event = 14;
+    IdentityEvent identity_event = 15;
+    AccessEvent access_event = 16;
+    SharingEvent sharing_event = 17;
+    UsageEvent usage_event = 18;
+    DataTransferEvent data_transfer_event = 19;
+  }
+}
+
+// Event severity levels
+enum EventLevel {
+  EVENT_LEVEL_UNSPECIFIED = 0;
+  EVENT_LEVEL_INFO = 1;
+  EVENT_LEVEL_WARN = 2;
+  EVENT_LEVEL_ERROR = 3;
+  EVENT_LEVEL_CRITICAL = 4;
+  EVENT_LEVEL_ESSENTIAL = 5;
+  EVENT_LEVEL_DEBUG = 6;
+  EVENT_LEVEL_TRACE = 7;
+}
+
+// Event domain categories
+enum EventCategory {
+  EVENT_CATEGORY_UNSPECIFIED = 0;
+  EVENT_CATEGORY_SYSTEM = 1;
+  EVENT_CATEGORY_STORAGE = 2;
+  EVENT_CATEGORY_NETWORK = 3;
+  EVENT_CATEGORY_SECURITY = 4;
+  EVENT_CATEGORY_SERVICE = 5;
+  EVENT_CATEGORY_IDENTITY = 6;      // AD/LDAP user/group/computer management
+  EVENT_CATEGORY_ACCESS = 7;        // ACL, permissions, access control
+  EVENT_CATEGORY_SHARING = 8;         // SMB/NFS shares, connections
+  EVENT_CATEGORY_USAGE = 9;           // Resource usage, quotas, consumption tracking
+  EVENT_CATEGORY_DATA_TRANSFER = 10;   // ZFS transfers, data movement operations
+}
+
+// =============================================================================
+// CATEGORY-SPECIFIC EVENT WRAPPERS
+// =============================================================================
+
+// System events wrapper
+message SystemEvent {
+  oneof event_type {
+    SystemStartupPayload startup = 1;
+    SystemShutdownPayload shutdown = 2;
+    SystemConfigChangePayload config_changed = 3;
+    SystemUserPayload user_event = 4;
+  }
+}
+
+// Storage events wrapper
+message StorageEvent {
+  oneof event_type {
+    StoragePoolPayload pool_event = 1;
+    StorageDatasetPayload dataset_event = 2;
+    StorageTransferPayload transfer_event = 3;
+    StorageSnapshotPayload snapshot_event = 4;
+  }
+}
+
+// Network events wrapper
+message NetworkEvent {
+  oneof event_type {
+    NetworkInterfacePayload interface_event = 1;
+    NetworkConnectionPayload connection_event = 2;
+  }
+}
+
+// Security events wrapper
+message SecurityEvent {
+  oneof event_type {
+    SecurityAuthPayload auth_event = 1;
+    SecurityKeyPayload key_event = 2;
+    SecurityCertificatePayload certificate_event = 3;
+  }
+}
+
+// Service events wrapper
+message ServiceEvent {
+  oneof event_type {
+    ServiceStatusPayload status_event = 1;
+  }
+}
+
+// Identity events wrapper (AD/LDAP)
+message IdentityEvent {
+  oneof event_type {
+    IdentityUserPayload user_event = 1;
+    IdentityGroupPayload group_event = 2;
+    IdentityComputerPayload computer_event = 3;
+  }
+}
+
+// Access control events wrapper
+message AccessEvent {
+  oneof event_type {
+    AccessACLPayload acl_event = 1;
+    AccessPermissionPayload permission_event = 2;
+  }
+}
+
+// File sharing events wrapper
+message SharingEvent {
+  oneof event_type {
+    SharingSharePayload share_event = 1;
+    SharingConnectionPayload connection_event = 2;
+    SharingFileAccessPayload file_access_event = 3;
+  }
+}
+
+// Usage events wrapper
+message UsageEvent {
+  oneof event_type {
+    UsageQuotaPayload quota_event = 1;
+    UsageResourcePayload resource_event = 2;
+    UsageThresholdPayload threshold_event = 3;
+  }
+}
+
+// Data transfer events wrapper
+message DataTransferEvent {
+  oneof event_type {
+    DataTransferTransferPayload transfer_event = 1;
+  }
+}
+
+// =============================================================================
+// ENHANCED PAYLOAD MESSAGES WITH OPERATION TYPES
+// =============================================================================
+
+// Enhanced payload messages with operation enums for type safety
+
+message SystemStartupPayload {
+  int64 boot_time_seconds = 1;
+  repeated string services_started = 2;
+  SystemStartupOperation operation = 3;
+
+  enum SystemStartupOperation {
+    SYSTEM_STARTUP_OPERATION_UNSPECIFIED = 0;
+    SYSTEM_STARTUP_OPERATION_COLD_BOOT = 1;
+    SYSTEM_STARTUP_OPERATION_WARM_RESTART = 2;
+    SYSTEM_STARTUP_OPERATION_SERVICE_RESTART = 3;
+    SYSTEM_STARTUP_OPERATION_STARTED = 4;           // Service/component started
+    SYSTEM_STARTUP_OPERATION_REGISTERED = 5;        // Successfully registered with Toggle
+  }
+}
+
+message SystemShutdownPayload {
+  SystemShutdownOperation operation = 1;
+  string reason = 2;
+  bool graceful = 3;
+
+  enum SystemShutdownOperation {
+    SYSTEM_SHUTDOWN_OPERATION_UNSPECIFIED = 0;
+    SYSTEM_SHUTDOWN_OPERATION_SHUTDOWN = 1;
+    SYSTEM_SHUTDOWN_OPERATION_RESTART = 2;
+    SYSTEM_SHUTDOWN_OPERATION_EMERGENCY = 3;
+  }
+}
+
+message SystemConfigChangePayload {
+  string config_section = 1;
+  repeated string changed_keys = 2;
+  SystemConfigOperation operation = 3;
+
+  enum SystemConfigOperation {
+    SYSTEM_CONFIG_OPERATION_UNSPECIFIED = 0;
+    SYSTEM_CONFIG_OPERATION_UPDATED = 1;
+    SYSTEM_CONFIG_OPERATION_RELOADED = 2;
+    SYSTEM_CONFIG_OPERATION_VALIDATED = 3;
+  }
+}
+
+message SystemUserPayload {
+  string username = 1;
+  string display_name = 2;
+  int32 uid = 3;
+  repeated string groups = 4;
+  SystemUserOperation operation = 5;
+
+  enum SystemUserOperation {
+    SYSTEM_USER_OPERATION_UNSPECIFIED = 0;
+    SYSTEM_USER_OPERATION_CREATED = 1;
+    SYSTEM_USER_OPERATION_DELETED = 2;
+    SYSTEM_USER_OPERATION_MODIFIED = 3;
+    SYSTEM_USER_OPERATION_LOCKED = 4;
+    SYSTEM_USER_OPERATION_UNLOCKED = 5;
+  }
+}
+
+message StoragePoolPayload {
+  string pool_name = 1;
+  repeated string devices = 2;
+  string raid_type = 3;
+  int64 size_bytes = 4;
+  int64 used_bytes = 5;
+  StoragePoolOperation operation = 6;
+
+  enum StoragePoolOperation {
+    STORAGE_POOL_OPERATION_UNSPECIFIED = 0;
+    STORAGE_POOL_OPERATION_CREATED = 1;
+    STORAGE_POOL_OPERATION_DELETED = 2;
+    STORAGE_POOL_OPERATION_EXPANDED = 3;
+    STORAGE_POOL_OPERATION_SCRUB_STARTED = 4;
+    STORAGE_POOL_OPERATION_SCRUB_COMPLETED = 5;
+    STORAGE_POOL_OPERATION_EXPORTED = 6;
+    STORAGE_POOL_OPERATION_IMPORTED = 7;
+  }
+}
+
+message StorageDatasetPayload {
+  string dataset_name = 1;
+  string pool_name = 2;
+  string type = 3;
+  string mountpoint = 4;
+  int64 size_bytes = 5;
+  StorageDatasetOperation operation = 6;
+
+  enum StorageDatasetOperation {
+    STORAGE_DATASET_OPERATION_UNSPECIFIED = 0;
+    STORAGE_DATASET_OPERATION_CREATED = 1;
+    STORAGE_DATASET_OPERATION_DELETED = 2;
+    STORAGE_DATASET_OPERATION_MOUNTED = 3;
+    STORAGE_DATASET_OPERATION_UNMOUNTED = 4;
+    STORAGE_DATASET_OPERATION_PROPERTY_CHANGED = 5;
+  }
+}
+
+message StorageTransferPayload {
+  string source = 1;
+  string destination = 2;
+  int64 size_bytes = 3;
+  int64 transferred_bytes = 4;
+  int32 progress_percent = 5;
+  StorageTransferOperation operation = 6;
+
+  enum StorageTransferOperation {
+    STORAGE_TRANSFER_OPERATION_UNSPECIFIED = 0;
+    STORAGE_TRANSFER_OPERATION_STARTED = 1;
+    STORAGE_TRANSFER_OPERATION_PROGRESS = 2;
+    STORAGE_TRANSFER_OPERATION_COMPLETED = 3;
+    STORAGE_TRANSFER_OPERATION_FAILED = 4;
+    STORAGE_TRANSFER_OPERATION_CANCELLED = 5;
+  }
+}
+
+message StorageSnapshotPayload {
+  string snapshot_name = 1;
+  string dataset_name = 2;
+  int64 creation_time = 3;
+  int64 size_bytes = 4;
+  StorageSnapshotOperation operation = 5;
+
+  enum StorageSnapshotOperation {
+    STORAGE_SNAPSHOT_OPERATION_UNSPECIFIED = 0;
+    STORAGE_SNAPSHOT_OPERATION_CREATED = 1;
+    STORAGE_SNAPSHOT_OPERATION_DELETED = 2;
+    STORAGE_SNAPSHOT_OPERATION_ROLLED_BACK = 3;
+    STORAGE_SNAPSHOT_OPERATION_CLONED = 4;
+  }
+}
+
+message ServiceStatusPayload {
+  string service_name = 1;
+  string status = 2;
+  int32 pid = 3;
+  int64 uptime_seconds = 4;
+  ServiceStatusOperation operation = 5;
+
+  enum ServiceStatusOperation {
+    SERVICE_STATUS_OPERATION_UNSPECIFIED = 0;
+    SERVICE_STATUS_OPERATION_STARTED = 1;
+    SERVICE_STATUS_OPERATION_STOPPED = 2;
+    SERVICE_STATUS_OPERATION_RESTARTED = 3;
+    SERVICE_STATUS_OPERATION_FAILED = 4;
+    SERVICE_STATUS_OPERATION_HEALTH_CHECK = 5;
+  }
+}
+
+// Network event payloads
+message NetworkInterfacePayload {
+  string interface_name = 1;
+  string ip_address = 2;
+  string mac_address = 3;
+  bool is_up = 4;
+  NetworkInterfaceOperation operation = 5;
+
+  enum NetworkInterfaceOperation {
+    NETWORK_INTERFACE_OPERATION_UNSPECIFIED = 0;
+    NETWORK_INTERFACE_OPERATION_UP = 1;
+    NETWORK_INTERFACE_OPERATION_DOWN = 2;
+    NETWORK_INTERFACE_OPERATION_CONFIGURED = 3;
+    NETWORK_INTERFACE_OPERATION_LINK_CHANGED = 4;
+  }
+}
+
+message NetworkConnectionPayload {
+  string source_ip = 1;
+  string destination_ip = 2;
+  int32 source_port = 3;
+  int32 destination_port = 4;
+  string protocol = 5;
+  NetworkConnectionOperation operation = 6;
+
+  enum NetworkConnectionOperation {
+    NETWORK_CONNECTION_OPERATION_UNSPECIFIED = 0;
+    NETWORK_CONNECTION_OPERATION_ESTABLISHED = 1;
+    NETWORK_CONNECTION_OPERATION_CLOSED = 2;
+    NETWORK_CONNECTION_OPERATION_FAILED = 3;
+    NETWORK_CONNECTION_OPERATION_TIMEOUT = 4;
+  }
+}
+
+// Security event payloads
+message SecurityAuthPayload {
+  string username = 1;
+  string method = 2;
+  string source_ip = 3;
+  SecurityAuthOperation operation = 4;
+
+  enum SecurityAuthOperation {
+    SECURITY_AUTH_OPERATION_UNSPECIFIED = 0;
+    SECURITY_AUTH_OPERATION_LOGIN_SUCCESS = 1;
+    SECURITY_AUTH_OPERATION_LOGIN_FAILED = 2;
+    SECURITY_AUTH_OPERATION_LOGOUT = 3;
+    SECURITY_AUTH_OPERATION_SESSION_EXPIRED = 4;
+  }
+}
+
+message SecurityKeyPayload {
+  string key_id = 1;
+  string key_type = 2;
+  string username = 3;
+  int64 expiry_time = 4;
+  SecurityKeyOperation operation = 5;
+
+  enum SecurityKeyOperation {
+    SECURITY_KEY_OPERATION_UNSPECIFIED = 0;
+    SECURITY_KEY_OPERATION_GENERATED = 1;
+    SECURITY_KEY_OPERATION_INSTALLED = 2;
+    SECURITY_KEY_OPERATION_REMOVED = 3;
+    SECURITY_KEY_OPERATION_EXPIRED = 4;
+  }
+}
+
+message SecurityCertificatePayload {
+  string cert_id = 1;
+  string domain = 2;
+  int64 issued_time = 3;
+  int64 expiry_time = 4;
+  SecurityCertificateOperation operation = 5;
+
+  enum SecurityCertificateOperation {
+    SECURITY_CERTIFICATE_OPERATION_UNSPECIFIED = 0;
+    SECURITY_CERTIFICATE_OPERATION_ISSUED = 1;
+    SECURITY_CERTIFICATE_OPERATION_INSTALLED = 2;
+    SECURITY_CERTIFICATE_OPERATION_RENEWED = 3;
+    SECURITY_CERTIFICATE_OPERATION_EXPIRED = 4;
+    SECURITY_CERTIFICATE_OPERATION_REVOKED = 5;
+  }
+}
+
+// Identity event payloads (AD/LDAP)
+message IdentityUserPayload {
+  string username = 1;
+  string display_name = 2;
+  string email = 3;
+  repeated string groups = 4;
+  string domain = 5;
+  bool enabled = 6;
+  IdentityUserOperation operation = 7;
+
+  enum IdentityUserOperation {
+    IDENTITY_USER_OPERATION_UNSPECIFIED = 0;
+    IDENTITY_USER_OPERATION_CREATED = 1;
+    IDENTITY_USER_OPERATION_DELETED = 2;
+    IDENTITY_USER_OPERATION_MODIFIED = 3;
+    IDENTITY_USER_OPERATION_ENABLED = 4;
+    IDENTITY_USER_OPERATION_DISABLED = 5;
+    IDENTITY_USER_OPERATION_PASSWORD_CHANGED = 6;
+  }
+}
+
+message IdentityGroupPayload {
+  string group_name = 1;
+  string description = 2;
+  repeated string members = 3;
+  string domain = 4;
+  IdentityGroupOperation operation = 5;
+
+  enum IdentityGroupOperation {
+    IDENTITY_GROUP_OPERATION_UNSPECIFIED = 0;
+    IDENTITY_GROUP_OPERATION_CREATED = 1;
+    IDENTITY_GROUP_OPERATION_DELETED = 2;
+    IDENTITY_GROUP_OPERATION_MODIFIED = 3;
+    IDENTITY_GROUP_OPERATION_MEMBER_ADDED = 4;
+    IDENTITY_GROUP_OPERATION_MEMBER_REMOVED = 5;
+  }
+}
+
+message IdentityComputerPayload {
+  string computer_name = 1;
+  string ip_address = 2;
+  string os_version = 3;
+  string domain = 4;
+  bool enabled = 5;
+  IdentityComputerOperation operation = 6;
+
+  enum IdentityComputerOperation {
+    IDENTITY_COMPUTER_OPERATION_UNSPECIFIED = 0;
+    IDENTITY_COMPUTER_OPERATION_JOINED = 1;
+    IDENTITY_COMPUTER_OPERATION_LEFT = 2;
+    IDENTITY_COMPUTER_OPERATION_UPDATED = 3;
+    IDENTITY_COMPUTER_OPERATION_ENABLED = 4;
+    IDENTITY_COMPUTER_OPERATION_DISABLED = 5;
+  }
+}
+
+// Access control event payloads
+message AccessACLPayload {
+  string resource_path = 1;
+  string principal = 2;
+  repeated string permissions = 3;
+  AccessACLOperation operation = 4;
+
+  enum AccessACLOperation {
+    ACCESS_ACL_OPERATION_UNSPECIFIED = 0;
+    ACCESS_ACL_OPERATION_GRANTED = 1;
+    ACCESS_ACL_OPERATION_DENIED = 2;
+    ACCESS_ACL_OPERATION_MODIFIED = 3;
+    ACCESS_ACL_OPERATION_REMOVED = 4;
+  }
+}
+
+message AccessPermissionPayload {
+  string resource_path = 1;
+  string username = 2;
+  string permission = 3;
+  bool granted = 4;
+  AccessPermissionOperation operation = 5;
+
+  enum AccessPermissionOperation {
+    ACCESS_PERMISSION_OPERATION_UNSPECIFIED = 0;
+    ACCESS_PERMISSION_OPERATION_CHECKED = 1;
+    ACCESS_PERMISSION_OPERATION_GRANTED = 2;
+    ACCESS_PERMISSION_OPERATION_DENIED = 3;
+    ACCESS_PERMISSION_OPERATION_CHANGED = 4;
+  }
+}
+
+// File sharing event payloads
+message SharingSharePayload {
+  string share_name = 1;
+  string path = 2;
+  string protocol = 3;
+  repeated string allowed_users = 4;
+  bool read_only = 5;
+  SharingShareOperation operation = 6;
+
+  enum SharingShareOperation {
+    SHARING_SHARE_OPERATION_UNSPECIFIED = 0;
+    SHARING_SHARE_OPERATION_CREATED = 1;
+    SHARING_SHARE_OPERATION_DELETED = 2;
+    SHARING_SHARE_OPERATION_MODIFIED = 3;
+    SHARING_SHARE_OPERATION_ENABLED = 4;
+    SHARING_SHARE_OPERATION_DISABLED = 5;
+  }
+}
+
+message SharingConnectionPayload {
+  string share_name = 1;
+  string username = 2;
+  string client_ip = 3;
+  string protocol = 4;
+  SharingConnectionOperation operation = 5;
+
+  enum SharingConnectionOperation {
+    SHARING_CONNECTION_OPERATION_UNSPECIFIED = 0;
+    SHARING_CONNECTION_OPERATION_CONNECTED = 1;
+    SHARING_CONNECTION_OPERATION_DISCONNECTED = 2;
+    SHARING_CONNECTION_OPERATION_FAILED = 3;
+    SHARING_CONNECTION_OPERATION_TIMEOUT = 4;
+  }
+}
+
+message SharingFileAccessPayload {
+  string file_path = 1;
+  string username = 2;
+  string operation_type = 3;
+  int64 file_size = 4;
+  SharingFileAccessOperation operation = 5;
+
+  enum SharingFileAccessOperation {
+    SHARING_FILE_ACCESS_OPERATION_UNSPECIFIED = 0;
+    SHARING_FILE_ACCESS_OPERATION_READ = 1;
+    SHARING_FILE_ACCESS_OPERATION_WRITE = 2;
+    SHARING_FILE_ACCESS_OPERATION_DELETE = 3;
+    SHARING_FILE_ACCESS_OPERATION_RENAME = 4;
+    SHARING_FILE_ACCESS_OPERATION_DENIED = 5;
+  }
+}
+
+// Usage event payloads
+message UsageQuotaPayload {
+  string organization_id = 1;
+  string resource_type = 2;
+  int64 current_usage = 3;
+  int64 quota_limit = 4;
+  float usage_percentage = 5;
+  UsageQuotaOperation operation = 6;
+
+  enum UsageQuotaOperation {
+    USAGE_QUOTA_OPERATION_UNSPECIFIED = 0;
+    USAGE_QUOTA_OPERATION_WARNING = 1;
+    USAGE_QUOTA_OPERATION_EXCEEDED = 2;
+    USAGE_QUOTA_OPERATION_RESET = 3;
+    USAGE_QUOTA_OPERATION_UPDATED = 4;
+  }
+}
+
+message UsageResourcePayload {
+  string resource_id = 1;
+  string resource_type = 2;
+  int64 bytes_used = 3;
+  int64 objects_count = 4;
+  UsageResourceOperation operation = 5;
+
+  enum UsageResourceOperation {
+    USAGE_RESOURCE_OPERATION_UNSPECIFIED = 0;
+    USAGE_RESOURCE_OPERATION_MEASURED = 1;
+    USAGE_RESOURCE_OPERATION_INCREASED = 2;
+    USAGE_RESOURCE_OPERATION_DECREASED = 3;
+  }
+}
+
+message UsageThresholdPayload {
+  string threshold_name = 1;
+  string metric_name = 2;
+  float current_value = 3;
+  float threshold_value = 4;
+  UsageThresholdOperation operation = 5;
+
+  enum UsageThresholdOperation {
+    USAGE_THRESHOLD_OPERATION_UNSPECIFIED = 0;
+    USAGE_THRESHOLD_OPERATION_APPROACHED = 1;
+    USAGE_THRESHOLD_OPERATION_EXCEEDED = 2;
+    USAGE_THRESHOLD_OPERATION_CLEARED = 3;
+  }
+}
+
+// Data transfer event payloads (similar structure to StorageTransferPayload)
+message DataTransferTransferPayload {
+  string source = 1;
+  string destination = 2;
+  int64 size_bytes = 3;
+  int64 transferred_bytes = 4;
+  int32 progress_percent = 5;
+  DataTransferOperation operation = 6;
+
+  enum DataTransferOperation {
+    DATA_TRANSFER_OPERATION_UNSPECIFIED = 0;
+    DATA_TRANSFER_OPERATION_STARTED = 1;
+    DATA_TRANSFER_OPERATION_PROGRESS = 2;
+    DATA_TRANSFER_OPERATION_COMPLETED = 3;
+    DATA_TRANSFER_OPERATION_FAILED = 4;
+    DATA_TRANSFER_OPERATION_CANCELLED = 5;
+  }
+}
