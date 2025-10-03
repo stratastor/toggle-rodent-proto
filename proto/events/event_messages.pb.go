@@ -163,64 +163,6 @@ func (EventCategory) EnumDescriptor() ([]byte, []int) {
 	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{1}
 }
 
-type SystemStartupPayload_SystemStartupOperation int32
-
-const (
-	SystemStartupPayload_SYSTEM_STARTUP_OPERATION_UNSPECIFIED     SystemStartupPayload_SystemStartupOperation = 0
-	SystemStartupPayload_SYSTEM_STARTUP_OPERATION_COLD_BOOT       SystemStartupPayload_SystemStartupOperation = 1
-	SystemStartupPayload_SYSTEM_STARTUP_OPERATION_WARM_RESTART    SystemStartupPayload_SystemStartupOperation = 2
-	SystemStartupPayload_SYSTEM_STARTUP_OPERATION_SERVICE_RESTART SystemStartupPayload_SystemStartupOperation = 3
-	SystemStartupPayload_SYSTEM_STARTUP_OPERATION_STARTED         SystemStartupPayload_SystemStartupOperation = 4 // Service/component started
-	SystemStartupPayload_SYSTEM_STARTUP_OPERATION_REGISTERED      SystemStartupPayload_SystemStartupOperation = 5 // Successfully registered with Toggle
-)
-
-// Enum value maps for SystemStartupPayload_SystemStartupOperation.
-var (
-	SystemStartupPayload_SystemStartupOperation_name = map[int32]string{
-		0: "SYSTEM_STARTUP_OPERATION_UNSPECIFIED",
-		1: "SYSTEM_STARTUP_OPERATION_COLD_BOOT",
-		2: "SYSTEM_STARTUP_OPERATION_WARM_RESTART",
-		3: "SYSTEM_STARTUP_OPERATION_SERVICE_RESTART",
-		4: "SYSTEM_STARTUP_OPERATION_STARTED",
-		5: "SYSTEM_STARTUP_OPERATION_REGISTERED",
-	}
-	SystemStartupPayload_SystemStartupOperation_value = map[string]int32{
-		"SYSTEM_STARTUP_OPERATION_UNSPECIFIED":     0,
-		"SYSTEM_STARTUP_OPERATION_COLD_BOOT":       1,
-		"SYSTEM_STARTUP_OPERATION_WARM_RESTART":    2,
-		"SYSTEM_STARTUP_OPERATION_SERVICE_RESTART": 3,
-		"SYSTEM_STARTUP_OPERATION_STARTED":         4,
-		"SYSTEM_STARTUP_OPERATION_REGISTERED":      5,
-	}
-)
-
-func (x SystemStartupPayload_SystemStartupOperation) Enum() *SystemStartupPayload_SystemStartupOperation {
-	p := new(SystemStartupPayload_SystemStartupOperation)
-	*p = x
-	return p
-}
-
-func (x SystemStartupPayload_SystemStartupOperation) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (SystemStartupPayload_SystemStartupOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_events_event_messages_proto_enumTypes[2].Descriptor()
-}
-
-func (SystemStartupPayload_SystemStartupOperation) Type() protoreflect.EnumType {
-	return &file_proto_events_event_messages_proto_enumTypes[2]
-}
-
-func (x SystemStartupPayload_SystemStartupOperation) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use SystemStartupPayload_SystemStartupOperation.Descriptor instead.
-func (SystemStartupPayload_SystemStartupOperation) EnumDescriptor() ([]byte, []int) {
-	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{11, 0}
-}
-
 type SystemShutdownPayload_SystemShutdownOperation int32
 
 const (
@@ -257,11 +199,11 @@ func (x SystemShutdownPayload_SystemShutdownOperation) String() string {
 }
 
 func (SystemShutdownPayload_SystemShutdownOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_events_event_messages_proto_enumTypes[3].Descriptor()
+	return file_proto_events_event_messages_proto_enumTypes[2].Descriptor()
 }
 
 func (SystemShutdownPayload_SystemShutdownOperation) Type() protoreflect.EnumType {
-	return &file_proto_events_event_messages_proto_enumTypes[3]
+	return &file_proto_events_event_messages_proto_enumTypes[2]
 }
 
 func (x SystemShutdownPayload_SystemShutdownOperation) Number() protoreflect.EnumNumber {
@@ -270,7 +212,7 @@ func (x SystemShutdownPayload_SystemShutdownOperation) Number() protoreflect.Enu
 
 // Deprecated: Use SystemShutdownPayload_SystemShutdownOperation.Descriptor instead.
 func (SystemShutdownPayload_SystemShutdownOperation) EnumDescriptor() ([]byte, []int) {
-	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{12, 0}
+	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{13, 0}
 }
 
 type SystemConfigChangePayload_SystemConfigOperation int32
@@ -309,11 +251,11 @@ func (x SystemConfigChangePayload_SystemConfigOperation) String() string {
 }
 
 func (SystemConfigChangePayload_SystemConfigOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_events_event_messages_proto_enumTypes[4].Descriptor()
+	return file_proto_events_event_messages_proto_enumTypes[3].Descriptor()
 }
 
 func (SystemConfigChangePayload_SystemConfigOperation) Type() protoreflect.EnumType {
-	return &file_proto_events_event_messages_proto_enumTypes[4]
+	return &file_proto_events_event_messages_proto_enumTypes[3]
 }
 
 func (x SystemConfigChangePayload_SystemConfigOperation) Number() protoreflect.EnumNumber {
@@ -322,7 +264,7 @@ func (x SystemConfigChangePayload_SystemConfigOperation) Number() protoreflect.E
 
 // Deprecated: Use SystemConfigChangePayload_SystemConfigOperation.Descriptor instead.
 func (SystemConfigChangePayload_SystemConfigOperation) EnumDescriptor() ([]byte, []int) {
-	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{13, 0}
+	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{14, 0}
 }
 
 type SystemUserPayload_SystemUserOperation int32
@@ -367,11 +309,11 @@ func (x SystemUserPayload_SystemUserOperation) String() string {
 }
 
 func (SystemUserPayload_SystemUserOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_events_event_messages_proto_enumTypes[5].Descriptor()
+	return file_proto_events_event_messages_proto_enumTypes[4].Descriptor()
 }
 
 func (SystemUserPayload_SystemUserOperation) Type() protoreflect.EnumType {
-	return &file_proto_events_event_messages_proto_enumTypes[5]
+	return &file_proto_events_event_messages_proto_enumTypes[4]
 }
 
 func (x SystemUserPayload_SystemUserOperation) Number() protoreflect.EnumNumber {
@@ -380,7 +322,7 @@ func (x SystemUserPayload_SystemUserOperation) Number() protoreflect.EnumNumber 
 
 // Deprecated: Use SystemUserPayload_SystemUserOperation.Descriptor instead.
 func (SystemUserPayload_SystemUserOperation) EnumDescriptor() ([]byte, []int) {
-	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{14, 0}
+	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{15, 0}
 }
 
 type StoragePoolPayload_StoragePoolOperation int32
@@ -431,11 +373,11 @@ func (x StoragePoolPayload_StoragePoolOperation) String() string {
 }
 
 func (StoragePoolPayload_StoragePoolOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_events_event_messages_proto_enumTypes[6].Descriptor()
+	return file_proto_events_event_messages_proto_enumTypes[5].Descriptor()
 }
 
 func (StoragePoolPayload_StoragePoolOperation) Type() protoreflect.EnumType {
-	return &file_proto_events_event_messages_proto_enumTypes[6]
+	return &file_proto_events_event_messages_proto_enumTypes[5]
 }
 
 func (x StoragePoolPayload_StoragePoolOperation) Number() protoreflect.EnumNumber {
@@ -444,7 +386,7 @@ func (x StoragePoolPayload_StoragePoolOperation) Number() protoreflect.EnumNumbe
 
 // Deprecated: Use StoragePoolPayload_StoragePoolOperation.Descriptor instead.
 func (StoragePoolPayload_StoragePoolOperation) EnumDescriptor() ([]byte, []int) {
-	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{15, 0}
+	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{16, 0}
 }
 
 type StorageDatasetPayload_StorageDatasetOperation int32
@@ -489,11 +431,11 @@ func (x StorageDatasetPayload_StorageDatasetOperation) String() string {
 }
 
 func (StorageDatasetPayload_StorageDatasetOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_events_event_messages_proto_enumTypes[7].Descriptor()
+	return file_proto_events_event_messages_proto_enumTypes[6].Descriptor()
 }
 
 func (StorageDatasetPayload_StorageDatasetOperation) Type() protoreflect.EnumType {
-	return &file_proto_events_event_messages_proto_enumTypes[7]
+	return &file_proto_events_event_messages_proto_enumTypes[6]
 }
 
 func (x StorageDatasetPayload_StorageDatasetOperation) Number() protoreflect.EnumNumber {
@@ -502,64 +444,6 @@ func (x StorageDatasetPayload_StorageDatasetOperation) Number() protoreflect.Enu
 
 // Deprecated: Use StorageDatasetPayload_StorageDatasetOperation.Descriptor instead.
 func (StorageDatasetPayload_StorageDatasetOperation) EnumDescriptor() ([]byte, []int) {
-	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{16, 0}
-}
-
-type StorageTransferPayload_StorageTransferOperation int32
-
-const (
-	StorageTransferPayload_STORAGE_TRANSFER_OPERATION_UNSPECIFIED StorageTransferPayload_StorageTransferOperation = 0
-	StorageTransferPayload_STORAGE_TRANSFER_OPERATION_STARTED     StorageTransferPayload_StorageTransferOperation = 1
-	StorageTransferPayload_STORAGE_TRANSFER_OPERATION_PROGRESS    StorageTransferPayload_StorageTransferOperation = 2
-	StorageTransferPayload_STORAGE_TRANSFER_OPERATION_COMPLETED   StorageTransferPayload_StorageTransferOperation = 3
-	StorageTransferPayload_STORAGE_TRANSFER_OPERATION_FAILED      StorageTransferPayload_StorageTransferOperation = 4
-	StorageTransferPayload_STORAGE_TRANSFER_OPERATION_CANCELLED   StorageTransferPayload_StorageTransferOperation = 5
-)
-
-// Enum value maps for StorageTransferPayload_StorageTransferOperation.
-var (
-	StorageTransferPayload_StorageTransferOperation_name = map[int32]string{
-		0: "STORAGE_TRANSFER_OPERATION_UNSPECIFIED",
-		1: "STORAGE_TRANSFER_OPERATION_STARTED",
-		2: "STORAGE_TRANSFER_OPERATION_PROGRESS",
-		3: "STORAGE_TRANSFER_OPERATION_COMPLETED",
-		4: "STORAGE_TRANSFER_OPERATION_FAILED",
-		5: "STORAGE_TRANSFER_OPERATION_CANCELLED",
-	}
-	StorageTransferPayload_StorageTransferOperation_value = map[string]int32{
-		"STORAGE_TRANSFER_OPERATION_UNSPECIFIED": 0,
-		"STORAGE_TRANSFER_OPERATION_STARTED":     1,
-		"STORAGE_TRANSFER_OPERATION_PROGRESS":    2,
-		"STORAGE_TRANSFER_OPERATION_COMPLETED":   3,
-		"STORAGE_TRANSFER_OPERATION_FAILED":      4,
-		"STORAGE_TRANSFER_OPERATION_CANCELLED":   5,
-	}
-)
-
-func (x StorageTransferPayload_StorageTransferOperation) Enum() *StorageTransferPayload_StorageTransferOperation {
-	p := new(StorageTransferPayload_StorageTransferOperation)
-	*p = x
-	return p
-}
-
-func (x StorageTransferPayload_StorageTransferOperation) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (StorageTransferPayload_StorageTransferOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_events_event_messages_proto_enumTypes[8].Descriptor()
-}
-
-func (StorageTransferPayload_StorageTransferOperation) Type() protoreflect.EnumType {
-	return &file_proto_events_event_messages_proto_enumTypes[8]
-}
-
-func (x StorageTransferPayload_StorageTransferOperation) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use StorageTransferPayload_StorageTransferOperation.Descriptor instead.
-func (StorageTransferPayload_StorageTransferOperation) EnumDescriptor() ([]byte, []int) {
 	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{17, 0}
 }
 
@@ -602,11 +486,11 @@ func (x StorageSnapshotPayload_StorageSnapshotOperation) String() string {
 }
 
 func (StorageSnapshotPayload_StorageSnapshotOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_events_event_messages_proto_enumTypes[9].Descriptor()
+	return file_proto_events_event_messages_proto_enumTypes[7].Descriptor()
 }
 
 func (StorageSnapshotPayload_StorageSnapshotOperation) Type() protoreflect.EnumType {
-	return &file_proto_events_event_messages_proto_enumTypes[9]
+	return &file_proto_events_event_messages_proto_enumTypes[7]
 }
 
 func (x StorageSnapshotPayload_StorageSnapshotOperation) Number() protoreflect.EnumNumber {
@@ -660,11 +544,11 @@ func (x ServiceStatusPayload_ServiceStatusOperation) String() string {
 }
 
 func (ServiceStatusPayload_ServiceStatusOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_events_event_messages_proto_enumTypes[10].Descriptor()
+	return file_proto_events_event_messages_proto_enumTypes[8].Descriptor()
 }
 
 func (ServiceStatusPayload_ServiceStatusOperation) Type() protoreflect.EnumType {
-	return &file_proto_events_event_messages_proto_enumTypes[10]
+	return &file_proto_events_event_messages_proto_enumTypes[8]
 }
 
 func (x ServiceStatusPayload_ServiceStatusOperation) Number() protoreflect.EnumNumber {
@@ -715,11 +599,11 @@ func (x NetworkInterfacePayload_NetworkInterfaceOperation) String() string {
 }
 
 func (NetworkInterfacePayload_NetworkInterfaceOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_events_event_messages_proto_enumTypes[11].Descriptor()
+	return file_proto_events_event_messages_proto_enumTypes[9].Descriptor()
 }
 
 func (NetworkInterfacePayload_NetworkInterfaceOperation) Type() protoreflect.EnumType {
-	return &file_proto_events_event_messages_proto_enumTypes[11]
+	return &file_proto_events_event_messages_proto_enumTypes[9]
 }
 
 func (x NetworkInterfacePayload_NetworkInterfaceOperation) Number() protoreflect.EnumNumber {
@@ -770,11 +654,11 @@ func (x NetworkConnectionPayload_NetworkConnectionOperation) String() string {
 }
 
 func (NetworkConnectionPayload_NetworkConnectionOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_events_event_messages_proto_enumTypes[12].Descriptor()
+	return file_proto_events_event_messages_proto_enumTypes[10].Descriptor()
 }
 
 func (NetworkConnectionPayload_NetworkConnectionOperation) Type() protoreflect.EnumType {
-	return &file_proto_events_event_messages_proto_enumTypes[12]
+	return &file_proto_events_event_messages_proto_enumTypes[10]
 }
 
 func (x NetworkConnectionPayload_NetworkConnectionOperation) Number() protoreflect.EnumNumber {
@@ -825,11 +709,11 @@ func (x SecurityAuthPayload_SecurityAuthOperation) String() string {
 }
 
 func (SecurityAuthPayload_SecurityAuthOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_events_event_messages_proto_enumTypes[13].Descriptor()
+	return file_proto_events_event_messages_proto_enumTypes[11].Descriptor()
 }
 
 func (SecurityAuthPayload_SecurityAuthOperation) Type() protoreflect.EnumType {
-	return &file_proto_events_event_messages_proto_enumTypes[13]
+	return &file_proto_events_event_messages_proto_enumTypes[11]
 }
 
 func (x SecurityAuthPayload_SecurityAuthOperation) Number() protoreflect.EnumNumber {
@@ -880,11 +764,11 @@ func (x SecurityKeyPayload_SecurityKeyOperation) String() string {
 }
 
 func (SecurityKeyPayload_SecurityKeyOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_events_event_messages_proto_enumTypes[14].Descriptor()
+	return file_proto_events_event_messages_proto_enumTypes[12].Descriptor()
 }
 
 func (SecurityKeyPayload_SecurityKeyOperation) Type() protoreflect.EnumType {
-	return &file_proto_events_event_messages_proto_enumTypes[14]
+	return &file_proto_events_event_messages_proto_enumTypes[12]
 }
 
 func (x SecurityKeyPayload_SecurityKeyOperation) Number() protoreflect.EnumNumber {
@@ -938,11 +822,11 @@ func (x SecurityCertificatePayload_SecurityCertificateOperation) String() string
 }
 
 func (SecurityCertificatePayload_SecurityCertificateOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_events_event_messages_proto_enumTypes[15].Descriptor()
+	return file_proto_events_event_messages_proto_enumTypes[13].Descriptor()
 }
 
 func (SecurityCertificatePayload_SecurityCertificateOperation) Type() protoreflect.EnumType {
-	return &file_proto_events_event_messages_proto_enumTypes[15]
+	return &file_proto_events_event_messages_proto_enumTypes[13]
 }
 
 func (x SecurityCertificatePayload_SecurityCertificateOperation) Number() protoreflect.EnumNumber {
@@ -999,11 +883,11 @@ func (x IdentityUserPayload_IdentityUserOperation) String() string {
 }
 
 func (IdentityUserPayload_IdentityUserOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_events_event_messages_proto_enumTypes[16].Descriptor()
+	return file_proto_events_event_messages_proto_enumTypes[14].Descriptor()
 }
 
 func (IdentityUserPayload_IdentityUserOperation) Type() protoreflect.EnumType {
-	return &file_proto_events_event_messages_proto_enumTypes[16]
+	return &file_proto_events_event_messages_proto_enumTypes[14]
 }
 
 func (x IdentityUserPayload_IdentityUserOperation) Number() protoreflect.EnumNumber {
@@ -1057,11 +941,11 @@ func (x IdentityGroupPayload_IdentityGroupOperation) String() string {
 }
 
 func (IdentityGroupPayload_IdentityGroupOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_events_event_messages_proto_enumTypes[17].Descriptor()
+	return file_proto_events_event_messages_proto_enumTypes[15].Descriptor()
 }
 
 func (IdentityGroupPayload_IdentityGroupOperation) Type() protoreflect.EnumType {
-	return &file_proto_events_event_messages_proto_enumTypes[17]
+	return &file_proto_events_event_messages_proto_enumTypes[15]
 }
 
 func (x IdentityGroupPayload_IdentityGroupOperation) Number() protoreflect.EnumNumber {
@@ -1115,11 +999,11 @@ func (x IdentityComputerPayload_IdentityComputerOperation) String() string {
 }
 
 func (IdentityComputerPayload_IdentityComputerOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_events_event_messages_proto_enumTypes[18].Descriptor()
+	return file_proto_events_event_messages_proto_enumTypes[16].Descriptor()
 }
 
 func (IdentityComputerPayload_IdentityComputerOperation) Type() protoreflect.EnumType {
-	return &file_proto_events_event_messages_proto_enumTypes[18]
+	return &file_proto_events_event_messages_proto_enumTypes[16]
 }
 
 func (x IdentityComputerPayload_IdentityComputerOperation) Number() protoreflect.EnumNumber {
@@ -1170,11 +1054,11 @@ func (x AccessACLPayload_AccessACLOperation) String() string {
 }
 
 func (AccessACLPayload_AccessACLOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_events_event_messages_proto_enumTypes[19].Descriptor()
+	return file_proto_events_event_messages_proto_enumTypes[17].Descriptor()
 }
 
 func (AccessACLPayload_AccessACLOperation) Type() protoreflect.EnumType {
-	return &file_proto_events_event_messages_proto_enumTypes[19]
+	return &file_proto_events_event_messages_proto_enumTypes[17]
 }
 
 func (x AccessACLPayload_AccessACLOperation) Number() protoreflect.EnumNumber {
@@ -1225,11 +1109,11 @@ func (x AccessPermissionPayload_AccessPermissionOperation) String() string {
 }
 
 func (AccessPermissionPayload_AccessPermissionOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_events_event_messages_proto_enumTypes[20].Descriptor()
+	return file_proto_events_event_messages_proto_enumTypes[18].Descriptor()
 }
 
 func (AccessPermissionPayload_AccessPermissionOperation) Type() protoreflect.EnumType {
-	return &file_proto_events_event_messages_proto_enumTypes[20]
+	return &file_proto_events_event_messages_proto_enumTypes[18]
 }
 
 func (x AccessPermissionPayload_AccessPermissionOperation) Number() protoreflect.EnumNumber {
@@ -1283,11 +1167,11 @@ func (x SharingSharePayload_SharingShareOperation) String() string {
 }
 
 func (SharingSharePayload_SharingShareOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_events_event_messages_proto_enumTypes[21].Descriptor()
+	return file_proto_events_event_messages_proto_enumTypes[19].Descriptor()
 }
 
 func (SharingSharePayload_SharingShareOperation) Type() protoreflect.EnumType {
-	return &file_proto_events_event_messages_proto_enumTypes[21]
+	return &file_proto_events_event_messages_proto_enumTypes[19]
 }
 
 func (x SharingSharePayload_SharingShareOperation) Number() protoreflect.EnumNumber {
@@ -1338,11 +1222,11 @@ func (x SharingConnectionPayload_SharingConnectionOperation) String() string {
 }
 
 func (SharingConnectionPayload_SharingConnectionOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_events_event_messages_proto_enumTypes[22].Descriptor()
+	return file_proto_events_event_messages_proto_enumTypes[20].Descriptor()
 }
 
 func (SharingConnectionPayload_SharingConnectionOperation) Type() protoreflect.EnumType {
-	return &file_proto_events_event_messages_proto_enumTypes[22]
+	return &file_proto_events_event_messages_proto_enumTypes[20]
 }
 
 func (x SharingConnectionPayload_SharingConnectionOperation) Number() protoreflect.EnumNumber {
@@ -1396,11 +1280,11 @@ func (x SharingFileAccessPayload_SharingFileAccessOperation) String() string {
 }
 
 func (SharingFileAccessPayload_SharingFileAccessOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_events_event_messages_proto_enumTypes[23].Descriptor()
+	return file_proto_events_event_messages_proto_enumTypes[21].Descriptor()
 }
 
 func (SharingFileAccessPayload_SharingFileAccessOperation) Type() protoreflect.EnumType {
-	return &file_proto_events_event_messages_proto_enumTypes[23]
+	return &file_proto_events_event_messages_proto_enumTypes[21]
 }
 
 func (x SharingFileAccessPayload_SharingFileAccessOperation) Number() protoreflect.EnumNumber {
@@ -1451,11 +1335,11 @@ func (x UsageQuotaPayload_UsageQuotaOperation) String() string {
 }
 
 func (UsageQuotaPayload_UsageQuotaOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_events_event_messages_proto_enumTypes[24].Descriptor()
+	return file_proto_events_event_messages_proto_enumTypes[22].Descriptor()
 }
 
 func (UsageQuotaPayload_UsageQuotaOperation) Type() protoreflect.EnumType {
-	return &file_proto_events_event_messages_proto_enumTypes[24]
+	return &file_proto_events_event_messages_proto_enumTypes[22]
 }
 
 func (x UsageQuotaPayload_UsageQuotaOperation) Number() protoreflect.EnumNumber {
@@ -1503,11 +1387,11 @@ func (x UsageResourcePayload_UsageResourceOperation) String() string {
 }
 
 func (UsageResourcePayload_UsageResourceOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_events_event_messages_proto_enumTypes[25].Descriptor()
+	return file_proto_events_event_messages_proto_enumTypes[23].Descriptor()
 }
 
 func (UsageResourcePayload_UsageResourceOperation) Type() protoreflect.EnumType {
-	return &file_proto_events_event_messages_proto_enumTypes[25]
+	return &file_proto_events_event_messages_proto_enumTypes[23]
 }
 
 func (x UsageResourcePayload_UsageResourceOperation) Number() protoreflect.EnumNumber {
@@ -1555,11 +1439,11 @@ func (x UsageThresholdPayload_UsageThresholdOperation) String() string {
 }
 
 func (UsageThresholdPayload_UsageThresholdOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_events_event_messages_proto_enumTypes[26].Descriptor()
+	return file_proto_events_event_messages_proto_enumTypes[24].Descriptor()
 }
 
 func (UsageThresholdPayload_UsageThresholdOperation) Type() protoreflect.EnumType {
-	return &file_proto_events_event_messages_proto_enumTypes[26]
+	return &file_proto_events_event_messages_proto_enumTypes[24]
 }
 
 func (x UsageThresholdPayload_UsageThresholdOperation) Number() protoreflect.EnumNumber {
@@ -1576,10 +1460,12 @@ type DataTransferTransferPayload_DataTransferOperation int32
 const (
 	DataTransferTransferPayload_DATA_TRANSFER_OPERATION_UNSPECIFIED DataTransferTransferPayload_DataTransferOperation = 0
 	DataTransferTransferPayload_DATA_TRANSFER_OPERATION_STARTED     DataTransferTransferPayload_DataTransferOperation = 1
-	DataTransferTransferPayload_DATA_TRANSFER_OPERATION_PROGRESS    DataTransferTransferPayload_DataTransferOperation = 2
+	DataTransferTransferPayload_DATA_TRANSFER_OPERATION_PROGRESS    DataTransferTransferPayload_DataTransferOperation = 2 // Not used per requirements
 	DataTransferTransferPayload_DATA_TRANSFER_OPERATION_COMPLETED   DataTransferTransferPayload_DataTransferOperation = 3
 	DataTransferTransferPayload_DATA_TRANSFER_OPERATION_FAILED      DataTransferTransferPayload_DataTransferOperation = 4
 	DataTransferTransferPayload_DATA_TRANSFER_OPERATION_CANCELLED   DataTransferTransferPayload_DataTransferOperation = 5
+	DataTransferTransferPayload_DATA_TRANSFER_OPERATION_PAUSED      DataTransferTransferPayload_DataTransferOperation = 6 // Transfer paused
+	DataTransferTransferPayload_DATA_TRANSFER_OPERATION_RESUMED     DataTransferTransferPayload_DataTransferOperation = 7 // Transfer resumed
 )
 
 // Enum value maps for DataTransferTransferPayload_DataTransferOperation.
@@ -1591,6 +1477,8 @@ var (
 		3: "DATA_TRANSFER_OPERATION_COMPLETED",
 		4: "DATA_TRANSFER_OPERATION_FAILED",
 		5: "DATA_TRANSFER_OPERATION_CANCELLED",
+		6: "DATA_TRANSFER_OPERATION_PAUSED",
+		7: "DATA_TRANSFER_OPERATION_RESUMED",
 	}
 	DataTransferTransferPayload_DataTransferOperation_value = map[string]int32{
 		"DATA_TRANSFER_OPERATION_UNSPECIFIED": 0,
@@ -1599,6 +1487,8 @@ var (
 		"DATA_TRANSFER_OPERATION_COMPLETED":   3,
 		"DATA_TRANSFER_OPERATION_FAILED":      4,
 		"DATA_TRANSFER_OPERATION_CANCELLED":   5,
+		"DATA_TRANSFER_OPERATION_PAUSED":      6,
+		"DATA_TRANSFER_OPERATION_RESUMED":     7,
 	}
 )
 
@@ -1613,11 +1503,11 @@ func (x DataTransferTransferPayload_DataTransferOperation) String() string {
 }
 
 func (DataTransferTransferPayload_DataTransferOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_events_event_messages_proto_enumTypes[27].Descriptor()
+	return file_proto_events_event_messages_proto_enumTypes[25].Descriptor()
 }
 
 func (DataTransferTransferPayload_DataTransferOperation) Type() protoreflect.EnumType {
-	return &file_proto_events_event_messages_proto_enumTypes[27]
+	return &file_proto_events_event_messages_proto_enumTypes[25]
 }
 
 func (x DataTransferTransferPayload_DataTransferOperation) Number() protoreflect.EnumNumber {
@@ -1899,6 +1789,7 @@ type SystemEvent struct {
 	//	*SystemEvent_Shutdown
 	//	*SystemEvent_ConfigChanged
 	//	*SystemEvent_UserEvent
+	//	*SystemEvent_Registration
 	EventType     isSystemEvent_EventType `protobuf_oneof:"event_type"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1977,6 +1868,15 @@ func (x *SystemEvent) GetUserEvent() *SystemUserPayload {
 	return nil
 }
 
+func (x *SystemEvent) GetRegistration() *SystemRegistrationPayload {
+	if x != nil {
+		if x, ok := x.EventType.(*SystemEvent_Registration); ok {
+			return x.Registration
+		}
+	}
+	return nil
+}
+
 type isSystemEvent_EventType interface {
 	isSystemEvent_EventType()
 }
@@ -1997,6 +1897,10 @@ type SystemEvent_UserEvent struct {
 	UserEvent *SystemUserPayload `protobuf:"bytes,4,opt,name=user_event,json=userEvent,proto3,oneof"`
 }
 
+type SystemEvent_Registration struct {
+	Registration *SystemRegistrationPayload `protobuf:"bytes,5,opt,name=registration,proto3,oneof"`
+}
+
 func (*SystemEvent_Startup) isSystemEvent_EventType() {}
 
 func (*SystemEvent_Shutdown) isSystemEvent_EventType() {}
@@ -2005,6 +1909,8 @@ func (*SystemEvent_ConfigChanged) isSystemEvent_EventType() {}
 
 func (*SystemEvent_UserEvent) isSystemEvent_EventType() {}
 
+func (*SystemEvent_Registration) isSystemEvent_EventType() {}
+
 // Storage events wrapper
 type StorageEvent struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -2012,7 +1918,6 @@ type StorageEvent struct {
 	//
 	//	*StorageEvent_PoolEvent
 	//	*StorageEvent_DatasetEvent
-	//	*StorageEvent_TransferEvent
 	//	*StorageEvent_SnapshotEvent
 	EventType     isStorageEvent_EventType `protobuf_oneof:"event_type"`
 	unknownFields protoimpl.UnknownFields
@@ -2074,15 +1979,6 @@ func (x *StorageEvent) GetDatasetEvent() *StorageDatasetPayload {
 	return nil
 }
 
-func (x *StorageEvent) GetTransferEvent() *StorageTransferPayload {
-	if x != nil {
-		if x, ok := x.EventType.(*StorageEvent_TransferEvent); ok {
-			return x.TransferEvent
-		}
-	}
-	return nil
-}
-
 func (x *StorageEvent) GetSnapshotEvent() *StorageSnapshotPayload {
 	if x != nil {
 		if x, ok := x.EventType.(*StorageEvent_SnapshotEvent); ok {
@@ -2104,19 +2000,14 @@ type StorageEvent_DatasetEvent struct {
 	DatasetEvent *StorageDatasetPayload `protobuf:"bytes,2,opt,name=dataset_event,json=datasetEvent,proto3,oneof"`
 }
 
-type StorageEvent_TransferEvent struct {
-	TransferEvent *StorageTransferPayload `protobuf:"bytes,3,opt,name=transfer_event,json=transferEvent,proto3,oneof"`
-}
-
 type StorageEvent_SnapshotEvent struct {
+	// transfer_event (field 3) deprecated - use DataTransferEvent instead
 	SnapshotEvent *StorageSnapshotPayload `protobuf:"bytes,4,opt,name=snapshot_event,json=snapshotEvent,proto3,oneof"`
 }
 
 func (*StorageEvent_PoolEvent) isStorageEvent_EventType() {}
 
 func (*StorageEvent_DatasetEvent) isStorageEvent_EventType() {}
-
-func (*StorageEvent_TransferEvent) isStorageEvent_EventType() {}
 
 func (*StorageEvent_SnapshotEvent) isStorageEvent_EventType() {}
 
@@ -2817,12 +2708,16 @@ type DataTransferEvent_TransferEvent struct {
 func (*DataTransferEvent_TransferEvent) isDataTransferEvent_EventType() {}
 
 type SystemStartupPayload struct {
-	state           protoimpl.MessageState                      `protogen:"open.v1"`
-	BootTimeSeconds int64                                       `protobuf:"varint,1,opt,name=boot_time_seconds,json=bootTimeSeconds,proto3" json:"boot_time_seconds,omitempty"`
-	ServicesStarted []string                                    `protobuf:"bytes,2,rep,name=services_started,json=servicesStarted,proto3" json:"services_started,omitempty"`
-	Operation       SystemStartupPayload_SystemStartupOperation `protobuf:"varint,3,opt,name=operation,proto3,enum=rodent.events.SystemStartupPayload_SystemStartupOperation" json:"operation,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	RodentId       string                 `protobuf:"bytes,1,opt,name=rodent_id,json=rodentId,proto3" json:"rodent_id,omitempty"`                                                                                 // Rodent node identifier
+	OrganizationId string                 `protobuf:"bytes,2,opt,name=organization_id,json=organizationId,proto3" json:"organization_id,omitempty"`                                                               // Organization identifier
+	StartupTime    string                 `protobuf:"bytes,3,opt,name=startup_time,json=startupTime,proto3" json:"startup_time,omitempty"`                                                                        // RFC3339 timestamp
+	StartupType    string                 `protobuf:"bytes,4,opt,name=startup_type,json=startupType,proto3" json:"startup_type,omitempty"`                                                                        // "initial_startup", "restart", "reconnect"
+	Services       []string               `protobuf:"bytes,5,rep,name=services,proto3" json:"services,omitempty"`                                                                                                 // Services started
+	Version        string                 `protobuf:"bytes,6,opt,name=version,proto3" json:"version,omitempty"`                                                                                                   // Rodent version
+	SystemInfo     map[string]string      `protobuf:"bytes,7,rep,name=system_info,json=systemInfo,proto3" json:"system_info,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"` // OS, arch, hostname, etc.
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *SystemStartupPayload) Reset() {
@@ -2855,25 +2750,145 @@ func (*SystemStartupPayload) Descriptor() ([]byte, []int) {
 	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *SystemStartupPayload) GetBootTimeSeconds() int64 {
+func (x *SystemStartupPayload) GetRodentId() string {
 	if x != nil {
-		return x.BootTimeSeconds
+		return x.RodentId
 	}
-	return 0
+	return ""
 }
 
-func (x *SystemStartupPayload) GetServicesStarted() []string {
+func (x *SystemStartupPayload) GetOrganizationId() string {
 	if x != nil {
-		return x.ServicesStarted
+		return x.OrganizationId
+	}
+	return ""
+}
+
+func (x *SystemStartupPayload) GetStartupTime() string {
+	if x != nil {
+		return x.StartupTime
+	}
+	return ""
+}
+
+func (x *SystemStartupPayload) GetStartupType() string {
+	if x != nil {
+		return x.StartupType
+	}
+	return ""
+}
+
+func (x *SystemStartupPayload) GetServices() []string {
+	if x != nil {
+		return x.Services
 	}
 	return nil
 }
 
-func (x *SystemStartupPayload) GetOperation() SystemStartupPayload_SystemStartupOperation {
+func (x *SystemStartupPayload) GetVersion() string {
 	if x != nil {
-		return x.Operation
+		return x.Version
 	}
-	return SystemStartupPayload_SYSTEM_STARTUP_OPERATION_UNSPECIFIED
+	return ""
+}
+
+func (x *SystemStartupPayload) GetSystemInfo() map[string]string {
+	if x != nil {
+		return x.SystemInfo
+	}
+	return nil
+}
+
+type SystemRegistrationPayload struct {
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	RodentId           string                 `protobuf:"bytes,1,opt,name=rodent_id,json=rodentId,proto3" json:"rodent_id,omitempty"`                               // Rodent node identifier
+	OrganizationId     string                 `protobuf:"bytes,2,opt,name=organization_id,json=organizationId,proto3" json:"organization_id,omitempty"`             // Organization identifier
+	RegisteredAt       string                 `protobuf:"bytes,3,opt,name=registered_at,json=registeredAt,proto3" json:"registered_at,omitempty"`                   // RFC3339 timestamp
+	ToggleDomain       string                 `protobuf:"bytes,4,opt,name=toggle_domain,json=toggleDomain,proto3" json:"toggle_domain,omitempty"`                   // Toggle domain registered to
+	CertificateExpires string                 `protobuf:"bytes,5,opt,name=certificate_expires,json=certificateExpires,proto3" json:"certificate_expires,omitempty"` // RFC3339 timestamp (empty for private network)
+	IsPrivateNetwork   bool                   `protobuf:"varint,6,opt,name=is_private_network,json=isPrivateNetwork,proto3" json:"is_private_network,omitempty"`    // Whether Rodent is in private network
+	RegistrationType   string                 `protobuf:"bytes,7,opt,name=registration_type,json=registrationType,proto3" json:"registration_type,omitempty"`       // "new_registration", "renewal", "reconnect"
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
+}
+
+func (x *SystemRegistrationPayload) Reset() {
+	*x = SystemRegistrationPayload{}
+	mi := &file_proto_events_event_messages_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SystemRegistrationPayload) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SystemRegistrationPayload) ProtoMessage() {}
+
+func (x *SystemRegistrationPayload) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_events_event_messages_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SystemRegistrationPayload.ProtoReflect.Descriptor instead.
+func (*SystemRegistrationPayload) Descriptor() ([]byte, []int) {
+	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *SystemRegistrationPayload) GetRodentId() string {
+	if x != nil {
+		return x.RodentId
+	}
+	return ""
+}
+
+func (x *SystemRegistrationPayload) GetOrganizationId() string {
+	if x != nil {
+		return x.OrganizationId
+	}
+	return ""
+}
+
+func (x *SystemRegistrationPayload) GetRegisteredAt() string {
+	if x != nil {
+		return x.RegisteredAt
+	}
+	return ""
+}
+
+func (x *SystemRegistrationPayload) GetToggleDomain() string {
+	if x != nil {
+		return x.ToggleDomain
+	}
+	return ""
+}
+
+func (x *SystemRegistrationPayload) GetCertificateExpires() string {
+	if x != nil {
+		return x.CertificateExpires
+	}
+	return ""
+}
+
+func (x *SystemRegistrationPayload) GetIsPrivateNetwork() bool {
+	if x != nil {
+		return x.IsPrivateNetwork
+	}
+	return false
+}
+
+func (x *SystemRegistrationPayload) GetRegistrationType() string {
+	if x != nil {
+		return x.RegistrationType
+	}
+	return ""
 }
 
 type SystemShutdownPayload struct {
@@ -2887,7 +2902,7 @@ type SystemShutdownPayload struct {
 
 func (x *SystemShutdownPayload) Reset() {
 	*x = SystemShutdownPayload{}
-	mi := &file_proto_events_event_messages_proto_msgTypes[12]
+	mi := &file_proto_events_event_messages_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2899,7 +2914,7 @@ func (x *SystemShutdownPayload) String() string {
 func (*SystemShutdownPayload) ProtoMessage() {}
 
 func (x *SystemShutdownPayload) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_events_event_messages_proto_msgTypes[12]
+	mi := &file_proto_events_event_messages_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2912,7 +2927,7 @@ func (x *SystemShutdownPayload) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SystemShutdownPayload.ProtoReflect.Descriptor instead.
 func (*SystemShutdownPayload) Descriptor() ([]byte, []int) {
-	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{12}
+	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *SystemShutdownPayload) GetOperation() SystemShutdownPayload_SystemShutdownOperation {
@@ -2947,7 +2962,7 @@ type SystemConfigChangePayload struct {
 
 func (x *SystemConfigChangePayload) Reset() {
 	*x = SystemConfigChangePayload{}
-	mi := &file_proto_events_event_messages_proto_msgTypes[13]
+	mi := &file_proto_events_event_messages_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2959,7 +2974,7 @@ func (x *SystemConfigChangePayload) String() string {
 func (*SystemConfigChangePayload) ProtoMessage() {}
 
 func (x *SystemConfigChangePayload) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_events_event_messages_proto_msgTypes[13]
+	mi := &file_proto_events_event_messages_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2972,7 +2987,7 @@ func (x *SystemConfigChangePayload) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SystemConfigChangePayload.ProtoReflect.Descriptor instead.
 func (*SystemConfigChangePayload) Descriptor() ([]byte, []int) {
-	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{13}
+	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *SystemConfigChangePayload) GetConfigSection() string {
@@ -3009,7 +3024,7 @@ type SystemUserPayload struct {
 
 func (x *SystemUserPayload) Reset() {
 	*x = SystemUserPayload{}
-	mi := &file_proto_events_event_messages_proto_msgTypes[14]
+	mi := &file_proto_events_event_messages_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3021,7 +3036,7 @@ func (x *SystemUserPayload) String() string {
 func (*SystemUserPayload) ProtoMessage() {}
 
 func (x *SystemUserPayload) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_events_event_messages_proto_msgTypes[14]
+	mi := &file_proto_events_event_messages_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3034,7 +3049,7 @@ func (x *SystemUserPayload) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SystemUserPayload.ProtoReflect.Descriptor instead.
 func (*SystemUserPayload) Descriptor() ([]byte, []int) {
-	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{14}
+	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *SystemUserPayload) GetUsername() string {
@@ -3086,7 +3101,7 @@ type StoragePoolPayload struct {
 
 func (x *StoragePoolPayload) Reset() {
 	*x = StoragePoolPayload{}
-	mi := &file_proto_events_event_messages_proto_msgTypes[15]
+	mi := &file_proto_events_event_messages_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3098,7 +3113,7 @@ func (x *StoragePoolPayload) String() string {
 func (*StoragePoolPayload) ProtoMessage() {}
 
 func (x *StoragePoolPayload) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_events_event_messages_proto_msgTypes[15]
+	mi := &file_proto_events_event_messages_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3111,7 +3126,7 @@ func (x *StoragePoolPayload) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoragePoolPayload.ProtoReflect.Descriptor instead.
 func (*StoragePoolPayload) Descriptor() ([]byte, []int) {
-	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{15}
+	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *StoragePoolPayload) GetPoolName() string {
@@ -3170,7 +3185,7 @@ type StorageDatasetPayload struct {
 
 func (x *StorageDatasetPayload) Reset() {
 	*x = StorageDatasetPayload{}
-	mi := &file_proto_events_event_messages_proto_msgTypes[16]
+	mi := &file_proto_events_event_messages_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3182,7 +3197,7 @@ func (x *StorageDatasetPayload) String() string {
 func (*StorageDatasetPayload) ProtoMessage() {}
 
 func (x *StorageDatasetPayload) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_events_event_messages_proto_msgTypes[16]
+	mi := &file_proto_events_event_messages_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3195,7 +3210,7 @@ func (x *StorageDatasetPayload) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StorageDatasetPayload.ProtoReflect.Descriptor instead.
 func (*StorageDatasetPayload) Descriptor() ([]byte, []int) {
-	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{16}
+	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *StorageDatasetPayload) GetDatasetName() string {
@@ -3238,90 +3253,6 @@ func (x *StorageDatasetPayload) GetOperation() StorageDatasetPayload_StorageData
 		return x.Operation
 	}
 	return StorageDatasetPayload_STORAGE_DATASET_OPERATION_UNSPECIFIED
-}
-
-type StorageTransferPayload struct {
-	state            protoimpl.MessageState                          `protogen:"open.v1"`
-	Source           string                                          `protobuf:"bytes,1,opt,name=source,proto3" json:"source,omitempty"`
-	Destination      string                                          `protobuf:"bytes,2,opt,name=destination,proto3" json:"destination,omitempty"`
-	SizeBytes        int64                                           `protobuf:"varint,3,opt,name=size_bytes,json=sizeBytes,proto3" json:"size_bytes,omitempty"`
-	TransferredBytes int64                                           `protobuf:"varint,4,opt,name=transferred_bytes,json=transferredBytes,proto3" json:"transferred_bytes,omitempty"`
-	ProgressPercent  int32                                           `protobuf:"varint,5,opt,name=progress_percent,json=progressPercent,proto3" json:"progress_percent,omitempty"`
-	Operation        StorageTransferPayload_StorageTransferOperation `protobuf:"varint,6,opt,name=operation,proto3,enum=rodent.events.StorageTransferPayload_StorageTransferOperation" json:"operation,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
-}
-
-func (x *StorageTransferPayload) Reset() {
-	*x = StorageTransferPayload{}
-	mi := &file_proto_events_event_messages_proto_msgTypes[17]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *StorageTransferPayload) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StorageTransferPayload) ProtoMessage() {}
-
-func (x *StorageTransferPayload) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_events_event_messages_proto_msgTypes[17]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StorageTransferPayload.ProtoReflect.Descriptor instead.
-func (*StorageTransferPayload) Descriptor() ([]byte, []int) {
-	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{17}
-}
-
-func (x *StorageTransferPayload) GetSource() string {
-	if x != nil {
-		return x.Source
-	}
-	return ""
-}
-
-func (x *StorageTransferPayload) GetDestination() string {
-	if x != nil {
-		return x.Destination
-	}
-	return ""
-}
-
-func (x *StorageTransferPayload) GetSizeBytes() int64 {
-	if x != nil {
-		return x.SizeBytes
-	}
-	return 0
-}
-
-func (x *StorageTransferPayload) GetTransferredBytes() int64 {
-	if x != nil {
-		return x.TransferredBytes
-	}
-	return 0
-}
-
-func (x *StorageTransferPayload) GetProgressPercent() int32 {
-	if x != nil {
-		return x.ProgressPercent
-	}
-	return 0
-}
-
-func (x *StorageTransferPayload) GetOperation() StorageTransferPayload_StorageTransferOperation {
-	if x != nil {
-		return x.Operation
-	}
-	return StorageTransferPayload_STORAGE_TRANSFER_OPERATION_UNSPECIFIED
 }
 
 type StorageSnapshotPayload struct {
@@ -4730,17 +4661,41 @@ func (x *UsageThresholdPayload) GetOperation() UsageThresholdPayload_UsageThresh
 	return UsageThresholdPayload_USAGE_THRESHOLD_OPERATION_UNSPECIFIED
 }
 
-// Data transfer event payloads (similar structure to StorageTransferPayload)
+// Data transfer event payloads - Complete transfer information for ZFS dataset transfers
+// Maps to Rodent's TransferInfo struct with all essential details for Toggle sync
 type DataTransferTransferPayload struct {
-	state            protoimpl.MessageState                            `protogen:"open.v1"`
-	Source           string                                            `protobuf:"bytes,1,opt,name=source,proto3" json:"source,omitempty"`
-	Destination      string                                            `protobuf:"bytes,2,opt,name=destination,proto3" json:"destination,omitempty"`
-	SizeBytes        int64                                             `protobuf:"varint,3,opt,name=size_bytes,json=sizeBytes,proto3" json:"size_bytes,omitempty"`
-	TransferredBytes int64                                             `protobuf:"varint,4,opt,name=transferred_bytes,json=transferredBytes,proto3" json:"transferred_bytes,omitempty"`
-	ProgressPercent  int32                                             `protobuf:"varint,5,opt,name=progress_percent,json=progressPercent,proto3" json:"progress_percent,omitempty"`
-	Operation        DataTransferTransferPayload_DataTransferOperation `protobuf:"varint,6,opt,name=operation,proto3,enum=rodent.events.DataTransferTransferPayload_DataTransferOperation" json:"operation,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Transfer identification
+	TransferId    string `protobuf:"bytes,1,opt,name=transfer_id,json=transferId,proto3" json:"transfer_id,omitempty"`          // Unique transfer ID (Rodent-side)
+	OperationType string `protobuf:"bytes,2,opt,name=operation_type,json=operationType,proto3" json:"operation_type,omitempty"` // "send", "receive", "send_receive"
+	// Transfer endpoints
+	Source      string `protobuf:"bytes,3,opt,name=source,proto3" json:"source,omitempty"`           // Source snapshot/dataset
+	Destination string `protobuf:"bytes,4,opt,name=destination,proto3" json:"destination,omitempty"` // Destination dataset
+	// Transfer status
+	Status       string                                            `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`                                                                             // "starting", "running", "paused", "completed", "failed", "cancelled"
+	Operation    DataTransferTransferPayload_DataTransferOperation `protobuf:"varint,6,opt,name=operation,proto3,enum=rodent.events.DataTransferTransferPayload_DataTransferOperation" json:"operation,omitempty"` // Event operation type
+	ErrorMessage string                                            `protobuf:"bytes,7,opt,name=error_message,json=errorMessage,proto3" json:"error_message,omitempty"`                                             // Error details if failed
+	// Progress information
+	BytesTransferred int64  `protobuf:"varint,8,opt,name=bytes_transferred,json=bytesTransferred,proto3" json:"bytes_transferred,omitempty"` // Bytes transferred so far
+	TotalBytes       int64  `protobuf:"varint,9,opt,name=total_bytes,json=totalBytes,proto3" json:"total_bytes,omitempty"`                   // Total bytes to transfer (if known)
+	TransferRate     int64  `protobuf:"varint,10,opt,name=transfer_rate,json=transferRate,proto3" json:"transfer_rate,omitempty"`            // Current transfer rate in bytes/sec
+	ElapsedTime      int64  `protobuf:"varint,11,opt,name=elapsed_time,json=elapsedTime,proto3" json:"elapsed_time,omitempty"`               // Elapsed time in seconds
+	EstimatedEta     int64  `protobuf:"varint,12,opt,name=estimated_eta,json=estimatedEta,proto3" json:"estimated_eta,omitempty"`            // Estimated time to completion in seconds
+	Phase            string `protobuf:"bytes,13,opt,name=phase,proto3" json:"phase,omitempty"`                                               // Current phase: "pending", "initial_send", "incremental_send", "full_send"
+	PhaseDescription string `protobuf:"bytes,14,opt,name=phase_description,json=phaseDescription,proto3" json:"phase_description,omitempty"` // Human-readable phase description
+	// Timestamps (Unix milliseconds)
+	CreatedAt   int64 `protobuf:"varint,15,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`       // When transfer was created
+	StartedAt   int64 `protobuf:"varint,16,opt,name=started_at,json=startedAt,proto3" json:"started_at,omitempty"`       // When transfer started (0 if not started)
+	CompletedAt int64 `protobuf:"varint,17,opt,name=completed_at,json=completedAt,proto3" json:"completed_at,omitempty"` // When transfer completed (0 if not completed)
+	// Process information
+	Pid     int32  `protobuf:"varint,18,opt,name=pid,proto3" json:"pid,omitempty"`                       // Process ID on Rodent (0 if not running)
+	LogFile string `protobuf:"bytes,19,opt,name=log_file,json=logFile,proto3" json:"log_file,omitempty"` // Path to log file on Rodent
+	// Configuration summary (key flags for Toggle UI)
+	IsIncremental bool   `protobuf:"varint,20,opt,name=is_incremental,json=isIncremental,proto3" json:"is_incremental,omitempty"` // Whether this is incremental transfer
+	IsResumable   bool   `protobuf:"varint,21,opt,name=is_resumable,json=isResumable,proto3" json:"is_resumable,omitempty"`       // Whether transfer supports resume
+	FromSnapshot  string `protobuf:"bytes,22,opt,name=from_snapshot,json=fromSnapshot,proto3" json:"from_snapshot,omitempty"`     // From snapshot for incremental transfers
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *DataTransferTransferPayload) Reset() {
@@ -4773,6 +4728,20 @@ func (*DataTransferTransferPayload) Descriptor() ([]byte, []int) {
 	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{36}
 }
 
+func (x *DataTransferTransferPayload) GetTransferId() string {
+	if x != nil {
+		return x.TransferId
+	}
+	return ""
+}
+
+func (x *DataTransferTransferPayload) GetOperationType() string {
+	if x != nil {
+		return x.OperationType
+	}
+	return ""
+}
+
 func (x *DataTransferTransferPayload) GetSource() string {
 	if x != nil {
 		return x.Source
@@ -4787,25 +4756,11 @@ func (x *DataTransferTransferPayload) GetDestination() string {
 	return ""
 }
 
-func (x *DataTransferTransferPayload) GetSizeBytes() int64 {
+func (x *DataTransferTransferPayload) GetStatus() string {
 	if x != nil {
-		return x.SizeBytes
+		return x.Status
 	}
-	return 0
-}
-
-func (x *DataTransferTransferPayload) GetTransferredBytes() int64 {
-	if x != nil {
-		return x.TransferredBytes
-	}
-	return 0
-}
-
-func (x *DataTransferTransferPayload) GetProgressPercent() int32 {
-	if x != nil {
-		return x.ProgressPercent
-	}
-	return 0
+	return ""
 }
 
 func (x *DataTransferTransferPayload) GetOperation() DataTransferTransferPayload_DataTransferOperation {
@@ -4813,6 +4768,118 @@ func (x *DataTransferTransferPayload) GetOperation() DataTransferTransferPayload
 		return x.Operation
 	}
 	return DataTransferTransferPayload_DATA_TRANSFER_OPERATION_UNSPECIFIED
+}
+
+func (x *DataTransferTransferPayload) GetErrorMessage() string {
+	if x != nil {
+		return x.ErrorMessage
+	}
+	return ""
+}
+
+func (x *DataTransferTransferPayload) GetBytesTransferred() int64 {
+	if x != nil {
+		return x.BytesTransferred
+	}
+	return 0
+}
+
+func (x *DataTransferTransferPayload) GetTotalBytes() int64 {
+	if x != nil {
+		return x.TotalBytes
+	}
+	return 0
+}
+
+func (x *DataTransferTransferPayload) GetTransferRate() int64 {
+	if x != nil {
+		return x.TransferRate
+	}
+	return 0
+}
+
+func (x *DataTransferTransferPayload) GetElapsedTime() int64 {
+	if x != nil {
+		return x.ElapsedTime
+	}
+	return 0
+}
+
+func (x *DataTransferTransferPayload) GetEstimatedEta() int64 {
+	if x != nil {
+		return x.EstimatedEta
+	}
+	return 0
+}
+
+func (x *DataTransferTransferPayload) GetPhase() string {
+	if x != nil {
+		return x.Phase
+	}
+	return ""
+}
+
+func (x *DataTransferTransferPayload) GetPhaseDescription() string {
+	if x != nil {
+		return x.PhaseDescription
+	}
+	return ""
+}
+
+func (x *DataTransferTransferPayload) GetCreatedAt() int64 {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return 0
+}
+
+func (x *DataTransferTransferPayload) GetStartedAt() int64 {
+	if x != nil {
+		return x.StartedAt
+	}
+	return 0
+}
+
+func (x *DataTransferTransferPayload) GetCompletedAt() int64 {
+	if x != nil {
+		return x.CompletedAt
+	}
+	return 0
+}
+
+func (x *DataTransferTransferPayload) GetPid() int32 {
+	if x != nil {
+		return x.Pid
+	}
+	return 0
+}
+
+func (x *DataTransferTransferPayload) GetLogFile() string {
+	if x != nil {
+		return x.LogFile
+	}
+	return ""
+}
+
+func (x *DataTransferTransferPayload) GetIsIncremental() bool {
+	if x != nil {
+		return x.IsIncremental
+	}
+	return false
+}
+
+func (x *DataTransferTransferPayload) GetIsResumable() bool {
+	if x != nil {
+		return x.IsResumable
+	}
+	return false
+}
+
+func (x *DataTransferTransferPayload) GetFromSnapshot() string {
+	if x != nil {
+		return x.FromSnapshot
+	}
+	return ""
 }
 
 var File_proto_events_event_messages_proto protoreflect.FileDescriptor
@@ -4842,20 +4909,20 @@ const file_proto_events_event_messages_proto_rawDesc = "" +
 	"\rMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B\x0f\n" +
-	"\revent_payload\"\xb6\x02\n" +
+	"\revent_payload\"\x86\x03\n" +
 	"\vSystemEvent\x12?\n" +
 	"\astartup\x18\x01 \x01(\v2#.rodent.events.SystemStartupPayloadH\x00R\astartup\x12B\n" +
 	"\bshutdown\x18\x02 \x01(\v2$.rodent.events.SystemShutdownPayloadH\x00R\bshutdown\x12Q\n" +
 	"\x0econfig_changed\x18\x03 \x01(\v2(.rodent.events.SystemConfigChangePayloadH\x00R\rconfigChanged\x12A\n" +
 	"\n" +
-	"user_event\x18\x04 \x01(\v2 .rodent.events.SystemUserPayloadH\x00R\tuserEventB\f\n" +
+	"user_event\x18\x04 \x01(\v2 .rodent.events.SystemUserPayloadH\x00R\tuserEvent\x12N\n" +
+	"\fregistration\x18\x05 \x01(\v2(.rodent.events.SystemRegistrationPayloadH\x00R\fregistrationB\f\n" +
 	"\n" +
-	"event_type\"\xcd\x02\n" +
+	"event_type\"\xfd\x01\n" +
 	"\fStorageEvent\x12B\n" +
 	"\n" +
 	"pool_event\x18\x01 \x01(\v2!.rodent.events.StoragePoolPayloadH\x00R\tpoolEvent\x12K\n" +
 	"\rdataset_event\x18\x02 \x01(\v2$.rodent.events.StorageDatasetPayloadH\x00R\fdatasetEvent\x12N\n" +
-	"\x0etransfer_event\x18\x03 \x01(\v2%.rodent.events.StorageTransferPayloadH\x00R\rtransferEvent\x12N\n" +
 	"\x0esnapshot_event\x18\x04 \x01(\v2%.rodent.events.StorageSnapshotPayloadH\x00R\rsnapshotEventB\f\n" +
 	"\n" +
 	"event_type\"\xc5\x01\n" +
@@ -4906,18 +4973,27 @@ const file_proto_events_event_messages_proto_rawDesc = "" +
 	"\x11DataTransferEvent\x12S\n" +
 	"\x0etransfer_event\x18\x01 \x01(\v2*.rodent.events.DataTransferTransferPayloadH\x00R\rtransferEventB\f\n" +
 	"\n" +
-	"event_type\"\xdc\x03\n" +
-	"\x14SystemStartupPayload\x12*\n" +
-	"\x11boot_time_seconds\x18\x01 \x01(\x03R\x0fbootTimeSeconds\x12)\n" +
-	"\x10services_started\x18\x02 \x03(\tR\x0fservicesStarted\x12X\n" +
-	"\toperation\x18\x03 \x01(\x0e2:.rodent.events.SystemStartupPayload.SystemStartupOperationR\toperation\"\x92\x02\n" +
-	"\x16SystemStartupOperation\x12(\n" +
-	"$SYSTEM_STARTUP_OPERATION_UNSPECIFIED\x10\x00\x12&\n" +
-	"\"SYSTEM_STARTUP_OPERATION_COLD_BOOT\x10\x01\x12)\n" +
-	"%SYSTEM_STARTUP_OPERATION_WARM_RESTART\x10\x02\x12,\n" +
-	"(SYSTEM_STARTUP_OPERATION_SERVICE_RESTART\x10\x03\x12$\n" +
-	" SYSTEM_STARTUP_OPERATION_STARTED\x10\x04\x12'\n" +
-	"#SYSTEM_STARTUP_OPERATION_REGISTERED\x10\x05\"\xe6\x02\n" +
+	"event_type\"\xed\x02\n" +
+	"\x14SystemStartupPayload\x12\x1b\n" +
+	"\trodent_id\x18\x01 \x01(\tR\brodentId\x12'\n" +
+	"\x0forganization_id\x18\x02 \x01(\tR\x0eorganizationId\x12!\n" +
+	"\fstartup_time\x18\x03 \x01(\tR\vstartupTime\x12!\n" +
+	"\fstartup_type\x18\x04 \x01(\tR\vstartupType\x12\x1a\n" +
+	"\bservices\x18\x05 \x03(\tR\bservices\x12\x18\n" +
+	"\aversion\x18\x06 \x01(\tR\aversion\x12T\n" +
+	"\vsystem_info\x18\a \x03(\v23.rodent.events.SystemStartupPayload.SystemInfoEntryR\n" +
+	"systemInfo\x1a=\n" +
+	"\x0fSystemInfoEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xb7\x02\n" +
+	"\x19SystemRegistrationPayload\x12\x1b\n" +
+	"\trodent_id\x18\x01 \x01(\tR\brodentId\x12'\n" +
+	"\x0forganization_id\x18\x02 \x01(\tR\x0eorganizationId\x12#\n" +
+	"\rregistered_at\x18\x03 \x01(\tR\fregisteredAt\x12#\n" +
+	"\rtoggle_domain\x18\x04 \x01(\tR\ftoggleDomain\x12/\n" +
+	"\x13certificate_expires\x18\x05 \x01(\tR\x12certificateExpires\x12,\n" +
+	"\x12is_private_network\x18\x06 \x01(\bR\x10isPrivateNetwork\x12+\n" +
+	"\x11registration_type\x18\a \x01(\tR\x10registrationType\"\xe6\x02\n" +
 	"\x15SystemShutdownPayload\x12Z\n" +
 	"\toperation\x18\x01 \x01(\x0e2<.rodent.events.SystemShutdownPayload.SystemShutdownOperationR\toperation\x12\x16\n" +
 	"\x06reason\x18\x02 \x01(\tR\x06reason\x12\x1a\n" +
@@ -4983,22 +5059,7 @@ const file_proto_events_event_messages_proto_rawDesc = "" +
 	"!STORAGE_DATASET_OPERATION_DELETED\x10\x02\x12%\n" +
 	"!STORAGE_DATASET_OPERATION_MOUNTED\x10\x03\x12'\n" +
 	"#STORAGE_DATASET_OPERATION_UNMOUNTED\x10\x04\x12.\n" +
-	"*STORAGE_DATASET_OPERATION_PROPERTY_CHANGED\x10\x05\"\xbc\x04\n" +
-	"\x16StorageTransferPayload\x12\x16\n" +
-	"\x06source\x18\x01 \x01(\tR\x06source\x12 \n" +
-	"\vdestination\x18\x02 \x01(\tR\vdestination\x12\x1d\n" +
-	"\n" +
-	"size_bytes\x18\x03 \x01(\x03R\tsizeBytes\x12+\n" +
-	"\x11transferred_bytes\x18\x04 \x01(\x03R\x10transferredBytes\x12)\n" +
-	"\x10progress_percent\x18\x05 \x01(\x05R\x0fprogressPercent\x12\\\n" +
-	"\toperation\x18\x06 \x01(\x0e2>.rodent.events.StorageTransferPayload.StorageTransferOperationR\toperation\"\x92\x02\n" +
-	"\x18StorageTransferOperation\x12*\n" +
-	"&STORAGE_TRANSFER_OPERATION_UNSPECIFIED\x10\x00\x12&\n" +
-	"\"STORAGE_TRANSFER_OPERATION_STARTED\x10\x01\x12'\n" +
-	"#STORAGE_TRANSFER_OPERATION_PROGRESS\x10\x02\x12(\n" +
-	"$STORAGE_TRANSFER_OPERATION_COMPLETED\x10\x03\x12%\n" +
-	"!STORAGE_TRANSFER_OPERATION_FAILED\x10\x04\x12(\n" +
-	"$STORAGE_TRANSFER_OPERATION_CANCELLED\x10\x05\"\xee\x03\n" +
+	"*STORAGE_DATASET_OPERATION_PROPERTY_CHANGED\x10\x05\"\xee\x03\n" +
 	"\x16StorageSnapshotPayload\x12#\n" +
 	"\rsnapshot_name\x18\x01 \x01(\tR\fsnapshotName\x12!\n" +
 	"\fdataset_name\x18\x02 \x01(\tR\vdatasetName\x12#\n" +
@@ -5242,22 +5303,44 @@ const file_proto_events_event_messages_proto_rawDesc = "" +
 	"%USAGE_THRESHOLD_OPERATION_UNSPECIFIED\x10\x00\x12(\n" +
 	"$USAGE_THRESHOLD_OPERATION_APPROACHED\x10\x01\x12&\n" +
 	"\"USAGE_THRESHOLD_OPERATION_EXCEEDED\x10\x02\x12%\n" +
-	"!USAGE_THRESHOLD_OPERATION_CLEARED\x10\x03\"\xae\x04\n" +
-	"\x1bDataTransferTransferPayload\x12\x16\n" +
-	"\x06source\x18\x01 \x01(\tR\x06source\x12 \n" +
-	"\vdestination\x18\x02 \x01(\tR\vdestination\x12\x1d\n" +
+	"!USAGE_THRESHOLD_OPERATION_CLEARED\x10\x03\"\x80\t\n" +
+	"\x1bDataTransferTransferPayload\x12\x1f\n" +
+	"\vtransfer_id\x18\x01 \x01(\tR\n" +
+	"transferId\x12%\n" +
+	"\x0eoperation_type\x18\x02 \x01(\tR\roperationType\x12\x16\n" +
+	"\x06source\x18\x03 \x01(\tR\x06source\x12 \n" +
+	"\vdestination\x18\x04 \x01(\tR\vdestination\x12\x16\n" +
+	"\x06status\x18\x05 \x01(\tR\x06status\x12^\n" +
+	"\toperation\x18\x06 \x01(\x0e2@.rodent.events.DataTransferTransferPayload.DataTransferOperationR\toperation\x12#\n" +
+	"\rerror_message\x18\a \x01(\tR\ferrorMessage\x12+\n" +
+	"\x11bytes_transferred\x18\b \x01(\x03R\x10bytesTransferred\x12\x1f\n" +
+	"\vtotal_bytes\x18\t \x01(\x03R\n" +
+	"totalBytes\x12#\n" +
+	"\rtransfer_rate\x18\n" +
+	" \x01(\x03R\ftransferRate\x12!\n" +
+	"\felapsed_time\x18\v \x01(\x03R\velapsedTime\x12#\n" +
+	"\restimated_eta\x18\f \x01(\x03R\festimatedEta\x12\x14\n" +
+	"\x05phase\x18\r \x01(\tR\x05phase\x12+\n" +
+	"\x11phase_description\x18\x0e \x01(\tR\x10phaseDescription\x12\x1d\n" +
 	"\n" +
-	"size_bytes\x18\x03 \x01(\x03R\tsizeBytes\x12+\n" +
-	"\x11transferred_bytes\x18\x04 \x01(\x03R\x10transferredBytes\x12)\n" +
-	"\x10progress_percent\x18\x05 \x01(\x05R\x0fprogressPercent\x12^\n" +
-	"\toperation\x18\x06 \x01(\x0e2@.rodent.events.DataTransferTransferPayload.DataTransferOperationR\toperation\"\xfd\x01\n" +
+	"created_at\x18\x0f \x01(\x03R\tcreatedAt\x12\x1d\n" +
+	"\n" +
+	"started_at\x18\x10 \x01(\x03R\tstartedAt\x12!\n" +
+	"\fcompleted_at\x18\x11 \x01(\x03R\vcompletedAt\x12\x10\n" +
+	"\x03pid\x18\x12 \x01(\x05R\x03pid\x12\x19\n" +
+	"\blog_file\x18\x13 \x01(\tR\alogFile\x12%\n" +
+	"\x0eis_incremental\x18\x14 \x01(\bR\risIncremental\x12!\n" +
+	"\fis_resumable\x18\x15 \x01(\bR\visResumable\x12#\n" +
+	"\rfrom_snapshot\x18\x16 \x01(\tR\ffromSnapshot\"\xc6\x02\n" +
 	"\x15DataTransferOperation\x12'\n" +
 	"#DATA_TRANSFER_OPERATION_UNSPECIFIED\x10\x00\x12#\n" +
 	"\x1fDATA_TRANSFER_OPERATION_STARTED\x10\x01\x12$\n" +
 	" DATA_TRANSFER_OPERATION_PROGRESS\x10\x02\x12%\n" +
 	"!DATA_TRANSFER_OPERATION_COMPLETED\x10\x03\x12\"\n" +
 	"\x1eDATA_TRANSFER_OPERATION_FAILED\x10\x04\x12%\n" +
-	"!DATA_TRANSFER_OPERATION_CANCELLED\x10\x05*\xcf\x01\n" +
+	"!DATA_TRANSFER_OPERATION_CANCELLED\x10\x05\x12\"\n" +
+	"\x1eDATA_TRANSFER_OPERATION_PAUSED\x10\x06\x12#\n" +
+	"\x1fDATA_TRANSFER_OPERATION_RESUMED\x10\a*\xcf\x01\n" +
 	"\n" +
 	"EventLevel\x12\x1b\n" +
 	"\x17EVENT_LEVEL_UNSPECIFIED\x10\x00\x12\x14\n" +
@@ -5294,147 +5377,145 @@ func file_proto_events_event_messages_proto_rawDescGZIP() []byte {
 	return file_proto_events_event_messages_proto_rawDescData
 }
 
-var file_proto_events_event_messages_proto_enumTypes = make([]protoimpl.EnumInfo, 28)
-var file_proto_events_event_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 38)
+var file_proto_events_event_messages_proto_enumTypes = make([]protoimpl.EnumInfo, 26)
+var file_proto_events_event_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 39)
 var file_proto_events_event_messages_proto_goTypes = []any{
 	(EventLevel)(0),    // 0: rodent.events.EventLevel
 	(EventCategory)(0), // 1: rodent.events.EventCategory
-	(SystemStartupPayload_SystemStartupOperation)(0),             // 2: rodent.events.SystemStartupPayload.SystemStartupOperation
-	(SystemShutdownPayload_SystemShutdownOperation)(0),           // 3: rodent.events.SystemShutdownPayload.SystemShutdownOperation
-	(SystemConfigChangePayload_SystemConfigOperation)(0),         // 4: rodent.events.SystemConfigChangePayload.SystemConfigOperation
-	(SystemUserPayload_SystemUserOperation)(0),                   // 5: rodent.events.SystemUserPayload.SystemUserOperation
-	(StoragePoolPayload_StoragePoolOperation)(0),                 // 6: rodent.events.StoragePoolPayload.StoragePoolOperation
-	(StorageDatasetPayload_StorageDatasetOperation)(0),           // 7: rodent.events.StorageDatasetPayload.StorageDatasetOperation
-	(StorageTransferPayload_StorageTransferOperation)(0),         // 8: rodent.events.StorageTransferPayload.StorageTransferOperation
-	(StorageSnapshotPayload_StorageSnapshotOperation)(0),         // 9: rodent.events.StorageSnapshotPayload.StorageSnapshotOperation
-	(ServiceStatusPayload_ServiceStatusOperation)(0),             // 10: rodent.events.ServiceStatusPayload.ServiceStatusOperation
-	(NetworkInterfacePayload_NetworkInterfaceOperation)(0),       // 11: rodent.events.NetworkInterfacePayload.NetworkInterfaceOperation
-	(NetworkConnectionPayload_NetworkConnectionOperation)(0),     // 12: rodent.events.NetworkConnectionPayload.NetworkConnectionOperation
-	(SecurityAuthPayload_SecurityAuthOperation)(0),               // 13: rodent.events.SecurityAuthPayload.SecurityAuthOperation
-	(SecurityKeyPayload_SecurityKeyOperation)(0),                 // 14: rodent.events.SecurityKeyPayload.SecurityKeyOperation
-	(SecurityCertificatePayload_SecurityCertificateOperation)(0), // 15: rodent.events.SecurityCertificatePayload.SecurityCertificateOperation
-	(IdentityUserPayload_IdentityUserOperation)(0),               // 16: rodent.events.IdentityUserPayload.IdentityUserOperation
-	(IdentityGroupPayload_IdentityGroupOperation)(0),             // 17: rodent.events.IdentityGroupPayload.IdentityGroupOperation
-	(IdentityComputerPayload_IdentityComputerOperation)(0),       // 18: rodent.events.IdentityComputerPayload.IdentityComputerOperation
-	(AccessACLPayload_AccessACLOperation)(0),                     // 19: rodent.events.AccessACLPayload.AccessACLOperation
-	(AccessPermissionPayload_AccessPermissionOperation)(0),       // 20: rodent.events.AccessPermissionPayload.AccessPermissionOperation
-	(SharingSharePayload_SharingShareOperation)(0),               // 21: rodent.events.SharingSharePayload.SharingShareOperation
-	(SharingConnectionPayload_SharingConnectionOperation)(0),     // 22: rodent.events.SharingConnectionPayload.SharingConnectionOperation
-	(SharingFileAccessPayload_SharingFileAccessOperation)(0),     // 23: rodent.events.SharingFileAccessPayload.SharingFileAccessOperation
-	(UsageQuotaPayload_UsageQuotaOperation)(0),                   // 24: rodent.events.UsageQuotaPayload.UsageQuotaOperation
-	(UsageResourcePayload_UsageResourceOperation)(0),             // 25: rodent.events.UsageResourcePayload.UsageResourceOperation
-	(UsageThresholdPayload_UsageThresholdOperation)(0),           // 26: rodent.events.UsageThresholdPayload.UsageThresholdOperation
-	(DataTransferTransferPayload_DataTransferOperation)(0),       // 27: rodent.events.DataTransferTransferPayload.DataTransferOperation
-	(*Event)(nil),                       // 28: rodent.events.Event
-	(*SystemEvent)(nil),                 // 29: rodent.events.SystemEvent
-	(*StorageEvent)(nil),                // 30: rodent.events.StorageEvent
-	(*NetworkEvent)(nil),                // 31: rodent.events.NetworkEvent
-	(*SecurityEvent)(nil),               // 32: rodent.events.SecurityEvent
-	(*ServiceEvent)(nil),                // 33: rodent.events.ServiceEvent
-	(*IdentityEvent)(nil),               // 34: rodent.events.IdentityEvent
-	(*AccessEvent)(nil),                 // 35: rodent.events.AccessEvent
-	(*SharingEvent)(nil),                // 36: rodent.events.SharingEvent
-	(*UsageEvent)(nil),                  // 37: rodent.events.UsageEvent
-	(*DataTransferEvent)(nil),           // 38: rodent.events.DataTransferEvent
-	(*SystemStartupPayload)(nil),        // 39: rodent.events.SystemStartupPayload
-	(*SystemShutdownPayload)(nil),       // 40: rodent.events.SystemShutdownPayload
-	(*SystemConfigChangePayload)(nil),   // 41: rodent.events.SystemConfigChangePayload
-	(*SystemUserPayload)(nil),           // 42: rodent.events.SystemUserPayload
-	(*StoragePoolPayload)(nil),          // 43: rodent.events.StoragePoolPayload
-	(*StorageDatasetPayload)(nil),       // 44: rodent.events.StorageDatasetPayload
-	(*StorageTransferPayload)(nil),      // 45: rodent.events.StorageTransferPayload
-	(*StorageSnapshotPayload)(nil),      // 46: rodent.events.StorageSnapshotPayload
-	(*ServiceStatusPayload)(nil),        // 47: rodent.events.ServiceStatusPayload
-	(*NetworkInterfacePayload)(nil),     // 48: rodent.events.NetworkInterfacePayload
-	(*NetworkConnectionPayload)(nil),    // 49: rodent.events.NetworkConnectionPayload
-	(*SecurityAuthPayload)(nil),         // 50: rodent.events.SecurityAuthPayload
-	(*SecurityKeyPayload)(nil),          // 51: rodent.events.SecurityKeyPayload
-	(*SecurityCertificatePayload)(nil),  // 52: rodent.events.SecurityCertificatePayload
-	(*IdentityUserPayload)(nil),         // 53: rodent.events.IdentityUserPayload
-	(*IdentityGroupPayload)(nil),        // 54: rodent.events.IdentityGroupPayload
-	(*IdentityComputerPayload)(nil),     // 55: rodent.events.IdentityComputerPayload
-	(*AccessACLPayload)(nil),            // 56: rodent.events.AccessACLPayload
-	(*AccessPermissionPayload)(nil),     // 57: rodent.events.AccessPermissionPayload
-	(*SharingSharePayload)(nil),         // 58: rodent.events.SharingSharePayload
-	(*SharingConnectionPayload)(nil),    // 59: rodent.events.SharingConnectionPayload
-	(*SharingFileAccessPayload)(nil),    // 60: rodent.events.SharingFileAccessPayload
-	(*UsageQuotaPayload)(nil),           // 61: rodent.events.UsageQuotaPayload
-	(*UsageResourcePayload)(nil),        // 62: rodent.events.UsageResourcePayload
-	(*UsageThresholdPayload)(nil),       // 63: rodent.events.UsageThresholdPayload
-	(*DataTransferTransferPayload)(nil), // 64: rodent.events.DataTransferTransferPayload
-	nil,                                 // 65: rodent.events.Event.MetadataEntry
+	(SystemShutdownPayload_SystemShutdownOperation)(0),           // 2: rodent.events.SystemShutdownPayload.SystemShutdownOperation
+	(SystemConfigChangePayload_SystemConfigOperation)(0),         // 3: rodent.events.SystemConfigChangePayload.SystemConfigOperation
+	(SystemUserPayload_SystemUserOperation)(0),                   // 4: rodent.events.SystemUserPayload.SystemUserOperation
+	(StoragePoolPayload_StoragePoolOperation)(0),                 // 5: rodent.events.StoragePoolPayload.StoragePoolOperation
+	(StorageDatasetPayload_StorageDatasetOperation)(0),           // 6: rodent.events.StorageDatasetPayload.StorageDatasetOperation
+	(StorageSnapshotPayload_StorageSnapshotOperation)(0),         // 7: rodent.events.StorageSnapshotPayload.StorageSnapshotOperation
+	(ServiceStatusPayload_ServiceStatusOperation)(0),             // 8: rodent.events.ServiceStatusPayload.ServiceStatusOperation
+	(NetworkInterfacePayload_NetworkInterfaceOperation)(0),       // 9: rodent.events.NetworkInterfacePayload.NetworkInterfaceOperation
+	(NetworkConnectionPayload_NetworkConnectionOperation)(0),     // 10: rodent.events.NetworkConnectionPayload.NetworkConnectionOperation
+	(SecurityAuthPayload_SecurityAuthOperation)(0),               // 11: rodent.events.SecurityAuthPayload.SecurityAuthOperation
+	(SecurityKeyPayload_SecurityKeyOperation)(0),                 // 12: rodent.events.SecurityKeyPayload.SecurityKeyOperation
+	(SecurityCertificatePayload_SecurityCertificateOperation)(0), // 13: rodent.events.SecurityCertificatePayload.SecurityCertificateOperation
+	(IdentityUserPayload_IdentityUserOperation)(0),               // 14: rodent.events.IdentityUserPayload.IdentityUserOperation
+	(IdentityGroupPayload_IdentityGroupOperation)(0),             // 15: rodent.events.IdentityGroupPayload.IdentityGroupOperation
+	(IdentityComputerPayload_IdentityComputerOperation)(0),       // 16: rodent.events.IdentityComputerPayload.IdentityComputerOperation
+	(AccessACLPayload_AccessACLOperation)(0),                     // 17: rodent.events.AccessACLPayload.AccessACLOperation
+	(AccessPermissionPayload_AccessPermissionOperation)(0),       // 18: rodent.events.AccessPermissionPayload.AccessPermissionOperation
+	(SharingSharePayload_SharingShareOperation)(0),               // 19: rodent.events.SharingSharePayload.SharingShareOperation
+	(SharingConnectionPayload_SharingConnectionOperation)(0),     // 20: rodent.events.SharingConnectionPayload.SharingConnectionOperation
+	(SharingFileAccessPayload_SharingFileAccessOperation)(0),     // 21: rodent.events.SharingFileAccessPayload.SharingFileAccessOperation
+	(UsageQuotaPayload_UsageQuotaOperation)(0),                   // 22: rodent.events.UsageQuotaPayload.UsageQuotaOperation
+	(UsageResourcePayload_UsageResourceOperation)(0),             // 23: rodent.events.UsageResourcePayload.UsageResourceOperation
+	(UsageThresholdPayload_UsageThresholdOperation)(0),           // 24: rodent.events.UsageThresholdPayload.UsageThresholdOperation
+	(DataTransferTransferPayload_DataTransferOperation)(0),       // 25: rodent.events.DataTransferTransferPayload.DataTransferOperation
+	(*Event)(nil),                       // 26: rodent.events.Event
+	(*SystemEvent)(nil),                 // 27: rodent.events.SystemEvent
+	(*StorageEvent)(nil),                // 28: rodent.events.StorageEvent
+	(*NetworkEvent)(nil),                // 29: rodent.events.NetworkEvent
+	(*SecurityEvent)(nil),               // 30: rodent.events.SecurityEvent
+	(*ServiceEvent)(nil),                // 31: rodent.events.ServiceEvent
+	(*IdentityEvent)(nil),               // 32: rodent.events.IdentityEvent
+	(*AccessEvent)(nil),                 // 33: rodent.events.AccessEvent
+	(*SharingEvent)(nil),                // 34: rodent.events.SharingEvent
+	(*UsageEvent)(nil),                  // 35: rodent.events.UsageEvent
+	(*DataTransferEvent)(nil),           // 36: rodent.events.DataTransferEvent
+	(*SystemStartupPayload)(nil),        // 37: rodent.events.SystemStartupPayload
+	(*SystemRegistrationPayload)(nil),   // 38: rodent.events.SystemRegistrationPayload
+	(*SystemShutdownPayload)(nil),       // 39: rodent.events.SystemShutdownPayload
+	(*SystemConfigChangePayload)(nil),   // 40: rodent.events.SystemConfigChangePayload
+	(*SystemUserPayload)(nil),           // 41: rodent.events.SystemUserPayload
+	(*StoragePoolPayload)(nil),          // 42: rodent.events.StoragePoolPayload
+	(*StorageDatasetPayload)(nil),       // 43: rodent.events.StorageDatasetPayload
+	(*StorageSnapshotPayload)(nil),      // 44: rodent.events.StorageSnapshotPayload
+	(*ServiceStatusPayload)(nil),        // 45: rodent.events.ServiceStatusPayload
+	(*NetworkInterfacePayload)(nil),     // 46: rodent.events.NetworkInterfacePayload
+	(*NetworkConnectionPayload)(nil),    // 47: rodent.events.NetworkConnectionPayload
+	(*SecurityAuthPayload)(nil),         // 48: rodent.events.SecurityAuthPayload
+	(*SecurityKeyPayload)(nil),          // 49: rodent.events.SecurityKeyPayload
+	(*SecurityCertificatePayload)(nil),  // 50: rodent.events.SecurityCertificatePayload
+	(*IdentityUserPayload)(nil),         // 51: rodent.events.IdentityUserPayload
+	(*IdentityGroupPayload)(nil),        // 52: rodent.events.IdentityGroupPayload
+	(*IdentityComputerPayload)(nil),     // 53: rodent.events.IdentityComputerPayload
+	(*AccessACLPayload)(nil),            // 54: rodent.events.AccessACLPayload
+	(*AccessPermissionPayload)(nil),     // 55: rodent.events.AccessPermissionPayload
+	(*SharingSharePayload)(nil),         // 56: rodent.events.SharingSharePayload
+	(*SharingConnectionPayload)(nil),    // 57: rodent.events.SharingConnectionPayload
+	(*SharingFileAccessPayload)(nil),    // 58: rodent.events.SharingFileAccessPayload
+	(*UsageQuotaPayload)(nil),           // 59: rodent.events.UsageQuotaPayload
+	(*UsageResourcePayload)(nil),        // 60: rodent.events.UsageResourcePayload
+	(*UsageThresholdPayload)(nil),       // 61: rodent.events.UsageThresholdPayload
+	(*DataTransferTransferPayload)(nil), // 62: rodent.events.DataTransferTransferPayload
+	nil,                                 // 63: rodent.events.Event.MetadataEntry
+	nil,                                 // 64: rodent.events.SystemStartupPayload.SystemInfoEntry
 }
 var file_proto_events_event_messages_proto_depIdxs = []int32{
 	0,  // 0: rodent.events.Event.level:type_name -> rodent.events.EventLevel
 	1,  // 1: rodent.events.Event.category:type_name -> rodent.events.EventCategory
-	65, // 2: rodent.events.Event.metadata:type_name -> rodent.events.Event.MetadataEntry
-	29, // 3: rodent.events.Event.system_event:type_name -> rodent.events.SystemEvent
-	30, // 4: rodent.events.Event.storage_event:type_name -> rodent.events.StorageEvent
-	31, // 5: rodent.events.Event.network_event:type_name -> rodent.events.NetworkEvent
-	32, // 6: rodent.events.Event.security_event:type_name -> rodent.events.SecurityEvent
-	33, // 7: rodent.events.Event.service_event:type_name -> rodent.events.ServiceEvent
-	34, // 8: rodent.events.Event.identity_event:type_name -> rodent.events.IdentityEvent
-	35, // 9: rodent.events.Event.access_event:type_name -> rodent.events.AccessEvent
-	36, // 10: rodent.events.Event.sharing_event:type_name -> rodent.events.SharingEvent
-	37, // 11: rodent.events.Event.usage_event:type_name -> rodent.events.UsageEvent
-	38, // 12: rodent.events.Event.data_transfer_event:type_name -> rodent.events.DataTransferEvent
-	39, // 13: rodent.events.SystemEvent.startup:type_name -> rodent.events.SystemStartupPayload
-	40, // 14: rodent.events.SystemEvent.shutdown:type_name -> rodent.events.SystemShutdownPayload
-	41, // 15: rodent.events.SystemEvent.config_changed:type_name -> rodent.events.SystemConfigChangePayload
-	42, // 16: rodent.events.SystemEvent.user_event:type_name -> rodent.events.SystemUserPayload
-	43, // 17: rodent.events.StorageEvent.pool_event:type_name -> rodent.events.StoragePoolPayload
-	44, // 18: rodent.events.StorageEvent.dataset_event:type_name -> rodent.events.StorageDatasetPayload
-	45, // 19: rodent.events.StorageEvent.transfer_event:type_name -> rodent.events.StorageTransferPayload
-	46, // 20: rodent.events.StorageEvent.snapshot_event:type_name -> rodent.events.StorageSnapshotPayload
-	48, // 21: rodent.events.NetworkEvent.interface_event:type_name -> rodent.events.NetworkInterfacePayload
-	49, // 22: rodent.events.NetworkEvent.connection_event:type_name -> rodent.events.NetworkConnectionPayload
-	50, // 23: rodent.events.SecurityEvent.auth_event:type_name -> rodent.events.SecurityAuthPayload
-	51, // 24: rodent.events.SecurityEvent.key_event:type_name -> rodent.events.SecurityKeyPayload
-	52, // 25: rodent.events.SecurityEvent.certificate_event:type_name -> rodent.events.SecurityCertificatePayload
-	47, // 26: rodent.events.ServiceEvent.status_event:type_name -> rodent.events.ServiceStatusPayload
-	53, // 27: rodent.events.IdentityEvent.user_event:type_name -> rodent.events.IdentityUserPayload
-	54, // 28: rodent.events.IdentityEvent.group_event:type_name -> rodent.events.IdentityGroupPayload
-	55, // 29: rodent.events.IdentityEvent.computer_event:type_name -> rodent.events.IdentityComputerPayload
-	56, // 30: rodent.events.AccessEvent.acl_event:type_name -> rodent.events.AccessACLPayload
-	57, // 31: rodent.events.AccessEvent.permission_event:type_name -> rodent.events.AccessPermissionPayload
-	58, // 32: rodent.events.SharingEvent.share_event:type_name -> rodent.events.SharingSharePayload
-	59, // 33: rodent.events.SharingEvent.connection_event:type_name -> rodent.events.SharingConnectionPayload
-	60, // 34: rodent.events.SharingEvent.file_access_event:type_name -> rodent.events.SharingFileAccessPayload
-	61, // 35: rodent.events.UsageEvent.quota_event:type_name -> rodent.events.UsageQuotaPayload
-	62, // 36: rodent.events.UsageEvent.resource_event:type_name -> rodent.events.UsageResourcePayload
-	63, // 37: rodent.events.UsageEvent.threshold_event:type_name -> rodent.events.UsageThresholdPayload
-	64, // 38: rodent.events.DataTransferEvent.transfer_event:type_name -> rodent.events.DataTransferTransferPayload
-	2,  // 39: rodent.events.SystemStartupPayload.operation:type_name -> rodent.events.SystemStartupPayload.SystemStartupOperation
-	3,  // 40: rodent.events.SystemShutdownPayload.operation:type_name -> rodent.events.SystemShutdownPayload.SystemShutdownOperation
-	4,  // 41: rodent.events.SystemConfigChangePayload.operation:type_name -> rodent.events.SystemConfigChangePayload.SystemConfigOperation
-	5,  // 42: rodent.events.SystemUserPayload.operation:type_name -> rodent.events.SystemUserPayload.SystemUserOperation
-	6,  // 43: rodent.events.StoragePoolPayload.operation:type_name -> rodent.events.StoragePoolPayload.StoragePoolOperation
-	7,  // 44: rodent.events.StorageDatasetPayload.operation:type_name -> rodent.events.StorageDatasetPayload.StorageDatasetOperation
-	8,  // 45: rodent.events.StorageTransferPayload.operation:type_name -> rodent.events.StorageTransferPayload.StorageTransferOperation
-	9,  // 46: rodent.events.StorageSnapshotPayload.operation:type_name -> rodent.events.StorageSnapshotPayload.StorageSnapshotOperation
-	10, // 47: rodent.events.ServiceStatusPayload.operation:type_name -> rodent.events.ServiceStatusPayload.ServiceStatusOperation
-	11, // 48: rodent.events.NetworkInterfacePayload.operation:type_name -> rodent.events.NetworkInterfacePayload.NetworkInterfaceOperation
-	12, // 49: rodent.events.NetworkConnectionPayload.operation:type_name -> rodent.events.NetworkConnectionPayload.NetworkConnectionOperation
-	13, // 50: rodent.events.SecurityAuthPayload.operation:type_name -> rodent.events.SecurityAuthPayload.SecurityAuthOperation
-	14, // 51: rodent.events.SecurityKeyPayload.operation:type_name -> rodent.events.SecurityKeyPayload.SecurityKeyOperation
-	15, // 52: rodent.events.SecurityCertificatePayload.operation:type_name -> rodent.events.SecurityCertificatePayload.SecurityCertificateOperation
-	16, // 53: rodent.events.IdentityUserPayload.operation:type_name -> rodent.events.IdentityUserPayload.IdentityUserOperation
-	17, // 54: rodent.events.IdentityGroupPayload.operation:type_name -> rodent.events.IdentityGroupPayload.IdentityGroupOperation
-	18, // 55: rodent.events.IdentityComputerPayload.operation:type_name -> rodent.events.IdentityComputerPayload.IdentityComputerOperation
-	19, // 56: rodent.events.AccessACLPayload.operation:type_name -> rodent.events.AccessACLPayload.AccessACLOperation
-	20, // 57: rodent.events.AccessPermissionPayload.operation:type_name -> rodent.events.AccessPermissionPayload.AccessPermissionOperation
-	21, // 58: rodent.events.SharingSharePayload.operation:type_name -> rodent.events.SharingSharePayload.SharingShareOperation
-	22, // 59: rodent.events.SharingConnectionPayload.operation:type_name -> rodent.events.SharingConnectionPayload.SharingConnectionOperation
-	23, // 60: rodent.events.SharingFileAccessPayload.operation:type_name -> rodent.events.SharingFileAccessPayload.SharingFileAccessOperation
-	24, // 61: rodent.events.UsageQuotaPayload.operation:type_name -> rodent.events.UsageQuotaPayload.UsageQuotaOperation
-	25, // 62: rodent.events.UsageResourcePayload.operation:type_name -> rodent.events.UsageResourcePayload.UsageResourceOperation
-	26, // 63: rodent.events.UsageThresholdPayload.operation:type_name -> rodent.events.UsageThresholdPayload.UsageThresholdOperation
-	27, // 64: rodent.events.DataTransferTransferPayload.operation:type_name -> rodent.events.DataTransferTransferPayload.DataTransferOperation
-	65, // [65:65] is the sub-list for method output_type
-	65, // [65:65] is the sub-list for method input_type
-	65, // [65:65] is the sub-list for extension type_name
-	65, // [65:65] is the sub-list for extension extendee
-	0,  // [0:65] is the sub-list for field type_name
+	63, // 2: rodent.events.Event.metadata:type_name -> rodent.events.Event.MetadataEntry
+	27, // 3: rodent.events.Event.system_event:type_name -> rodent.events.SystemEvent
+	28, // 4: rodent.events.Event.storage_event:type_name -> rodent.events.StorageEvent
+	29, // 5: rodent.events.Event.network_event:type_name -> rodent.events.NetworkEvent
+	30, // 6: rodent.events.Event.security_event:type_name -> rodent.events.SecurityEvent
+	31, // 7: rodent.events.Event.service_event:type_name -> rodent.events.ServiceEvent
+	32, // 8: rodent.events.Event.identity_event:type_name -> rodent.events.IdentityEvent
+	33, // 9: rodent.events.Event.access_event:type_name -> rodent.events.AccessEvent
+	34, // 10: rodent.events.Event.sharing_event:type_name -> rodent.events.SharingEvent
+	35, // 11: rodent.events.Event.usage_event:type_name -> rodent.events.UsageEvent
+	36, // 12: rodent.events.Event.data_transfer_event:type_name -> rodent.events.DataTransferEvent
+	37, // 13: rodent.events.SystemEvent.startup:type_name -> rodent.events.SystemStartupPayload
+	39, // 14: rodent.events.SystemEvent.shutdown:type_name -> rodent.events.SystemShutdownPayload
+	40, // 15: rodent.events.SystemEvent.config_changed:type_name -> rodent.events.SystemConfigChangePayload
+	41, // 16: rodent.events.SystemEvent.user_event:type_name -> rodent.events.SystemUserPayload
+	38, // 17: rodent.events.SystemEvent.registration:type_name -> rodent.events.SystemRegistrationPayload
+	42, // 18: rodent.events.StorageEvent.pool_event:type_name -> rodent.events.StoragePoolPayload
+	43, // 19: rodent.events.StorageEvent.dataset_event:type_name -> rodent.events.StorageDatasetPayload
+	44, // 20: rodent.events.StorageEvent.snapshot_event:type_name -> rodent.events.StorageSnapshotPayload
+	46, // 21: rodent.events.NetworkEvent.interface_event:type_name -> rodent.events.NetworkInterfacePayload
+	47, // 22: rodent.events.NetworkEvent.connection_event:type_name -> rodent.events.NetworkConnectionPayload
+	48, // 23: rodent.events.SecurityEvent.auth_event:type_name -> rodent.events.SecurityAuthPayload
+	49, // 24: rodent.events.SecurityEvent.key_event:type_name -> rodent.events.SecurityKeyPayload
+	50, // 25: rodent.events.SecurityEvent.certificate_event:type_name -> rodent.events.SecurityCertificatePayload
+	45, // 26: rodent.events.ServiceEvent.status_event:type_name -> rodent.events.ServiceStatusPayload
+	51, // 27: rodent.events.IdentityEvent.user_event:type_name -> rodent.events.IdentityUserPayload
+	52, // 28: rodent.events.IdentityEvent.group_event:type_name -> rodent.events.IdentityGroupPayload
+	53, // 29: rodent.events.IdentityEvent.computer_event:type_name -> rodent.events.IdentityComputerPayload
+	54, // 30: rodent.events.AccessEvent.acl_event:type_name -> rodent.events.AccessACLPayload
+	55, // 31: rodent.events.AccessEvent.permission_event:type_name -> rodent.events.AccessPermissionPayload
+	56, // 32: rodent.events.SharingEvent.share_event:type_name -> rodent.events.SharingSharePayload
+	57, // 33: rodent.events.SharingEvent.connection_event:type_name -> rodent.events.SharingConnectionPayload
+	58, // 34: rodent.events.SharingEvent.file_access_event:type_name -> rodent.events.SharingFileAccessPayload
+	59, // 35: rodent.events.UsageEvent.quota_event:type_name -> rodent.events.UsageQuotaPayload
+	60, // 36: rodent.events.UsageEvent.resource_event:type_name -> rodent.events.UsageResourcePayload
+	61, // 37: rodent.events.UsageEvent.threshold_event:type_name -> rodent.events.UsageThresholdPayload
+	62, // 38: rodent.events.DataTransferEvent.transfer_event:type_name -> rodent.events.DataTransferTransferPayload
+	64, // 39: rodent.events.SystemStartupPayload.system_info:type_name -> rodent.events.SystemStartupPayload.SystemInfoEntry
+	2,  // 40: rodent.events.SystemShutdownPayload.operation:type_name -> rodent.events.SystemShutdownPayload.SystemShutdownOperation
+	3,  // 41: rodent.events.SystemConfigChangePayload.operation:type_name -> rodent.events.SystemConfigChangePayload.SystemConfigOperation
+	4,  // 42: rodent.events.SystemUserPayload.operation:type_name -> rodent.events.SystemUserPayload.SystemUserOperation
+	5,  // 43: rodent.events.StoragePoolPayload.operation:type_name -> rodent.events.StoragePoolPayload.StoragePoolOperation
+	6,  // 44: rodent.events.StorageDatasetPayload.operation:type_name -> rodent.events.StorageDatasetPayload.StorageDatasetOperation
+	7,  // 45: rodent.events.StorageSnapshotPayload.operation:type_name -> rodent.events.StorageSnapshotPayload.StorageSnapshotOperation
+	8,  // 46: rodent.events.ServiceStatusPayload.operation:type_name -> rodent.events.ServiceStatusPayload.ServiceStatusOperation
+	9,  // 47: rodent.events.NetworkInterfacePayload.operation:type_name -> rodent.events.NetworkInterfacePayload.NetworkInterfaceOperation
+	10, // 48: rodent.events.NetworkConnectionPayload.operation:type_name -> rodent.events.NetworkConnectionPayload.NetworkConnectionOperation
+	11, // 49: rodent.events.SecurityAuthPayload.operation:type_name -> rodent.events.SecurityAuthPayload.SecurityAuthOperation
+	12, // 50: rodent.events.SecurityKeyPayload.operation:type_name -> rodent.events.SecurityKeyPayload.SecurityKeyOperation
+	13, // 51: rodent.events.SecurityCertificatePayload.operation:type_name -> rodent.events.SecurityCertificatePayload.SecurityCertificateOperation
+	14, // 52: rodent.events.IdentityUserPayload.operation:type_name -> rodent.events.IdentityUserPayload.IdentityUserOperation
+	15, // 53: rodent.events.IdentityGroupPayload.operation:type_name -> rodent.events.IdentityGroupPayload.IdentityGroupOperation
+	16, // 54: rodent.events.IdentityComputerPayload.operation:type_name -> rodent.events.IdentityComputerPayload.IdentityComputerOperation
+	17, // 55: rodent.events.AccessACLPayload.operation:type_name -> rodent.events.AccessACLPayload.AccessACLOperation
+	18, // 56: rodent.events.AccessPermissionPayload.operation:type_name -> rodent.events.AccessPermissionPayload.AccessPermissionOperation
+	19, // 57: rodent.events.SharingSharePayload.operation:type_name -> rodent.events.SharingSharePayload.SharingShareOperation
+	20, // 58: rodent.events.SharingConnectionPayload.operation:type_name -> rodent.events.SharingConnectionPayload.SharingConnectionOperation
+	21, // 59: rodent.events.SharingFileAccessPayload.operation:type_name -> rodent.events.SharingFileAccessPayload.SharingFileAccessOperation
+	22, // 60: rodent.events.UsageQuotaPayload.operation:type_name -> rodent.events.UsageQuotaPayload.UsageQuotaOperation
+	23, // 61: rodent.events.UsageResourcePayload.operation:type_name -> rodent.events.UsageResourcePayload.UsageResourceOperation
+	24, // 62: rodent.events.UsageThresholdPayload.operation:type_name -> rodent.events.UsageThresholdPayload.UsageThresholdOperation
+	25, // 63: rodent.events.DataTransferTransferPayload.operation:type_name -> rodent.events.DataTransferTransferPayload.DataTransferOperation
+	64, // [64:64] is the sub-list for method output_type
+	64, // [64:64] is the sub-list for method input_type
+	64, // [64:64] is the sub-list for extension type_name
+	64, // [64:64] is the sub-list for extension extendee
+	0,  // [0:64] is the sub-list for field type_name
 }
 
 func init() { file_proto_events_event_messages_proto_init() }
@@ -5459,11 +5540,11 @@ func file_proto_events_event_messages_proto_init() {
 		(*SystemEvent_Shutdown)(nil),
 		(*SystemEvent_ConfigChanged)(nil),
 		(*SystemEvent_UserEvent)(nil),
+		(*SystemEvent_Registration)(nil),
 	}
 	file_proto_events_event_messages_proto_msgTypes[2].OneofWrappers = []any{
 		(*StorageEvent_PoolEvent)(nil),
 		(*StorageEvent_DatasetEvent)(nil),
-		(*StorageEvent_TransferEvent)(nil),
 		(*StorageEvent_SnapshotEvent)(nil),
 	}
 	file_proto_events_event_messages_proto_msgTypes[3].OneofWrappers = []any{
@@ -5505,8 +5586,8 @@ func file_proto_events_event_messages_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_events_event_messages_proto_rawDesc), len(file_proto_events_event_messages_proto_rawDesc)),
-			NumEnums:      28,
-			NumMessages:   38,
+			NumEnums:      26,
+			NumMessages:   39,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

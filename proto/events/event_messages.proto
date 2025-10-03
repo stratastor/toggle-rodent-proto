@@ -75,6 +75,7 @@ message SystemEvent {
     SystemShutdownPayload shutdown = 2;
     SystemConfigChangePayload config_changed = 3;
     SystemUserPayload user_event = 4;
+    SystemRegistrationPayload registration = 5;
   }
 }
 
@@ -83,7 +84,7 @@ message StorageEvent {
   oneof event_type {
     StoragePoolPayload pool_event = 1;
     StorageDatasetPayload dataset_event = 2;
-    StorageTransferPayload transfer_event = 3;
+    // transfer_event (field 3) deprecated - use DataTransferEvent instead
     StorageSnapshotPayload snapshot_event = 4;
   }
 }
@@ -161,18 +162,23 @@ message DataTransferEvent {
 // Enhanced payload messages with operation enums for type safety
 
 message SystemStartupPayload {
-  int64 boot_time_seconds = 1;
-  repeated string services_started = 2;
-  SystemStartupOperation operation = 3;
+  string rodent_id = 1;              // Rodent node identifier
+  string organization_id = 2;        // Organization identifier
+  string startup_time = 3;           // RFC3339 timestamp
+  string startup_type = 4;           // "initial_startup", "restart", "reconnect"
+  repeated string services = 5;      // Services started
+  string version = 6;                // Rodent version
+  map<string, string> system_info = 7; // OS, arch, hostname, etc.
+}
 
-  enum SystemStartupOperation {
-    SYSTEM_STARTUP_OPERATION_UNSPECIFIED = 0;
-    SYSTEM_STARTUP_OPERATION_COLD_BOOT = 1;
-    SYSTEM_STARTUP_OPERATION_WARM_RESTART = 2;
-    SYSTEM_STARTUP_OPERATION_SERVICE_RESTART = 3;
-    SYSTEM_STARTUP_OPERATION_STARTED = 4;           // Service/component started
-    SYSTEM_STARTUP_OPERATION_REGISTERED = 5;        // Successfully registered with Toggle
-  }
+message SystemRegistrationPayload {
+  string rodent_id = 1;              // Rodent node identifier
+  string organization_id = 2;        // Organization identifier
+  string registered_at = 3;          // RFC3339 timestamp
+  string toggle_domain = 4;          // Toggle domain registered to
+  string certificate_expires = 5;    // RFC3339 timestamp (empty for private network)
+  bool is_private_network = 6;       // Whether Rodent is in private network
+  string registration_type = 7;      // "new_registration", "renewal", "reconnect"
 }
 
 message SystemShutdownPayload {
@@ -256,23 +262,9 @@ message StorageDatasetPayload {
   }
 }
 
-message StorageTransferPayload {
-  string source = 1;
-  string destination = 2;
-  int64 size_bytes = 3;
-  int64 transferred_bytes = 4;
-  int32 progress_percent = 5;
-  StorageTransferOperation operation = 6;
-
-  enum StorageTransferOperation {
-    STORAGE_TRANSFER_OPERATION_UNSPECIFIED = 0;
-    STORAGE_TRANSFER_OPERATION_STARTED = 1;
-    STORAGE_TRANSFER_OPERATION_PROGRESS = 2;
-    STORAGE_TRANSFER_OPERATION_COMPLETED = 3;
-    STORAGE_TRANSFER_OPERATION_FAILED = 4;
-    STORAGE_TRANSFER_OPERATION_CANCELLED = 5;
-  }
-}
+// Deprecated: StorageTransferPayload has been replaced by DataTransferTransferPayload
+// with comprehensive transfer details. This message is kept only for backward compatibility
+// and will be removed in a future version.
 
 message StorageSnapshotPayload {
   string snapshot_name = 1;
@@ -578,21 +570,53 @@ message UsageThresholdPayload {
   }
 }
 
-// Data transfer event payloads (similar structure to StorageTransferPayload)
+// Data transfer event payloads - Complete transfer information for ZFS dataset transfers
+// Maps to Rodent's TransferInfo struct with all essential details for Toggle sync
 message DataTransferTransferPayload {
-  string source = 1;
-  string destination = 2;
-  int64 size_bytes = 3;
-  int64 transferred_bytes = 4;
-  int32 progress_percent = 5;
-  DataTransferOperation operation = 6;
+  // Transfer identification
+  string transfer_id = 1;                      // Unique transfer ID (Rodent-side)
+  string operation_type = 2;                   // "send", "receive", "send_receive"
+
+  // Transfer endpoints
+  string source = 3;                           // Source snapshot/dataset
+  string destination = 4;                      // Destination dataset
+
+  // Transfer status
+  string status = 5;                           // "starting", "running", "paused", "completed", "failed", "cancelled"
+  DataTransferOperation operation = 6;         // Event operation type
+  string error_message = 7;                    // Error details if failed
+
+  // Progress information
+  int64 bytes_transferred = 8;                 // Bytes transferred so far
+  int64 total_bytes = 9;                       // Total bytes to transfer (if known)
+  int64 transfer_rate = 10;                    // Current transfer rate in bytes/sec
+  int64 elapsed_time = 11;                     // Elapsed time in seconds
+  int64 estimated_eta = 12;                    // Estimated time to completion in seconds
+  string phase = 13;                           // Current phase: "pending", "initial_send", "incremental_send", "full_send"
+  string phase_description = 14;               // Human-readable phase description
+
+  // Timestamps (Unix milliseconds)
+  int64 created_at = 15;                       // When transfer was created
+  int64 started_at = 16;                       // When transfer started (0 if not started)
+  int64 completed_at = 17;                     // When transfer completed (0 if not completed)
+
+  // Process information
+  int32 pid = 18;                              // Process ID on Rodent (0 if not running)
+  string log_file = 19;                        // Path to log file on Rodent
+
+  // Configuration summary (key flags for Toggle UI)
+  bool is_incremental = 20;                    // Whether this is incremental transfer
+  bool is_resumable = 21;                      // Whether transfer supports resume
+  string from_snapshot = 22;                   // From snapshot for incremental transfers
 
   enum DataTransferOperation {
     DATA_TRANSFER_OPERATION_UNSPECIFIED = 0;
     DATA_TRANSFER_OPERATION_STARTED = 1;
-    DATA_TRANSFER_OPERATION_PROGRESS = 2;
+    DATA_TRANSFER_OPERATION_PROGRESS = 2;       // Not used per requirements
     DATA_TRANSFER_OPERATION_COMPLETED = 3;
     DATA_TRANSFER_OPERATION_FAILED = 4;
     DATA_TRANSFER_OPERATION_CANCELLED = 5;
+    DATA_TRANSFER_OPERATION_PAUSED = 6;         // Transfer paused
+    DATA_TRANSFER_OPERATION_RESUMED = 7;        // Transfer resumed
   }
 }
