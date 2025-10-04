@@ -22,6 +22,11 @@ const (
 	CmdNetworkRoutesAdd    = "network.routes.add"
 	CmdNetworkRoutesRemove = "network.routes.remove"
 
+	// Routing policy management commands
+	CmdNetworkRoutingPoliciesList   = "network.routing_policies.list"
+	CmdNetworkRoutingPoliciesAdd    = "network.routing_policies.add"
+	CmdNetworkRoutingPoliciesRemove = "network.routing_policies.remove"
+
 	// Netplan configuration commands
 	CmdNetworkNetplanGetConfig = "network.netplan.config.get"
 	CmdNetworkNetplanSetConfig = "network.netplan.config.set"
