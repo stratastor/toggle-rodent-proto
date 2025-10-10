@@ -1519,6 +1519,140 @@ func (DataTransferTransferPayload_DataTransferOperation) EnumDescriptor() ([]byt
 	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{36, 0}
 }
 
+type StorageDiskPayload_StorageDiskOperation int32
+
+const (
+	StorageDiskPayload_STORAGE_DISK_OPERATION_UNSPECIFIED       StorageDiskPayload_StorageDiskOperation = 0
+	StorageDiskPayload_STORAGE_DISK_OPERATION_DISCOVERED        StorageDiskPayload_StorageDiskOperation = 1 // Disk discovered
+	StorageDiskPayload_STORAGE_DISK_OPERATION_REMOVED           StorageDiskPayload_StorageDiskOperation = 2 // Disk removed/offline
+	StorageDiskPayload_STORAGE_DISK_OPERATION_STATE_CHANGED     StorageDiskPayload_StorageDiskOperation = 3 // State changed
+	StorageDiskPayload_STORAGE_DISK_OPERATION_HEALTH_CHANGED    StorageDiskPayload_StorageDiskOperation = 4 // Health status changed
+	StorageDiskPayload_STORAGE_DISK_OPERATION_ADDED_TO_POOL     StorageDiskPayload_StorageDiskOperation = 5 // Added to ZFS pool
+	StorageDiskPayload_STORAGE_DISK_OPERATION_REMOVED_FROM_POOL StorageDiskPayload_StorageDiskOperation = 6 // Removed from ZFS pool
+	StorageDiskPayload_STORAGE_DISK_OPERATION_VALIDATED         StorageDiskPayload_StorageDiskOperation = 7 // Disk validated
+	StorageDiskPayload_STORAGE_DISK_OPERATION_QUARANTINED       StorageDiskPayload_StorageDiskOperation = 8 // Disk quarantined
+)
+
+// Enum value maps for StorageDiskPayload_StorageDiskOperation.
+var (
+	StorageDiskPayload_StorageDiskOperation_name = map[int32]string{
+		0: "STORAGE_DISK_OPERATION_UNSPECIFIED",
+		1: "STORAGE_DISK_OPERATION_DISCOVERED",
+		2: "STORAGE_DISK_OPERATION_REMOVED",
+		3: "STORAGE_DISK_OPERATION_STATE_CHANGED",
+		4: "STORAGE_DISK_OPERATION_HEALTH_CHANGED",
+		5: "STORAGE_DISK_OPERATION_ADDED_TO_POOL",
+		6: "STORAGE_DISK_OPERATION_REMOVED_FROM_POOL",
+		7: "STORAGE_DISK_OPERATION_VALIDATED",
+		8: "STORAGE_DISK_OPERATION_QUARANTINED",
+	}
+	StorageDiskPayload_StorageDiskOperation_value = map[string]int32{
+		"STORAGE_DISK_OPERATION_UNSPECIFIED":       0,
+		"STORAGE_DISK_OPERATION_DISCOVERED":        1,
+		"STORAGE_DISK_OPERATION_REMOVED":           2,
+		"STORAGE_DISK_OPERATION_STATE_CHANGED":     3,
+		"STORAGE_DISK_OPERATION_HEALTH_CHANGED":    4,
+		"STORAGE_DISK_OPERATION_ADDED_TO_POOL":     5,
+		"STORAGE_DISK_OPERATION_REMOVED_FROM_POOL": 6,
+		"STORAGE_DISK_OPERATION_VALIDATED":         7,
+		"STORAGE_DISK_OPERATION_QUARANTINED":       8,
+	}
+)
+
+func (x StorageDiskPayload_StorageDiskOperation) Enum() *StorageDiskPayload_StorageDiskOperation {
+	p := new(StorageDiskPayload_StorageDiskOperation)
+	*p = x
+	return p
+}
+
+func (x StorageDiskPayload_StorageDiskOperation) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (StorageDiskPayload_StorageDiskOperation) Descriptor() protoreflect.EnumDescriptor {
+	return file_proto_events_event_messages_proto_enumTypes[26].Descriptor()
+}
+
+func (StorageDiskPayload_StorageDiskOperation) Type() protoreflect.EnumType {
+	return &file_proto_events_event_messages_proto_enumTypes[26]
+}
+
+func (x StorageDiskPayload_StorageDiskOperation) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use StorageDiskPayload_StorageDiskOperation.Descriptor instead.
+func (StorageDiskPayload_StorageDiskOperation) EnumDescriptor() ([]byte, []int) {
+	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{37, 0}
+}
+
+type StorageDiskProbePayload_StorageDiskProbeOperation int32
+
+const (
+	StorageDiskProbePayload_STORAGE_DISK_PROBE_OPERATION_UNSPECIFIED StorageDiskProbePayload_StorageDiskProbeOperation = 0
+	StorageDiskProbePayload_STORAGE_DISK_PROBE_OPERATION_SCHEDULED   StorageDiskProbePayload_StorageDiskProbeOperation = 1 // Probe scheduled
+	StorageDiskProbePayload_STORAGE_DISK_PROBE_OPERATION_STARTED     StorageDiskProbePayload_StorageDiskProbeOperation = 2 // Probe started
+	StorageDiskProbePayload_STORAGE_DISK_PROBE_OPERATION_PROGRESS    StorageDiskProbePayload_StorageDiskProbeOperation = 3 // Probe progress update
+	StorageDiskProbePayload_STORAGE_DISK_PROBE_OPERATION_COMPLETED   StorageDiskProbePayload_StorageDiskProbeOperation = 4 // Probe completed successfully
+	StorageDiskProbePayload_STORAGE_DISK_PROBE_OPERATION_FAILED      StorageDiskProbePayload_StorageDiskProbeOperation = 5 // Probe failed
+	StorageDiskProbePayload_STORAGE_DISK_PROBE_OPERATION_CANCELLED   StorageDiskProbePayload_StorageDiskProbeOperation = 6 // Probe cancelled
+	StorageDiskProbePayload_STORAGE_DISK_PROBE_OPERATION_CONFLICTED  StorageDiskProbePayload_StorageDiskProbeOperation = 7 // Probe conflicted (e.g., ZFS scrub running)
+	StorageDiskProbePayload_STORAGE_DISK_PROBE_OPERATION_TIMEOUT     StorageDiskProbePayload_StorageDiskProbeOperation = 8 // Probe timed out
+)
+
+// Enum value maps for StorageDiskProbePayload_StorageDiskProbeOperation.
+var (
+	StorageDiskProbePayload_StorageDiskProbeOperation_name = map[int32]string{
+		0: "STORAGE_DISK_PROBE_OPERATION_UNSPECIFIED",
+		1: "STORAGE_DISK_PROBE_OPERATION_SCHEDULED",
+		2: "STORAGE_DISK_PROBE_OPERATION_STARTED",
+		3: "STORAGE_DISK_PROBE_OPERATION_PROGRESS",
+		4: "STORAGE_DISK_PROBE_OPERATION_COMPLETED",
+		5: "STORAGE_DISK_PROBE_OPERATION_FAILED",
+		6: "STORAGE_DISK_PROBE_OPERATION_CANCELLED",
+		7: "STORAGE_DISK_PROBE_OPERATION_CONFLICTED",
+		8: "STORAGE_DISK_PROBE_OPERATION_TIMEOUT",
+	}
+	StorageDiskProbePayload_StorageDiskProbeOperation_value = map[string]int32{
+		"STORAGE_DISK_PROBE_OPERATION_UNSPECIFIED": 0,
+		"STORAGE_DISK_PROBE_OPERATION_SCHEDULED":   1,
+		"STORAGE_DISK_PROBE_OPERATION_STARTED":     2,
+		"STORAGE_DISK_PROBE_OPERATION_PROGRESS":    3,
+		"STORAGE_DISK_PROBE_OPERATION_COMPLETED":   4,
+		"STORAGE_DISK_PROBE_OPERATION_FAILED":      5,
+		"STORAGE_DISK_PROBE_OPERATION_CANCELLED":   6,
+		"STORAGE_DISK_PROBE_OPERATION_CONFLICTED":  7,
+		"STORAGE_DISK_PROBE_OPERATION_TIMEOUT":     8,
+	}
+)
+
+func (x StorageDiskProbePayload_StorageDiskProbeOperation) Enum() *StorageDiskProbePayload_StorageDiskProbeOperation {
+	p := new(StorageDiskProbePayload_StorageDiskProbeOperation)
+	*p = x
+	return p
+}
+
+func (x StorageDiskProbePayload_StorageDiskProbeOperation) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (StorageDiskProbePayload_StorageDiskProbeOperation) Descriptor() protoreflect.EnumDescriptor {
+	return file_proto_events_event_messages_proto_enumTypes[27].Descriptor()
+}
+
+func (StorageDiskProbePayload_StorageDiskProbeOperation) Type() protoreflect.EnumType {
+	return &file_proto_events_event_messages_proto_enumTypes[27]
+}
+
+func (x StorageDiskProbePayload_StorageDiskProbeOperation) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use StorageDiskProbePayload_StorageDiskProbeOperation.Descriptor instead.
+func (StorageDiskProbePayload_StorageDiskProbeOperation) EnumDescriptor() ([]byte, []int) {
+	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{38, 0}
+}
+
 // Main Event message with structured type-safe payloads
 type Event struct {
 	state     protoimpl.MessageState `protogen:"open.v1"`
@@ -1919,6 +2053,8 @@ type StorageEvent struct {
 	//	*StorageEvent_PoolEvent
 	//	*StorageEvent_DatasetEvent
 	//	*StorageEvent_SnapshotEvent
+	//	*StorageEvent_DiskEvent
+	//	*StorageEvent_DiskProbeEvent
 	EventType     isStorageEvent_EventType `protobuf_oneof:"event_type"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1988,6 +2124,24 @@ func (x *StorageEvent) GetSnapshotEvent() *StorageSnapshotPayload {
 	return nil
 }
 
+func (x *StorageEvent) GetDiskEvent() *StorageDiskPayload {
+	if x != nil {
+		if x, ok := x.EventType.(*StorageEvent_DiskEvent); ok {
+			return x.DiskEvent
+		}
+	}
+	return nil
+}
+
+func (x *StorageEvent) GetDiskProbeEvent() *StorageDiskProbePayload {
+	if x != nil {
+		if x, ok := x.EventType.(*StorageEvent_DiskProbeEvent); ok {
+			return x.DiskProbeEvent
+		}
+	}
+	return nil
+}
+
 type isStorageEvent_EventType interface {
 	isStorageEvent_EventType()
 }
@@ -2005,11 +2159,23 @@ type StorageEvent_SnapshotEvent struct {
 	SnapshotEvent *StorageSnapshotPayload `protobuf:"bytes,4,opt,name=snapshot_event,json=snapshotEvent,proto3,oneof"`
 }
 
+type StorageEvent_DiskEvent struct {
+	DiskEvent *StorageDiskPayload `protobuf:"bytes,5,opt,name=disk_event,json=diskEvent,proto3,oneof"`
+}
+
+type StorageEvent_DiskProbeEvent struct {
+	DiskProbeEvent *StorageDiskProbePayload `protobuf:"bytes,6,opt,name=disk_probe_event,json=diskProbeEvent,proto3,oneof"`
+}
+
 func (*StorageEvent_PoolEvent) isStorageEvent_EventType() {}
 
 func (*StorageEvent_DatasetEvent) isStorageEvent_EventType() {}
 
 func (*StorageEvent_SnapshotEvent) isStorageEvent_EventType() {}
+
+func (*StorageEvent_DiskEvent) isStorageEvent_EventType() {}
+
+func (*StorageEvent_DiskProbeEvent) isStorageEvent_EventType() {}
 
 // Network events wrapper
 type NetworkEvent struct {
@@ -4882,6 +5048,312 @@ func (x *DataTransferTransferPayload) GetFromSnapshot() string {
 	return ""
 }
 
+// Disk event payloads - Physical disk management
+type StorageDiskPayload struct {
+	state         protoimpl.MessageState                  `protogen:"open.v1"`
+	DeviceId      string                                  `protobuf:"bytes,1,opt,name=device_id,json=deviceId,proto3" json:"device_id,omitempty"`                                                // Unique device identifier
+	DevicePath    string                                  `protobuf:"bytes,2,opt,name=device_path,json=devicePath,proto3" json:"device_path,omitempty"`                                          // Device path (e.g., /dev/sda)
+	Serial        string                                  `protobuf:"bytes,3,opt,name=serial,proto3" json:"serial,omitempty"`                                                                    // Device serial number
+	Model         string                                  `protobuf:"bytes,4,opt,name=model,proto3" json:"model,omitempty"`                                                                      // Device model
+	Vendor        string                                  `protobuf:"bytes,5,opt,name=vendor,proto3" json:"vendor,omitempty"`                                                                    // Device vendor
+	SizeBytes     int64                                   `protobuf:"varint,6,opt,name=size_bytes,json=sizeBytes,proto3" json:"size_bytes,omitempty"`                                            // Device size in bytes
+	DeviceType    string                                  `protobuf:"bytes,7,opt,name=device_type,json=deviceType,proto3" json:"device_type,omitempty"`                                          // "HDD", "SSD", "NVME"
+	InterfaceType string                                  `protobuf:"bytes,8,opt,name=interface_type,json=interfaceType,proto3" json:"interface_type,omitempty"`                                 // "SATA", "SAS", "NVME"
+	State         string                                  `protobuf:"bytes,9,opt,name=state,proto3" json:"state,omitempty"`                                                                      // Disk state (DISCOVERED, AVAILABLE, IN_USE, etc.)
+	Health        string                                  `protobuf:"bytes,10,opt,name=health,proto3" json:"health,omitempty"`                                                                   // Health status (HEALTHY, WARNING, CRITICAL, FAILED)
+	HealthReason  string                                  `protobuf:"bytes,11,opt,name=health_reason,json=healthReason,proto3" json:"health_reason,omitempty"`                                   // Reason for health status
+	Temperature   int32                                   `protobuf:"varint,12,opt,name=temperature,proto3" json:"temperature,omitempty"`                                                        // Current temperature (Celsius)
+	PowerOnHours  uint64                                  `protobuf:"varint,13,opt,name=power_on_hours,json=powerOnHours,proto3" json:"power_on_hours,omitempty"`                                // Power-on hours
+	PoolName      string                                  `protobuf:"bytes,14,opt,name=pool_name,json=poolName,proto3" json:"pool_name,omitempty"`                                               // Pool name if in use
+	Operation     StorageDiskPayload_StorageDiskOperation `protobuf:"varint,15,opt,name=operation,proto3,enum=rodent.events.StorageDiskPayload_StorageDiskOperation" json:"operation,omitempty"` // Event operation type
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StorageDiskPayload) Reset() {
+	*x = StorageDiskPayload{}
+	mi := &file_proto_events_event_messages_proto_msgTypes[37]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StorageDiskPayload) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StorageDiskPayload) ProtoMessage() {}
+
+func (x *StorageDiskPayload) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_events_event_messages_proto_msgTypes[37]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StorageDiskPayload.ProtoReflect.Descriptor instead.
+func (*StorageDiskPayload) Descriptor() ([]byte, []int) {
+	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{37}
+}
+
+func (x *StorageDiskPayload) GetDeviceId() string {
+	if x != nil {
+		return x.DeviceId
+	}
+	return ""
+}
+
+func (x *StorageDiskPayload) GetDevicePath() string {
+	if x != nil {
+		return x.DevicePath
+	}
+	return ""
+}
+
+func (x *StorageDiskPayload) GetSerial() string {
+	if x != nil {
+		return x.Serial
+	}
+	return ""
+}
+
+func (x *StorageDiskPayload) GetModel() string {
+	if x != nil {
+		return x.Model
+	}
+	return ""
+}
+
+func (x *StorageDiskPayload) GetVendor() string {
+	if x != nil {
+		return x.Vendor
+	}
+	return ""
+}
+
+func (x *StorageDiskPayload) GetSizeBytes() int64 {
+	if x != nil {
+		return x.SizeBytes
+	}
+	return 0
+}
+
+func (x *StorageDiskPayload) GetDeviceType() string {
+	if x != nil {
+		return x.DeviceType
+	}
+	return ""
+}
+
+func (x *StorageDiskPayload) GetInterfaceType() string {
+	if x != nil {
+		return x.InterfaceType
+	}
+	return ""
+}
+
+func (x *StorageDiskPayload) GetState() string {
+	if x != nil {
+		return x.State
+	}
+	return ""
+}
+
+func (x *StorageDiskPayload) GetHealth() string {
+	if x != nil {
+		return x.Health
+	}
+	return ""
+}
+
+func (x *StorageDiskPayload) GetHealthReason() string {
+	if x != nil {
+		return x.HealthReason
+	}
+	return ""
+}
+
+func (x *StorageDiskPayload) GetTemperature() int32 {
+	if x != nil {
+		return x.Temperature
+	}
+	return 0
+}
+
+func (x *StorageDiskPayload) GetPowerOnHours() uint64 {
+	if x != nil {
+		return x.PowerOnHours
+	}
+	return 0
+}
+
+func (x *StorageDiskPayload) GetPoolName() string {
+	if x != nil {
+		return x.PoolName
+	}
+	return ""
+}
+
+func (x *StorageDiskPayload) GetOperation() StorageDiskPayload_StorageDiskOperation {
+	if x != nil {
+		return x.Operation
+	}
+	return StorageDiskPayload_STORAGE_DISK_OPERATION_UNSPECIFIED
+}
+
+// Disk probe (SMART test) event payloads
+type StorageDiskProbePayload struct {
+	state           protoimpl.MessageState                            `protogen:"open.v1"`
+	ProbeId         string                                            `protobuf:"bytes,1,opt,name=probe_id,json=probeId,proto3" json:"probe_id,omitempty"`                                                             // Unique probe execution ID
+	DeviceId        string                                            `protobuf:"bytes,2,opt,name=device_id,json=deviceId,proto3" json:"device_id,omitempty"`                                                          // Target device ID
+	DevicePath      string                                            `protobuf:"bytes,3,opt,name=device_path,json=devicePath,proto3" json:"device_path,omitempty"`                                                    // Device path
+	ProbeType       string                                            `protobuf:"bytes,4,opt,name=probe_type,json=probeType,proto3" json:"probe_type,omitempty"`                                                       // "quick" or "extensive"
+	Status          string                                            `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`                                                                              // Probe status (SCHEDULED, RUNNING, COMPLETED, etc.)
+	Result          string                                            `protobuf:"bytes,6,opt,name=result,proto3" json:"result,omitempty"`                                                                              // Probe result (PASS, FAIL, ABORTED)
+	StartedAt       int64                                             `protobuf:"varint,7,opt,name=started_at,json=startedAt,proto3" json:"started_at,omitempty"`                                                      // Start timestamp (Unix milliseconds)
+	CompletedAt     int64                                             `protobuf:"varint,8,opt,name=completed_at,json=completedAt,proto3" json:"completed_at,omitempty"`                                                // Completion timestamp (Unix milliseconds)
+	DurationSeconds int64                                             `protobuf:"varint,9,opt,name=duration_seconds,json=durationSeconds,proto3" json:"duration_seconds,omitempty"`                                    // Duration in seconds
+	PercentComplete int32                                             `protobuf:"varint,10,opt,name=percent_complete,json=percentComplete,proto3" json:"percent_complete,omitempty"`                                   // Progress percentage
+	ErrorMessage    string                                            `protobuf:"bytes,11,opt,name=error_message,json=errorMessage,proto3" json:"error_message,omitempty"`                                             // Error message if failed
+	ConflictReason  string                                            `protobuf:"bytes,12,opt,name=conflict_reason,json=conflictReason,proto3" json:"conflict_reason,omitempty"`                                       // Conflict reason if conflicted
+	RetryCount      int32                                             `protobuf:"varint,13,opt,name=retry_count,json=retryCount,proto3" json:"retry_count,omitempty"`                                                  // Number of retry attempts
+	Operation       StorageDiskProbePayload_StorageDiskProbeOperation `protobuf:"varint,14,opt,name=operation,proto3,enum=rodent.events.StorageDiskProbePayload_StorageDiskProbeOperation" json:"operation,omitempty"` // Event operation type
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *StorageDiskProbePayload) Reset() {
+	*x = StorageDiskProbePayload{}
+	mi := &file_proto_events_event_messages_proto_msgTypes[38]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StorageDiskProbePayload) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StorageDiskProbePayload) ProtoMessage() {}
+
+func (x *StorageDiskProbePayload) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_events_event_messages_proto_msgTypes[38]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StorageDiskProbePayload.ProtoReflect.Descriptor instead.
+func (*StorageDiskProbePayload) Descriptor() ([]byte, []int) {
+	return file_proto_events_event_messages_proto_rawDescGZIP(), []int{38}
+}
+
+func (x *StorageDiskProbePayload) GetProbeId() string {
+	if x != nil {
+		return x.ProbeId
+	}
+	return ""
+}
+
+func (x *StorageDiskProbePayload) GetDeviceId() string {
+	if x != nil {
+		return x.DeviceId
+	}
+	return ""
+}
+
+func (x *StorageDiskProbePayload) GetDevicePath() string {
+	if x != nil {
+		return x.DevicePath
+	}
+	return ""
+}
+
+func (x *StorageDiskProbePayload) GetProbeType() string {
+	if x != nil {
+		return x.ProbeType
+	}
+	return ""
+}
+
+func (x *StorageDiskProbePayload) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *StorageDiskProbePayload) GetResult() string {
+	if x != nil {
+		return x.Result
+	}
+	return ""
+}
+
+func (x *StorageDiskProbePayload) GetStartedAt() int64 {
+	if x != nil {
+		return x.StartedAt
+	}
+	return 0
+}
+
+func (x *StorageDiskProbePayload) GetCompletedAt() int64 {
+	if x != nil {
+		return x.CompletedAt
+	}
+	return 0
+}
+
+func (x *StorageDiskProbePayload) GetDurationSeconds() int64 {
+	if x != nil {
+		return x.DurationSeconds
+	}
+	return 0
+}
+
+func (x *StorageDiskProbePayload) GetPercentComplete() int32 {
+	if x != nil {
+		return x.PercentComplete
+	}
+	return 0
+}
+
+func (x *StorageDiskProbePayload) GetErrorMessage() string {
+	if x != nil {
+		return x.ErrorMessage
+	}
+	return ""
+}
+
+func (x *StorageDiskProbePayload) GetConflictReason() string {
+	if x != nil {
+		return x.ConflictReason
+	}
+	return ""
+}
+
+func (x *StorageDiskProbePayload) GetRetryCount() int32 {
+	if x != nil {
+		return x.RetryCount
+	}
+	return 0
+}
+
+func (x *StorageDiskProbePayload) GetOperation() StorageDiskProbePayload_StorageDiskProbeOperation {
+	if x != nil {
+		return x.Operation
+	}
+	return StorageDiskProbePayload_STORAGE_DISK_PROBE_OPERATION_UNSPECIFIED
+}
+
 var File_proto_events_event_messages_proto protoreflect.FileDescriptor
 
 const file_proto_events_event_messages_proto_rawDesc = "" +
@@ -4918,12 +5390,15 @@ const file_proto_events_event_messages_proto_rawDesc = "" +
 	"user_event\x18\x04 \x01(\v2 .rodent.events.SystemUserPayloadH\x00R\tuserEvent\x12N\n" +
 	"\fregistration\x18\x05 \x01(\v2(.rodent.events.SystemRegistrationPayloadH\x00R\fregistrationB\f\n" +
 	"\n" +
-	"event_type\"\xfd\x01\n" +
+	"event_type\"\x95\x03\n" +
 	"\fStorageEvent\x12B\n" +
 	"\n" +
 	"pool_event\x18\x01 \x01(\v2!.rodent.events.StoragePoolPayloadH\x00R\tpoolEvent\x12K\n" +
 	"\rdataset_event\x18\x02 \x01(\v2$.rodent.events.StorageDatasetPayloadH\x00R\fdatasetEvent\x12N\n" +
-	"\x0esnapshot_event\x18\x04 \x01(\v2%.rodent.events.StorageSnapshotPayloadH\x00R\rsnapshotEventB\f\n" +
+	"\x0esnapshot_event\x18\x04 \x01(\v2%.rodent.events.StorageSnapshotPayloadH\x00R\rsnapshotEvent\x12B\n" +
+	"\n" +
+	"disk_event\x18\x05 \x01(\v2!.rodent.events.StorageDiskPayloadH\x00R\tdiskEvent\x12R\n" +
+	"\x10disk_probe_event\x18\x06 \x01(\v2&.rodent.events.StorageDiskProbePayloadH\x00R\x0ediskProbeEventB\f\n" +
 	"\n" +
 	"event_type\"\xc5\x01\n" +
 	"\fNetworkEvent\x12Q\n" +
@@ -5340,7 +5815,67 @@ const file_proto_events_event_messages_proto_rawDesc = "" +
 	"\x1eDATA_TRANSFER_OPERATION_FAILED\x10\x04\x12%\n" +
 	"!DATA_TRANSFER_OPERATION_CANCELLED\x10\x05\x12\"\n" +
 	"\x1eDATA_TRANSFER_OPERATION_PAUSED\x10\x06\x12#\n" +
-	"\x1fDATA_TRANSFER_OPERATION_RESUMED\x10\a*\xcf\x01\n" +
+	"\x1fDATA_TRANSFER_OPERATION_RESUMED\x10\a\"\x94\a\n" +
+	"\x12StorageDiskPayload\x12\x1b\n" +
+	"\tdevice_id\x18\x01 \x01(\tR\bdeviceId\x12\x1f\n" +
+	"\vdevice_path\x18\x02 \x01(\tR\n" +
+	"devicePath\x12\x16\n" +
+	"\x06serial\x18\x03 \x01(\tR\x06serial\x12\x14\n" +
+	"\x05model\x18\x04 \x01(\tR\x05model\x12\x16\n" +
+	"\x06vendor\x18\x05 \x01(\tR\x06vendor\x12\x1d\n" +
+	"\n" +
+	"size_bytes\x18\x06 \x01(\x03R\tsizeBytes\x12\x1f\n" +
+	"\vdevice_type\x18\a \x01(\tR\n" +
+	"deviceType\x12%\n" +
+	"\x0einterface_type\x18\b \x01(\tR\rinterfaceType\x12\x14\n" +
+	"\x05state\x18\t \x01(\tR\x05state\x12\x16\n" +
+	"\x06health\x18\n" +
+	" \x01(\tR\x06health\x12#\n" +
+	"\rhealth_reason\x18\v \x01(\tR\fhealthReason\x12 \n" +
+	"\vtemperature\x18\f \x01(\x05R\vtemperature\x12$\n" +
+	"\x0epower_on_hours\x18\r \x01(\x04R\fpowerOnHours\x12\x1b\n" +
+	"\tpool_name\x18\x0e \x01(\tR\bpoolName\x12T\n" +
+	"\toperation\x18\x0f \x01(\x0e26.rodent.events.StorageDiskPayload.StorageDiskOperationR\toperation\"\x84\x03\n" +
+	"\x14StorageDiskOperation\x12&\n" +
+	"\"STORAGE_DISK_OPERATION_UNSPECIFIED\x10\x00\x12%\n" +
+	"!STORAGE_DISK_OPERATION_DISCOVERED\x10\x01\x12\"\n" +
+	"\x1eSTORAGE_DISK_OPERATION_REMOVED\x10\x02\x12(\n" +
+	"$STORAGE_DISK_OPERATION_STATE_CHANGED\x10\x03\x12)\n" +
+	"%STORAGE_DISK_OPERATION_HEALTH_CHANGED\x10\x04\x12(\n" +
+	"$STORAGE_DISK_OPERATION_ADDED_TO_POOL\x10\x05\x12,\n" +
+	"(STORAGE_DISK_OPERATION_REMOVED_FROM_POOL\x10\x06\x12$\n" +
+	" STORAGE_DISK_OPERATION_VALIDATED\x10\a\x12&\n" +
+	"\"STORAGE_DISK_OPERATION_QUARANTINED\x10\b\"\xcd\a\n" +
+	"\x17StorageDiskProbePayload\x12\x19\n" +
+	"\bprobe_id\x18\x01 \x01(\tR\aprobeId\x12\x1b\n" +
+	"\tdevice_id\x18\x02 \x01(\tR\bdeviceId\x12\x1f\n" +
+	"\vdevice_path\x18\x03 \x01(\tR\n" +
+	"devicePath\x12\x1d\n" +
+	"\n" +
+	"probe_type\x18\x04 \x01(\tR\tprobeType\x12\x16\n" +
+	"\x06status\x18\x05 \x01(\tR\x06status\x12\x16\n" +
+	"\x06result\x18\x06 \x01(\tR\x06result\x12\x1d\n" +
+	"\n" +
+	"started_at\x18\a \x01(\x03R\tstartedAt\x12!\n" +
+	"\fcompleted_at\x18\b \x01(\x03R\vcompletedAt\x12)\n" +
+	"\x10duration_seconds\x18\t \x01(\x03R\x0fdurationSeconds\x12)\n" +
+	"\x10percent_complete\x18\n" +
+	" \x01(\x05R\x0fpercentComplete\x12#\n" +
+	"\rerror_message\x18\v \x01(\tR\ferrorMessage\x12'\n" +
+	"\x0fconflict_reason\x18\f \x01(\tR\x0econflictReason\x12\x1f\n" +
+	"\vretry_count\x18\r \x01(\x05R\n" +
+	"retryCount\x12^\n" +
+	"\toperation\x18\x0e \x01(\x0e2@.rodent.events.StorageDiskProbePayload.StorageDiskProbeOperationR\toperation\"\xa2\x03\n" +
+	"\x19StorageDiskProbeOperation\x12,\n" +
+	"(STORAGE_DISK_PROBE_OPERATION_UNSPECIFIED\x10\x00\x12*\n" +
+	"&STORAGE_DISK_PROBE_OPERATION_SCHEDULED\x10\x01\x12(\n" +
+	"$STORAGE_DISK_PROBE_OPERATION_STARTED\x10\x02\x12)\n" +
+	"%STORAGE_DISK_PROBE_OPERATION_PROGRESS\x10\x03\x12*\n" +
+	"&STORAGE_DISK_PROBE_OPERATION_COMPLETED\x10\x04\x12'\n" +
+	"#STORAGE_DISK_PROBE_OPERATION_FAILED\x10\x05\x12*\n" +
+	"&STORAGE_DISK_PROBE_OPERATION_CANCELLED\x10\x06\x12+\n" +
+	"'STORAGE_DISK_PROBE_OPERATION_CONFLICTED\x10\a\x12(\n" +
+	"$STORAGE_DISK_PROBE_OPERATION_TIMEOUT\x10\b*\xcf\x01\n" +
 	"\n" +
 	"EventLevel\x12\x1b\n" +
 	"\x17EVENT_LEVEL_UNSPECIFIED\x10\x00\x12\x14\n" +
@@ -5377,8 +5912,8 @@ func file_proto_events_event_messages_proto_rawDescGZIP() []byte {
 	return file_proto_events_event_messages_proto_rawDescData
 }
 
-var file_proto_events_event_messages_proto_enumTypes = make([]protoimpl.EnumInfo, 26)
-var file_proto_events_event_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 39)
+var file_proto_events_event_messages_proto_enumTypes = make([]protoimpl.EnumInfo, 28)
+var file_proto_events_event_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 41)
 var file_proto_events_event_messages_proto_goTypes = []any{
 	(EventLevel)(0),    // 0: rodent.events.EventLevel
 	(EventCategory)(0), // 1: rodent.events.EventCategory
@@ -5406,116 +5941,124 @@ var file_proto_events_event_messages_proto_goTypes = []any{
 	(UsageResourcePayload_UsageResourceOperation)(0),             // 23: rodent.events.UsageResourcePayload.UsageResourceOperation
 	(UsageThresholdPayload_UsageThresholdOperation)(0),           // 24: rodent.events.UsageThresholdPayload.UsageThresholdOperation
 	(DataTransferTransferPayload_DataTransferOperation)(0),       // 25: rodent.events.DataTransferTransferPayload.DataTransferOperation
-	(*Event)(nil),                       // 26: rodent.events.Event
-	(*SystemEvent)(nil),                 // 27: rodent.events.SystemEvent
-	(*StorageEvent)(nil),                // 28: rodent.events.StorageEvent
-	(*NetworkEvent)(nil),                // 29: rodent.events.NetworkEvent
-	(*SecurityEvent)(nil),               // 30: rodent.events.SecurityEvent
-	(*ServiceEvent)(nil),                // 31: rodent.events.ServiceEvent
-	(*IdentityEvent)(nil),               // 32: rodent.events.IdentityEvent
-	(*AccessEvent)(nil),                 // 33: rodent.events.AccessEvent
-	(*SharingEvent)(nil),                // 34: rodent.events.SharingEvent
-	(*UsageEvent)(nil),                  // 35: rodent.events.UsageEvent
-	(*DataTransferEvent)(nil),           // 36: rodent.events.DataTransferEvent
-	(*SystemStartupPayload)(nil),        // 37: rodent.events.SystemStartupPayload
-	(*SystemRegistrationPayload)(nil),   // 38: rodent.events.SystemRegistrationPayload
-	(*SystemShutdownPayload)(nil),       // 39: rodent.events.SystemShutdownPayload
-	(*SystemConfigChangePayload)(nil),   // 40: rodent.events.SystemConfigChangePayload
-	(*SystemUserPayload)(nil),           // 41: rodent.events.SystemUserPayload
-	(*StoragePoolPayload)(nil),          // 42: rodent.events.StoragePoolPayload
-	(*StorageDatasetPayload)(nil),       // 43: rodent.events.StorageDatasetPayload
-	(*StorageSnapshotPayload)(nil),      // 44: rodent.events.StorageSnapshotPayload
-	(*ServiceStatusPayload)(nil),        // 45: rodent.events.ServiceStatusPayload
-	(*NetworkInterfacePayload)(nil),     // 46: rodent.events.NetworkInterfacePayload
-	(*NetworkConnectionPayload)(nil),    // 47: rodent.events.NetworkConnectionPayload
-	(*SecurityAuthPayload)(nil),         // 48: rodent.events.SecurityAuthPayload
-	(*SecurityKeyPayload)(nil),          // 49: rodent.events.SecurityKeyPayload
-	(*SecurityCertificatePayload)(nil),  // 50: rodent.events.SecurityCertificatePayload
-	(*IdentityUserPayload)(nil),         // 51: rodent.events.IdentityUserPayload
-	(*IdentityGroupPayload)(nil),        // 52: rodent.events.IdentityGroupPayload
-	(*IdentityComputerPayload)(nil),     // 53: rodent.events.IdentityComputerPayload
-	(*AccessACLPayload)(nil),            // 54: rodent.events.AccessACLPayload
-	(*AccessPermissionPayload)(nil),     // 55: rodent.events.AccessPermissionPayload
-	(*SharingSharePayload)(nil),         // 56: rodent.events.SharingSharePayload
-	(*SharingConnectionPayload)(nil),    // 57: rodent.events.SharingConnectionPayload
-	(*SharingFileAccessPayload)(nil),    // 58: rodent.events.SharingFileAccessPayload
-	(*UsageQuotaPayload)(nil),           // 59: rodent.events.UsageQuotaPayload
-	(*UsageResourcePayload)(nil),        // 60: rodent.events.UsageResourcePayload
-	(*UsageThresholdPayload)(nil),       // 61: rodent.events.UsageThresholdPayload
-	(*DataTransferTransferPayload)(nil), // 62: rodent.events.DataTransferTransferPayload
-	nil,                                 // 63: rodent.events.Event.MetadataEntry
-	nil,                                 // 64: rodent.events.SystemStartupPayload.SystemInfoEntry
+	(StorageDiskPayload_StorageDiskOperation)(0),                 // 26: rodent.events.StorageDiskPayload.StorageDiskOperation
+	(StorageDiskProbePayload_StorageDiskProbeOperation)(0),       // 27: rodent.events.StorageDiskProbePayload.StorageDiskProbeOperation
+	(*Event)(nil),                       // 28: rodent.events.Event
+	(*SystemEvent)(nil),                 // 29: rodent.events.SystemEvent
+	(*StorageEvent)(nil),                // 30: rodent.events.StorageEvent
+	(*NetworkEvent)(nil),                // 31: rodent.events.NetworkEvent
+	(*SecurityEvent)(nil),               // 32: rodent.events.SecurityEvent
+	(*ServiceEvent)(nil),                // 33: rodent.events.ServiceEvent
+	(*IdentityEvent)(nil),               // 34: rodent.events.IdentityEvent
+	(*AccessEvent)(nil),                 // 35: rodent.events.AccessEvent
+	(*SharingEvent)(nil),                // 36: rodent.events.SharingEvent
+	(*UsageEvent)(nil),                  // 37: rodent.events.UsageEvent
+	(*DataTransferEvent)(nil),           // 38: rodent.events.DataTransferEvent
+	(*SystemStartupPayload)(nil),        // 39: rodent.events.SystemStartupPayload
+	(*SystemRegistrationPayload)(nil),   // 40: rodent.events.SystemRegistrationPayload
+	(*SystemShutdownPayload)(nil),       // 41: rodent.events.SystemShutdownPayload
+	(*SystemConfigChangePayload)(nil),   // 42: rodent.events.SystemConfigChangePayload
+	(*SystemUserPayload)(nil),           // 43: rodent.events.SystemUserPayload
+	(*StoragePoolPayload)(nil),          // 44: rodent.events.StoragePoolPayload
+	(*StorageDatasetPayload)(nil),       // 45: rodent.events.StorageDatasetPayload
+	(*StorageSnapshotPayload)(nil),      // 46: rodent.events.StorageSnapshotPayload
+	(*ServiceStatusPayload)(nil),        // 47: rodent.events.ServiceStatusPayload
+	(*NetworkInterfacePayload)(nil),     // 48: rodent.events.NetworkInterfacePayload
+	(*NetworkConnectionPayload)(nil),    // 49: rodent.events.NetworkConnectionPayload
+	(*SecurityAuthPayload)(nil),         // 50: rodent.events.SecurityAuthPayload
+	(*SecurityKeyPayload)(nil),          // 51: rodent.events.SecurityKeyPayload
+	(*SecurityCertificatePayload)(nil),  // 52: rodent.events.SecurityCertificatePayload
+	(*IdentityUserPayload)(nil),         // 53: rodent.events.IdentityUserPayload
+	(*IdentityGroupPayload)(nil),        // 54: rodent.events.IdentityGroupPayload
+	(*IdentityComputerPayload)(nil),     // 55: rodent.events.IdentityComputerPayload
+	(*AccessACLPayload)(nil),            // 56: rodent.events.AccessACLPayload
+	(*AccessPermissionPayload)(nil),     // 57: rodent.events.AccessPermissionPayload
+	(*SharingSharePayload)(nil),         // 58: rodent.events.SharingSharePayload
+	(*SharingConnectionPayload)(nil),    // 59: rodent.events.SharingConnectionPayload
+	(*SharingFileAccessPayload)(nil),    // 60: rodent.events.SharingFileAccessPayload
+	(*UsageQuotaPayload)(nil),           // 61: rodent.events.UsageQuotaPayload
+	(*UsageResourcePayload)(nil),        // 62: rodent.events.UsageResourcePayload
+	(*UsageThresholdPayload)(nil),       // 63: rodent.events.UsageThresholdPayload
+	(*DataTransferTransferPayload)(nil), // 64: rodent.events.DataTransferTransferPayload
+	(*StorageDiskPayload)(nil),          // 65: rodent.events.StorageDiskPayload
+	(*StorageDiskProbePayload)(nil),     // 66: rodent.events.StorageDiskProbePayload
+	nil,                                 // 67: rodent.events.Event.MetadataEntry
+	nil,                                 // 68: rodent.events.SystemStartupPayload.SystemInfoEntry
 }
 var file_proto_events_event_messages_proto_depIdxs = []int32{
 	0,  // 0: rodent.events.Event.level:type_name -> rodent.events.EventLevel
 	1,  // 1: rodent.events.Event.category:type_name -> rodent.events.EventCategory
-	63, // 2: rodent.events.Event.metadata:type_name -> rodent.events.Event.MetadataEntry
-	27, // 3: rodent.events.Event.system_event:type_name -> rodent.events.SystemEvent
-	28, // 4: rodent.events.Event.storage_event:type_name -> rodent.events.StorageEvent
-	29, // 5: rodent.events.Event.network_event:type_name -> rodent.events.NetworkEvent
-	30, // 6: rodent.events.Event.security_event:type_name -> rodent.events.SecurityEvent
-	31, // 7: rodent.events.Event.service_event:type_name -> rodent.events.ServiceEvent
-	32, // 8: rodent.events.Event.identity_event:type_name -> rodent.events.IdentityEvent
-	33, // 9: rodent.events.Event.access_event:type_name -> rodent.events.AccessEvent
-	34, // 10: rodent.events.Event.sharing_event:type_name -> rodent.events.SharingEvent
-	35, // 11: rodent.events.Event.usage_event:type_name -> rodent.events.UsageEvent
-	36, // 12: rodent.events.Event.data_transfer_event:type_name -> rodent.events.DataTransferEvent
-	37, // 13: rodent.events.SystemEvent.startup:type_name -> rodent.events.SystemStartupPayload
-	39, // 14: rodent.events.SystemEvent.shutdown:type_name -> rodent.events.SystemShutdownPayload
-	40, // 15: rodent.events.SystemEvent.config_changed:type_name -> rodent.events.SystemConfigChangePayload
-	41, // 16: rodent.events.SystemEvent.user_event:type_name -> rodent.events.SystemUserPayload
-	38, // 17: rodent.events.SystemEvent.registration:type_name -> rodent.events.SystemRegistrationPayload
-	42, // 18: rodent.events.StorageEvent.pool_event:type_name -> rodent.events.StoragePoolPayload
-	43, // 19: rodent.events.StorageEvent.dataset_event:type_name -> rodent.events.StorageDatasetPayload
-	44, // 20: rodent.events.StorageEvent.snapshot_event:type_name -> rodent.events.StorageSnapshotPayload
-	46, // 21: rodent.events.NetworkEvent.interface_event:type_name -> rodent.events.NetworkInterfacePayload
-	47, // 22: rodent.events.NetworkEvent.connection_event:type_name -> rodent.events.NetworkConnectionPayload
-	48, // 23: rodent.events.SecurityEvent.auth_event:type_name -> rodent.events.SecurityAuthPayload
-	49, // 24: rodent.events.SecurityEvent.key_event:type_name -> rodent.events.SecurityKeyPayload
-	50, // 25: rodent.events.SecurityEvent.certificate_event:type_name -> rodent.events.SecurityCertificatePayload
-	45, // 26: rodent.events.ServiceEvent.status_event:type_name -> rodent.events.ServiceStatusPayload
-	51, // 27: rodent.events.IdentityEvent.user_event:type_name -> rodent.events.IdentityUserPayload
-	52, // 28: rodent.events.IdentityEvent.group_event:type_name -> rodent.events.IdentityGroupPayload
-	53, // 29: rodent.events.IdentityEvent.computer_event:type_name -> rodent.events.IdentityComputerPayload
-	54, // 30: rodent.events.AccessEvent.acl_event:type_name -> rodent.events.AccessACLPayload
-	55, // 31: rodent.events.AccessEvent.permission_event:type_name -> rodent.events.AccessPermissionPayload
-	56, // 32: rodent.events.SharingEvent.share_event:type_name -> rodent.events.SharingSharePayload
-	57, // 33: rodent.events.SharingEvent.connection_event:type_name -> rodent.events.SharingConnectionPayload
-	58, // 34: rodent.events.SharingEvent.file_access_event:type_name -> rodent.events.SharingFileAccessPayload
-	59, // 35: rodent.events.UsageEvent.quota_event:type_name -> rodent.events.UsageQuotaPayload
-	60, // 36: rodent.events.UsageEvent.resource_event:type_name -> rodent.events.UsageResourcePayload
-	61, // 37: rodent.events.UsageEvent.threshold_event:type_name -> rodent.events.UsageThresholdPayload
-	62, // 38: rodent.events.DataTransferEvent.transfer_event:type_name -> rodent.events.DataTransferTransferPayload
-	64, // 39: rodent.events.SystemStartupPayload.system_info:type_name -> rodent.events.SystemStartupPayload.SystemInfoEntry
-	2,  // 40: rodent.events.SystemShutdownPayload.operation:type_name -> rodent.events.SystemShutdownPayload.SystemShutdownOperation
-	3,  // 41: rodent.events.SystemConfigChangePayload.operation:type_name -> rodent.events.SystemConfigChangePayload.SystemConfigOperation
-	4,  // 42: rodent.events.SystemUserPayload.operation:type_name -> rodent.events.SystemUserPayload.SystemUserOperation
-	5,  // 43: rodent.events.StoragePoolPayload.operation:type_name -> rodent.events.StoragePoolPayload.StoragePoolOperation
-	6,  // 44: rodent.events.StorageDatasetPayload.operation:type_name -> rodent.events.StorageDatasetPayload.StorageDatasetOperation
-	7,  // 45: rodent.events.StorageSnapshotPayload.operation:type_name -> rodent.events.StorageSnapshotPayload.StorageSnapshotOperation
-	8,  // 46: rodent.events.ServiceStatusPayload.operation:type_name -> rodent.events.ServiceStatusPayload.ServiceStatusOperation
-	9,  // 47: rodent.events.NetworkInterfacePayload.operation:type_name -> rodent.events.NetworkInterfacePayload.NetworkInterfaceOperation
-	10, // 48: rodent.events.NetworkConnectionPayload.operation:type_name -> rodent.events.NetworkConnectionPayload.NetworkConnectionOperation
-	11, // 49: rodent.events.SecurityAuthPayload.operation:type_name -> rodent.events.SecurityAuthPayload.SecurityAuthOperation
-	12, // 50: rodent.events.SecurityKeyPayload.operation:type_name -> rodent.events.SecurityKeyPayload.SecurityKeyOperation
-	13, // 51: rodent.events.SecurityCertificatePayload.operation:type_name -> rodent.events.SecurityCertificatePayload.SecurityCertificateOperation
-	14, // 52: rodent.events.IdentityUserPayload.operation:type_name -> rodent.events.IdentityUserPayload.IdentityUserOperation
-	15, // 53: rodent.events.IdentityGroupPayload.operation:type_name -> rodent.events.IdentityGroupPayload.IdentityGroupOperation
-	16, // 54: rodent.events.IdentityComputerPayload.operation:type_name -> rodent.events.IdentityComputerPayload.IdentityComputerOperation
-	17, // 55: rodent.events.AccessACLPayload.operation:type_name -> rodent.events.AccessACLPayload.AccessACLOperation
-	18, // 56: rodent.events.AccessPermissionPayload.operation:type_name -> rodent.events.AccessPermissionPayload.AccessPermissionOperation
-	19, // 57: rodent.events.SharingSharePayload.operation:type_name -> rodent.events.SharingSharePayload.SharingShareOperation
-	20, // 58: rodent.events.SharingConnectionPayload.operation:type_name -> rodent.events.SharingConnectionPayload.SharingConnectionOperation
-	21, // 59: rodent.events.SharingFileAccessPayload.operation:type_name -> rodent.events.SharingFileAccessPayload.SharingFileAccessOperation
-	22, // 60: rodent.events.UsageQuotaPayload.operation:type_name -> rodent.events.UsageQuotaPayload.UsageQuotaOperation
-	23, // 61: rodent.events.UsageResourcePayload.operation:type_name -> rodent.events.UsageResourcePayload.UsageResourceOperation
-	24, // 62: rodent.events.UsageThresholdPayload.operation:type_name -> rodent.events.UsageThresholdPayload.UsageThresholdOperation
-	25, // 63: rodent.events.DataTransferTransferPayload.operation:type_name -> rodent.events.DataTransferTransferPayload.DataTransferOperation
-	64, // [64:64] is the sub-list for method output_type
-	64, // [64:64] is the sub-list for method input_type
-	64, // [64:64] is the sub-list for extension type_name
-	64, // [64:64] is the sub-list for extension extendee
-	0,  // [0:64] is the sub-list for field type_name
+	67, // 2: rodent.events.Event.metadata:type_name -> rodent.events.Event.MetadataEntry
+	29, // 3: rodent.events.Event.system_event:type_name -> rodent.events.SystemEvent
+	30, // 4: rodent.events.Event.storage_event:type_name -> rodent.events.StorageEvent
+	31, // 5: rodent.events.Event.network_event:type_name -> rodent.events.NetworkEvent
+	32, // 6: rodent.events.Event.security_event:type_name -> rodent.events.SecurityEvent
+	33, // 7: rodent.events.Event.service_event:type_name -> rodent.events.ServiceEvent
+	34, // 8: rodent.events.Event.identity_event:type_name -> rodent.events.IdentityEvent
+	35, // 9: rodent.events.Event.access_event:type_name -> rodent.events.AccessEvent
+	36, // 10: rodent.events.Event.sharing_event:type_name -> rodent.events.SharingEvent
+	37, // 11: rodent.events.Event.usage_event:type_name -> rodent.events.UsageEvent
+	38, // 12: rodent.events.Event.data_transfer_event:type_name -> rodent.events.DataTransferEvent
+	39, // 13: rodent.events.SystemEvent.startup:type_name -> rodent.events.SystemStartupPayload
+	41, // 14: rodent.events.SystemEvent.shutdown:type_name -> rodent.events.SystemShutdownPayload
+	42, // 15: rodent.events.SystemEvent.config_changed:type_name -> rodent.events.SystemConfigChangePayload
+	43, // 16: rodent.events.SystemEvent.user_event:type_name -> rodent.events.SystemUserPayload
+	40, // 17: rodent.events.SystemEvent.registration:type_name -> rodent.events.SystemRegistrationPayload
+	44, // 18: rodent.events.StorageEvent.pool_event:type_name -> rodent.events.StoragePoolPayload
+	45, // 19: rodent.events.StorageEvent.dataset_event:type_name -> rodent.events.StorageDatasetPayload
+	46, // 20: rodent.events.StorageEvent.snapshot_event:type_name -> rodent.events.StorageSnapshotPayload
+	65, // 21: rodent.events.StorageEvent.disk_event:type_name -> rodent.events.StorageDiskPayload
+	66, // 22: rodent.events.StorageEvent.disk_probe_event:type_name -> rodent.events.StorageDiskProbePayload
+	48, // 23: rodent.events.NetworkEvent.interface_event:type_name -> rodent.events.NetworkInterfacePayload
+	49, // 24: rodent.events.NetworkEvent.connection_event:type_name -> rodent.events.NetworkConnectionPayload
+	50, // 25: rodent.events.SecurityEvent.auth_event:type_name -> rodent.events.SecurityAuthPayload
+	51, // 26: rodent.events.SecurityEvent.key_event:type_name -> rodent.events.SecurityKeyPayload
+	52, // 27: rodent.events.SecurityEvent.certificate_event:type_name -> rodent.events.SecurityCertificatePayload
+	47, // 28: rodent.events.ServiceEvent.status_event:type_name -> rodent.events.ServiceStatusPayload
+	53, // 29: rodent.events.IdentityEvent.user_event:type_name -> rodent.events.IdentityUserPayload
+	54, // 30: rodent.events.IdentityEvent.group_event:type_name -> rodent.events.IdentityGroupPayload
+	55, // 31: rodent.events.IdentityEvent.computer_event:type_name -> rodent.events.IdentityComputerPayload
+	56, // 32: rodent.events.AccessEvent.acl_event:type_name -> rodent.events.AccessACLPayload
+	57, // 33: rodent.events.AccessEvent.permission_event:type_name -> rodent.events.AccessPermissionPayload
+	58, // 34: rodent.events.SharingEvent.share_event:type_name -> rodent.events.SharingSharePayload
+	59, // 35: rodent.events.SharingEvent.connection_event:type_name -> rodent.events.SharingConnectionPayload
+	60, // 36: rodent.events.SharingEvent.file_access_event:type_name -> rodent.events.SharingFileAccessPayload
+	61, // 37: rodent.events.UsageEvent.quota_event:type_name -> rodent.events.UsageQuotaPayload
+	62, // 38: rodent.events.UsageEvent.resource_event:type_name -> rodent.events.UsageResourcePayload
+	63, // 39: rodent.events.UsageEvent.threshold_event:type_name -> rodent.events.UsageThresholdPayload
+	64, // 40: rodent.events.DataTransferEvent.transfer_event:type_name -> rodent.events.DataTransferTransferPayload
+	68, // 41: rodent.events.SystemStartupPayload.system_info:type_name -> rodent.events.SystemStartupPayload.SystemInfoEntry
+	2,  // 42: rodent.events.SystemShutdownPayload.operation:type_name -> rodent.events.SystemShutdownPayload.SystemShutdownOperation
+	3,  // 43: rodent.events.SystemConfigChangePayload.operation:type_name -> rodent.events.SystemConfigChangePayload.SystemConfigOperation
+	4,  // 44: rodent.events.SystemUserPayload.operation:type_name -> rodent.events.SystemUserPayload.SystemUserOperation
+	5,  // 45: rodent.events.StoragePoolPayload.operation:type_name -> rodent.events.StoragePoolPayload.StoragePoolOperation
+	6,  // 46: rodent.events.StorageDatasetPayload.operation:type_name -> rodent.events.StorageDatasetPayload.StorageDatasetOperation
+	7,  // 47: rodent.events.StorageSnapshotPayload.operation:type_name -> rodent.events.StorageSnapshotPayload.StorageSnapshotOperation
+	8,  // 48: rodent.events.ServiceStatusPayload.operation:type_name -> rodent.events.ServiceStatusPayload.ServiceStatusOperation
+	9,  // 49: rodent.events.NetworkInterfacePayload.operation:type_name -> rodent.events.NetworkInterfacePayload.NetworkInterfaceOperation
+	10, // 50: rodent.events.NetworkConnectionPayload.operation:type_name -> rodent.events.NetworkConnectionPayload.NetworkConnectionOperation
+	11, // 51: rodent.events.SecurityAuthPayload.operation:type_name -> rodent.events.SecurityAuthPayload.SecurityAuthOperation
+	12, // 52: rodent.events.SecurityKeyPayload.operation:type_name -> rodent.events.SecurityKeyPayload.SecurityKeyOperation
+	13, // 53: rodent.events.SecurityCertificatePayload.operation:type_name -> rodent.events.SecurityCertificatePayload.SecurityCertificateOperation
+	14, // 54: rodent.events.IdentityUserPayload.operation:type_name -> rodent.events.IdentityUserPayload.IdentityUserOperation
+	15, // 55: rodent.events.IdentityGroupPayload.operation:type_name -> rodent.events.IdentityGroupPayload.IdentityGroupOperation
+	16, // 56: rodent.events.IdentityComputerPayload.operation:type_name -> rodent.events.IdentityComputerPayload.IdentityComputerOperation
+	17, // 57: rodent.events.AccessACLPayload.operation:type_name -> rodent.events.AccessACLPayload.AccessACLOperation
+	18, // 58: rodent.events.AccessPermissionPayload.operation:type_name -> rodent.events.AccessPermissionPayload.AccessPermissionOperation
+	19, // 59: rodent.events.SharingSharePayload.operation:type_name -> rodent.events.SharingSharePayload.SharingShareOperation
+	20, // 60: rodent.events.SharingConnectionPayload.operation:type_name -> rodent.events.SharingConnectionPayload.SharingConnectionOperation
+	21, // 61: rodent.events.SharingFileAccessPayload.operation:type_name -> rodent.events.SharingFileAccessPayload.SharingFileAccessOperation
+	22, // 62: rodent.events.UsageQuotaPayload.operation:type_name -> rodent.events.UsageQuotaPayload.UsageQuotaOperation
+	23, // 63: rodent.events.UsageResourcePayload.operation:type_name -> rodent.events.UsageResourcePayload.UsageResourceOperation
+	24, // 64: rodent.events.UsageThresholdPayload.operation:type_name -> rodent.events.UsageThresholdPayload.UsageThresholdOperation
+	25, // 65: rodent.events.DataTransferTransferPayload.operation:type_name -> rodent.events.DataTransferTransferPayload.DataTransferOperation
+	26, // 66: rodent.events.StorageDiskPayload.operation:type_name -> rodent.events.StorageDiskPayload.StorageDiskOperation
+	27, // 67: rodent.events.StorageDiskProbePayload.operation:type_name -> rodent.events.StorageDiskProbePayload.StorageDiskProbeOperation
+	68, // [68:68] is the sub-list for method output_type
+	68, // [68:68] is the sub-list for method input_type
+	68, // [68:68] is the sub-list for extension type_name
+	68, // [68:68] is the sub-list for extension extendee
+	0,  // [0:68] is the sub-list for field type_name
 }
 
 func init() { file_proto_events_event_messages_proto_init() }
@@ -5546,6 +6089,8 @@ func file_proto_events_event_messages_proto_init() {
 		(*StorageEvent_PoolEvent)(nil),
 		(*StorageEvent_DatasetEvent)(nil),
 		(*StorageEvent_SnapshotEvent)(nil),
+		(*StorageEvent_DiskEvent)(nil),
+		(*StorageEvent_DiskProbeEvent)(nil),
 	}
 	file_proto_events_event_messages_proto_msgTypes[3].OneofWrappers = []any{
 		(*NetworkEvent_InterfaceEvent)(nil),
@@ -5586,8 +6131,8 @@ func file_proto_events_event_messages_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_events_event_messages_proto_rawDesc), len(file_proto_events_event_messages_proto_rawDesc)),
-			NumEnums:      26,
-			NumMessages:   39,
+			NumEnums:      28,
+			NumMessages:   41,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

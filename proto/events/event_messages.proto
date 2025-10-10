@@ -86,6 +86,8 @@ message StorageEvent {
     StorageDatasetPayload dataset_event = 2;
     // transfer_event (field 3) deprecated - use DataTransferEvent instead
     StorageSnapshotPayload snapshot_event = 4;
+    StorageDiskPayload disk_event = 5;
+    StorageDiskProbePayload disk_probe_event = 6;
   }
 }
 
@@ -618,5 +620,66 @@ message DataTransferTransferPayload {
     DATA_TRANSFER_OPERATION_CANCELLED = 5;
     DATA_TRANSFER_OPERATION_PAUSED = 6;         // Transfer paused
     DATA_TRANSFER_OPERATION_RESUMED = 7;        // Transfer resumed
+  }
+}
+
+// Disk event payloads - Physical disk management
+message StorageDiskPayload {
+  string device_id = 1;                        // Unique device identifier
+  string device_path = 2;                      // Device path (e.g., /dev/sda)
+  string serial = 3;                           // Device serial number
+  string model = 4;                            // Device model
+  string vendor = 5;                           // Device vendor
+  int64 size_bytes = 6;                        // Device size in bytes
+  string device_type = 7;                      // "HDD", "SSD", "NVME"
+  string interface_type = 8;                   // "SATA", "SAS", "NVME"
+  string state = 9;                            // Disk state (DISCOVERED, AVAILABLE, IN_USE, etc.)
+  string health = 10;                          // Health status (HEALTHY, WARNING, CRITICAL, FAILED)
+  string health_reason = 11;                   // Reason for health status
+  int32 temperature = 12;                      // Current temperature (Celsius)
+  uint64 power_on_hours = 13;                  // Power-on hours
+  string pool_name = 14;                       // Pool name if in use
+  StorageDiskOperation operation = 15;         // Event operation type
+
+  enum StorageDiskOperation {
+    STORAGE_DISK_OPERATION_UNSPECIFIED = 0;
+    STORAGE_DISK_OPERATION_DISCOVERED = 1;     // Disk discovered
+    STORAGE_DISK_OPERATION_REMOVED = 2;        // Disk removed/offline
+    STORAGE_DISK_OPERATION_STATE_CHANGED = 3;  // State changed
+    STORAGE_DISK_OPERATION_HEALTH_CHANGED = 4; // Health status changed
+    STORAGE_DISK_OPERATION_ADDED_TO_POOL = 5;  // Added to ZFS pool
+    STORAGE_DISK_OPERATION_REMOVED_FROM_POOL = 6; // Removed from ZFS pool
+    STORAGE_DISK_OPERATION_VALIDATED = 7;      // Disk validated
+    STORAGE_DISK_OPERATION_QUARANTINED = 8;    // Disk quarantined
+  }
+}
+
+// Disk probe (SMART test) event payloads
+message StorageDiskProbePayload {
+  string probe_id = 1;                         // Unique probe execution ID
+  string device_id = 2;                        // Target device ID
+  string device_path = 3;                      // Device path
+  string probe_type = 4;                       // "quick" or "extensive"
+  string status = 5;                           // Probe status (SCHEDULED, RUNNING, COMPLETED, etc.)
+  string result = 6;                           // Probe result (PASS, FAIL, ABORTED)
+  int64 started_at = 7;                        // Start timestamp (Unix milliseconds)
+  int64 completed_at = 8;                      // Completion timestamp (Unix milliseconds)
+  int64 duration_seconds = 9;                  // Duration in seconds
+  int32 percent_complete = 10;                 // Progress percentage
+  string error_message = 11;                   // Error message if failed
+  string conflict_reason = 12;                 // Conflict reason if conflicted
+  int32 retry_count = 13;                      // Number of retry attempts
+  StorageDiskProbeOperation operation = 14;    // Event operation type
+
+  enum StorageDiskProbeOperation {
+    STORAGE_DISK_PROBE_OPERATION_UNSPECIFIED = 0;
+    STORAGE_DISK_PROBE_OPERATION_SCHEDULED = 1;  // Probe scheduled
+    STORAGE_DISK_PROBE_OPERATION_STARTED = 2;    // Probe started
+    STORAGE_DISK_PROBE_OPERATION_PROGRESS = 3;   // Probe progress update
+    STORAGE_DISK_PROBE_OPERATION_COMPLETED = 4;  // Probe completed successfully
+    STORAGE_DISK_PROBE_OPERATION_FAILED = 5;     // Probe failed
+    STORAGE_DISK_PROBE_OPERATION_CANCELLED = 6;  // Probe cancelled
+    STORAGE_DISK_PROBE_OPERATION_CONFLICTED = 7; // Probe conflicted (e.g., ZFS scrub running)
+    STORAGE_DISK_PROBE_OPERATION_TIMEOUT = 8;    // Probe timed out
   }
 }
