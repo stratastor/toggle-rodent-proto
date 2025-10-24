@@ -10,9 +10,9 @@ const (
 	CmdDiskList          = "disk.list"           // List all disks
 	CmdDiskGet           = "disk.get"            // Get disk details
 	CmdDiskDiscover      = "disk.discover"       // Trigger disk discovery
-	CmdDiskRefresh       = "disk.refresh"        // Refresh disk information
 
 	// Disk health and SMART commands
+	CmdDiskHealthCheck   = "disk.health.check"   // Trigger health check for all disks
 	CmdDiskHealthGet     = "disk.health.get"     // Get disk health status
 	CmdDiskSMARTGet      = "disk.smart.get"      // Get SMART data
 	CmdDiskSMARTRefresh  = "disk.smart.refresh"  // Refresh SMART data
