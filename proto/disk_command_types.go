@@ -8,6 +8,7 @@ package proto
 const (
 	// Disk inventory and discovery commands
 	CmdDiskList          = "disk.list"           // List all disks
+	CmdDiskListAvailable = "disk.list.available" // List available disks
 	CmdDiskGet           = "disk.get"            // Get disk details
 	CmdDiskDiscover      = "disk.discover"       // Trigger disk discovery
 
