@@ -9,12 +9,14 @@ package proto
 // when interacting with ZFS domain services over gRPC
 const (
 	// Pool operations
-	ZFSCmdPoolList          = "zfs.pool.list"
-	ZFSCmdPoolStatus        = "zfs.pool.status"
-	ZFSCmdPoolCreate        = "zfs.pool.create"
-	ZFSCmdPoolDestroy       = "zfs.pool.destroy"
-	ZFSCmdPoolImport        = "zfs.pool.import"
-	ZFSCmdPoolExport        = "zfs.pool.export"
+	ZFSCmdPoolList           = "zfs.pool.list"
+	ZFSCmdPoolGet            = "zfs.pool.get"
+	ZFSCmdPoolStatus         = "zfs.pool.status"
+	ZFSCmdPoolCreate         = "zfs.pool.create"
+	ZFSCmdPoolDestroy        = "zfs.pool.destroy"
+	ZFSCmdPoolImport         = "zfs.pool.import"
+	ZFSCmdPoolImportList     = "zfs.pool.import.list"
+	ZFSCmdPoolExport         = "zfs.pool.export"
 	ZFSCmdPoolPropertyList  = "zfs.pool.property.list"
 	ZFSCmdPoolPropertyGet   = "zfs.pool.property.get"
 	ZFSCmdPoolPropertySet   = "zfs.pool.property.set"
