@@ -19,10 +19,18 @@ const (
 	CmdSystemHostnameSet = "system.hostname.set"
 
 	// User management commands
-	CmdSystemUsersList   = "system.users.list"
-	CmdSystemUsersCreate = "system.users.create"
-	CmdSystemUsersDelete = "system.users.delete"
-	CmdSystemUsersGet    = "system.users.get"
+	CmdSystemUsersList           = "system.users.list"
+	CmdSystemUsersCreate         = "system.users.create"
+	CmdSystemUsersDelete         = "system.users.delete"
+	CmdSystemUsersGet            = "system.users.get"
+	CmdSystemUsersUpdate         = "system.users.update"
+	CmdSystemUsersPasswordSet    = "system.users.password.set"
+	CmdSystemUsersLock           = "system.users.lock"
+	CmdSystemUsersUnlock         = "system.users.unlock"
+	CmdSystemUsersGroupsList     = "system.users.groups.list"
+	CmdSystemUsersGroupsAdd      = "system.users.groups.add"
+	CmdSystemUsersGroupsRemove   = "system.users.groups.remove"
+	CmdSystemUsersGroupsPrimary  = "system.users.groups.primary.set"
 
 	// Group management commands
 	CmdSystemGroupsList   = "system.groups.list"
