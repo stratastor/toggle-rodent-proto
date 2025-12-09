@@ -573,53 +573,27 @@ message UsageThresholdPayload {
 }
 
 // Data transfer event payloads - Complete transfer information for ZFS dataset transfers
-// Maps to Rodent's TransferInfo struct with all essential details for Toggle sync
+// Contains essential routing fields plus full TransferInfo as JSON for Toggle sync
 message DataTransferTransferPayload {
-  // Transfer identification
+  // Essential fields for routing and quick filtering
   string transfer_id = 1;                      // Unique transfer ID (Rodent-side)
-  string operation_type = 2;                   // "send", "receive", "send_receive"
+  DataTransferOperation operation = 2;         // Event operation type
 
-  // Transfer endpoints
-  string source = 3;                           // Source snapshot/dataset
-  string destination = 4;                      // Destination dataset
-
-  // Transfer status
-  string status = 5;                           // "starting", "running", "paused", "completed", "failed", "cancelled"
-  DataTransferOperation operation = 6;         // Event operation type
-  string error_message = 7;                    // Error details if failed
-
-  // Progress information
-  int64 bytes_transferred = 8;                 // Bytes transferred so far
-  int64 total_bytes = 9;                       // Total bytes to transfer (if known)
-  int64 transfer_rate = 10;                    // Current transfer rate in bytes/sec
-  int64 elapsed_time = 11;                     // Elapsed time in seconds
-  int64 estimated_eta = 12;                    // Estimated time to completion in seconds
-  string phase = 13;                           // Current phase: "pending", "initial_send", "incremental_send", "full_send"
-  string phase_description = 14;               // Human-readable phase description
-
-  // Timestamps (Unix milliseconds)
-  int64 created_at = 15;                       // When transfer was created
-  int64 started_at = 16;                       // When transfer started (0 if not started)
-  int64 completed_at = 17;                     // When transfer completed (0 if not completed)
-
-  // Process information
-  int32 pid = 18;                              // Process ID on Rodent (0 if not running)
-  string log_file = 19;                        // Path to log file on Rodent
-
-  // Configuration summary (key flags for Toggle UI)
-  bool is_incremental = 20;                    // Whether this is incremental transfer
-  bool is_resumable = 21;                      // Whether transfer supports resume
-  string from_snapshot = 22;                   // From snapshot for incremental transfers
+  // Complete transfer details as JSON (serialized TransferInfo struct from Rodent)
+  // Includes: id, policy_id, operation, status, config, progress, timestamps, etc.
+  // Toggle should deserialize this to get full transfer information
+  string transfer_info_json = 3;
 
   enum DataTransferOperation {
     DATA_TRANSFER_OPERATION_UNSPECIFIED = 0;
     DATA_TRANSFER_OPERATION_STARTED = 1;
-    DATA_TRANSFER_OPERATION_PROGRESS = 2;       // Not used per requirements
+    DATA_TRANSFER_OPERATION_PROGRESS = 2;       // Reserved for future use
     DATA_TRANSFER_OPERATION_COMPLETED = 3;
     DATA_TRANSFER_OPERATION_FAILED = 4;
     DATA_TRANSFER_OPERATION_CANCELLED = 5;
-    DATA_TRANSFER_OPERATION_PAUSED = 6;         // Transfer paused
-    DATA_TRANSFER_OPERATION_RESUMED = 7;        // Transfer resumed
+    DATA_TRANSFER_OPERATION_PAUSED = 6;
+    DATA_TRANSFER_OPERATION_RESUMED = 7;
+    DATA_TRANSFER_OPERATION_DELETED = 8;
   }
 }
 

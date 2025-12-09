@@ -1460,12 +1460,13 @@ type DataTransferTransferPayload_DataTransferOperation int32
 const (
 	DataTransferTransferPayload_DATA_TRANSFER_OPERATION_UNSPECIFIED DataTransferTransferPayload_DataTransferOperation = 0
 	DataTransferTransferPayload_DATA_TRANSFER_OPERATION_STARTED     DataTransferTransferPayload_DataTransferOperation = 1
-	DataTransferTransferPayload_DATA_TRANSFER_OPERATION_PROGRESS    DataTransferTransferPayload_DataTransferOperation = 2 // Not used per requirements
+	DataTransferTransferPayload_DATA_TRANSFER_OPERATION_PROGRESS    DataTransferTransferPayload_DataTransferOperation = 2 // Reserved for future use
 	DataTransferTransferPayload_DATA_TRANSFER_OPERATION_COMPLETED   DataTransferTransferPayload_DataTransferOperation = 3
 	DataTransferTransferPayload_DATA_TRANSFER_OPERATION_FAILED      DataTransferTransferPayload_DataTransferOperation = 4
 	DataTransferTransferPayload_DATA_TRANSFER_OPERATION_CANCELLED   DataTransferTransferPayload_DataTransferOperation = 5
-	DataTransferTransferPayload_DATA_TRANSFER_OPERATION_PAUSED      DataTransferTransferPayload_DataTransferOperation = 6 // Transfer paused
-	DataTransferTransferPayload_DATA_TRANSFER_OPERATION_RESUMED     DataTransferTransferPayload_DataTransferOperation = 7 // Transfer resumed
+	DataTransferTransferPayload_DATA_TRANSFER_OPERATION_PAUSED      DataTransferTransferPayload_DataTransferOperation = 6
+	DataTransferTransferPayload_DATA_TRANSFER_OPERATION_RESUMED     DataTransferTransferPayload_DataTransferOperation = 7
+	DataTransferTransferPayload_DATA_TRANSFER_OPERATION_DELETED     DataTransferTransferPayload_DataTransferOperation = 8
 )
 
 // Enum value maps for DataTransferTransferPayload_DataTransferOperation.
@@ -1479,6 +1480,7 @@ var (
 		5: "DATA_TRANSFER_OPERATION_CANCELLED",
 		6: "DATA_TRANSFER_OPERATION_PAUSED",
 		7: "DATA_TRANSFER_OPERATION_RESUMED",
+		8: "DATA_TRANSFER_OPERATION_DELETED",
 	}
 	DataTransferTransferPayload_DataTransferOperation_value = map[string]int32{
 		"DATA_TRANSFER_OPERATION_UNSPECIFIED": 0,
@@ -1489,6 +1491,7 @@ var (
 		"DATA_TRANSFER_OPERATION_CANCELLED":   5,
 		"DATA_TRANSFER_OPERATION_PAUSED":      6,
 		"DATA_TRANSFER_OPERATION_RESUMED":     7,
+		"DATA_TRANSFER_OPERATION_DELETED":     8,
 	}
 )
 
@@ -4828,40 +4831,18 @@ func (x *UsageThresholdPayload) GetOperation() UsageThresholdPayload_UsageThresh
 }
 
 // Data transfer event payloads - Complete transfer information for ZFS dataset transfers
-// Maps to Rodent's TransferInfo struct with all essential details for Toggle sync
+// Contains essential routing fields plus full TransferInfo as JSON for Toggle sync
 type DataTransferTransferPayload struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Transfer identification
-	TransferId    string `protobuf:"bytes,1,opt,name=transfer_id,json=transferId,proto3" json:"transfer_id,omitempty"`          // Unique transfer ID (Rodent-side)
-	OperationType string `protobuf:"bytes,2,opt,name=operation_type,json=operationType,proto3" json:"operation_type,omitempty"` // "send", "receive", "send_receive"
-	// Transfer endpoints
-	Source      string `protobuf:"bytes,3,opt,name=source,proto3" json:"source,omitempty"`           // Source snapshot/dataset
-	Destination string `protobuf:"bytes,4,opt,name=destination,proto3" json:"destination,omitempty"` // Destination dataset
-	// Transfer status
-	Status       string                                            `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`                                                                             // "starting", "running", "paused", "completed", "failed", "cancelled"
-	Operation    DataTransferTransferPayload_DataTransferOperation `protobuf:"varint,6,opt,name=operation,proto3,enum=rodent.events.DataTransferTransferPayload_DataTransferOperation" json:"operation,omitempty"` // Event operation type
-	ErrorMessage string                                            `protobuf:"bytes,7,opt,name=error_message,json=errorMessage,proto3" json:"error_message,omitempty"`                                             // Error details if failed
-	// Progress information
-	BytesTransferred int64  `protobuf:"varint,8,opt,name=bytes_transferred,json=bytesTransferred,proto3" json:"bytes_transferred,omitempty"` // Bytes transferred so far
-	TotalBytes       int64  `protobuf:"varint,9,opt,name=total_bytes,json=totalBytes,proto3" json:"total_bytes,omitempty"`                   // Total bytes to transfer (if known)
-	TransferRate     int64  `protobuf:"varint,10,opt,name=transfer_rate,json=transferRate,proto3" json:"transfer_rate,omitempty"`            // Current transfer rate in bytes/sec
-	ElapsedTime      int64  `protobuf:"varint,11,opt,name=elapsed_time,json=elapsedTime,proto3" json:"elapsed_time,omitempty"`               // Elapsed time in seconds
-	EstimatedEta     int64  `protobuf:"varint,12,opt,name=estimated_eta,json=estimatedEta,proto3" json:"estimated_eta,omitempty"`            // Estimated time to completion in seconds
-	Phase            string `protobuf:"bytes,13,opt,name=phase,proto3" json:"phase,omitempty"`                                               // Current phase: "pending", "initial_send", "incremental_send", "full_send"
-	PhaseDescription string `protobuf:"bytes,14,opt,name=phase_description,json=phaseDescription,proto3" json:"phase_description,omitempty"` // Human-readable phase description
-	// Timestamps (Unix milliseconds)
-	CreatedAt   int64 `protobuf:"varint,15,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`       // When transfer was created
-	StartedAt   int64 `protobuf:"varint,16,opt,name=started_at,json=startedAt,proto3" json:"started_at,omitempty"`       // When transfer started (0 if not started)
-	CompletedAt int64 `protobuf:"varint,17,opt,name=completed_at,json=completedAt,proto3" json:"completed_at,omitempty"` // When transfer completed (0 if not completed)
-	// Process information
-	Pid     int32  `protobuf:"varint,18,opt,name=pid,proto3" json:"pid,omitempty"`                       // Process ID on Rodent (0 if not running)
-	LogFile string `protobuf:"bytes,19,opt,name=log_file,json=logFile,proto3" json:"log_file,omitempty"` // Path to log file on Rodent
-	// Configuration summary (key flags for Toggle UI)
-	IsIncremental bool   `protobuf:"varint,20,opt,name=is_incremental,json=isIncremental,proto3" json:"is_incremental,omitempty"` // Whether this is incremental transfer
-	IsResumable   bool   `protobuf:"varint,21,opt,name=is_resumable,json=isResumable,proto3" json:"is_resumable,omitempty"`       // Whether transfer supports resume
-	FromSnapshot  string `protobuf:"bytes,22,opt,name=from_snapshot,json=fromSnapshot,proto3" json:"from_snapshot,omitempty"`     // From snapshot for incremental transfers
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	// Essential fields for routing and quick filtering
+	TransferId string                                            `protobuf:"bytes,1,opt,name=transfer_id,json=transferId,proto3" json:"transfer_id,omitempty"`                                                   // Unique transfer ID (Rodent-side)
+	Operation  DataTransferTransferPayload_DataTransferOperation `protobuf:"varint,2,opt,name=operation,proto3,enum=rodent.events.DataTransferTransferPayload_DataTransferOperation" json:"operation,omitempty"` // Event operation type
+	// Complete transfer details as JSON (serialized TransferInfo struct from Rodent)
+	// Includes: id, policy_id, operation, status, config, progress, timestamps, etc.
+	// Toggle should deserialize this to get full transfer information
+	TransferInfoJson string `protobuf:"bytes,3,opt,name=transfer_info_json,json=transferInfoJson,proto3" json:"transfer_info_json,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *DataTransferTransferPayload) Reset() {
@@ -4901,34 +4882,6 @@ func (x *DataTransferTransferPayload) GetTransferId() string {
 	return ""
 }
 
-func (x *DataTransferTransferPayload) GetOperationType() string {
-	if x != nil {
-		return x.OperationType
-	}
-	return ""
-}
-
-func (x *DataTransferTransferPayload) GetSource() string {
-	if x != nil {
-		return x.Source
-	}
-	return ""
-}
-
-func (x *DataTransferTransferPayload) GetDestination() string {
-	if x != nil {
-		return x.Destination
-	}
-	return ""
-}
-
-func (x *DataTransferTransferPayload) GetStatus() string {
-	if x != nil {
-		return x.Status
-	}
-	return ""
-}
-
 func (x *DataTransferTransferPayload) GetOperation() DataTransferTransferPayload_DataTransferOperation {
 	if x != nil {
 		return x.Operation
@@ -4936,114 +4889,9 @@ func (x *DataTransferTransferPayload) GetOperation() DataTransferTransferPayload
 	return DataTransferTransferPayload_DATA_TRANSFER_OPERATION_UNSPECIFIED
 }
 
-func (x *DataTransferTransferPayload) GetErrorMessage() string {
+func (x *DataTransferTransferPayload) GetTransferInfoJson() string {
 	if x != nil {
-		return x.ErrorMessage
-	}
-	return ""
-}
-
-func (x *DataTransferTransferPayload) GetBytesTransferred() int64 {
-	if x != nil {
-		return x.BytesTransferred
-	}
-	return 0
-}
-
-func (x *DataTransferTransferPayload) GetTotalBytes() int64 {
-	if x != nil {
-		return x.TotalBytes
-	}
-	return 0
-}
-
-func (x *DataTransferTransferPayload) GetTransferRate() int64 {
-	if x != nil {
-		return x.TransferRate
-	}
-	return 0
-}
-
-func (x *DataTransferTransferPayload) GetElapsedTime() int64 {
-	if x != nil {
-		return x.ElapsedTime
-	}
-	return 0
-}
-
-func (x *DataTransferTransferPayload) GetEstimatedEta() int64 {
-	if x != nil {
-		return x.EstimatedEta
-	}
-	return 0
-}
-
-func (x *DataTransferTransferPayload) GetPhase() string {
-	if x != nil {
-		return x.Phase
-	}
-	return ""
-}
-
-func (x *DataTransferTransferPayload) GetPhaseDescription() string {
-	if x != nil {
-		return x.PhaseDescription
-	}
-	return ""
-}
-
-func (x *DataTransferTransferPayload) GetCreatedAt() int64 {
-	if x != nil {
-		return x.CreatedAt
-	}
-	return 0
-}
-
-func (x *DataTransferTransferPayload) GetStartedAt() int64 {
-	if x != nil {
-		return x.StartedAt
-	}
-	return 0
-}
-
-func (x *DataTransferTransferPayload) GetCompletedAt() int64 {
-	if x != nil {
-		return x.CompletedAt
-	}
-	return 0
-}
-
-func (x *DataTransferTransferPayload) GetPid() int32 {
-	if x != nil {
-		return x.Pid
-	}
-	return 0
-}
-
-func (x *DataTransferTransferPayload) GetLogFile() string {
-	if x != nil {
-		return x.LogFile
-	}
-	return ""
-}
-
-func (x *DataTransferTransferPayload) GetIsIncremental() bool {
-	if x != nil {
-		return x.IsIncremental
-	}
-	return false
-}
-
-func (x *DataTransferTransferPayload) GetIsResumable() bool {
-	if x != nil {
-		return x.IsResumable
-	}
-	return false
-}
-
-func (x *DataTransferTransferPayload) GetFromSnapshot() string {
-	if x != nil {
-		return x.FromSnapshot
+		return x.TransferInfoJson
 	}
 	return ""
 }
@@ -5778,35 +5626,12 @@ const file_proto_events_event_messages_proto_rawDesc = "" +
 	"%USAGE_THRESHOLD_OPERATION_UNSPECIFIED\x10\x00\x12(\n" +
 	"$USAGE_THRESHOLD_OPERATION_APPROACHED\x10\x01\x12&\n" +
 	"\"USAGE_THRESHOLD_OPERATION_EXCEEDED\x10\x02\x12%\n" +
-	"!USAGE_THRESHOLD_OPERATION_CLEARED\x10\x03\"\x80\t\n" +
+	"!USAGE_THRESHOLD_OPERATION_CLEARED\x10\x03\"\xba\x04\n" +
 	"\x1bDataTransferTransferPayload\x12\x1f\n" +
 	"\vtransfer_id\x18\x01 \x01(\tR\n" +
-	"transferId\x12%\n" +
-	"\x0eoperation_type\x18\x02 \x01(\tR\roperationType\x12\x16\n" +
-	"\x06source\x18\x03 \x01(\tR\x06source\x12 \n" +
-	"\vdestination\x18\x04 \x01(\tR\vdestination\x12\x16\n" +
-	"\x06status\x18\x05 \x01(\tR\x06status\x12^\n" +
-	"\toperation\x18\x06 \x01(\x0e2@.rodent.events.DataTransferTransferPayload.DataTransferOperationR\toperation\x12#\n" +
-	"\rerror_message\x18\a \x01(\tR\ferrorMessage\x12+\n" +
-	"\x11bytes_transferred\x18\b \x01(\x03R\x10bytesTransferred\x12\x1f\n" +
-	"\vtotal_bytes\x18\t \x01(\x03R\n" +
-	"totalBytes\x12#\n" +
-	"\rtransfer_rate\x18\n" +
-	" \x01(\x03R\ftransferRate\x12!\n" +
-	"\felapsed_time\x18\v \x01(\x03R\velapsedTime\x12#\n" +
-	"\restimated_eta\x18\f \x01(\x03R\festimatedEta\x12\x14\n" +
-	"\x05phase\x18\r \x01(\tR\x05phase\x12+\n" +
-	"\x11phase_description\x18\x0e \x01(\tR\x10phaseDescription\x12\x1d\n" +
-	"\n" +
-	"created_at\x18\x0f \x01(\x03R\tcreatedAt\x12\x1d\n" +
-	"\n" +
-	"started_at\x18\x10 \x01(\x03R\tstartedAt\x12!\n" +
-	"\fcompleted_at\x18\x11 \x01(\x03R\vcompletedAt\x12\x10\n" +
-	"\x03pid\x18\x12 \x01(\x05R\x03pid\x12\x19\n" +
-	"\blog_file\x18\x13 \x01(\tR\alogFile\x12%\n" +
-	"\x0eis_incremental\x18\x14 \x01(\bR\risIncremental\x12!\n" +
-	"\fis_resumable\x18\x15 \x01(\bR\visResumable\x12#\n" +
-	"\rfrom_snapshot\x18\x16 \x01(\tR\ffromSnapshot\"\xc6\x02\n" +
+	"transferId\x12^\n" +
+	"\toperation\x18\x02 \x01(\x0e2@.rodent.events.DataTransferTransferPayload.DataTransferOperationR\toperation\x12,\n" +
+	"\x12transfer_info_json\x18\x03 \x01(\tR\x10transferInfoJson\"\xeb\x02\n" +
 	"\x15DataTransferOperation\x12'\n" +
 	"#DATA_TRANSFER_OPERATION_UNSPECIFIED\x10\x00\x12#\n" +
 	"\x1fDATA_TRANSFER_OPERATION_STARTED\x10\x01\x12$\n" +
@@ -5815,7 +5640,8 @@ const file_proto_events_event_messages_proto_rawDesc = "" +
 	"\x1eDATA_TRANSFER_OPERATION_FAILED\x10\x04\x12%\n" +
 	"!DATA_TRANSFER_OPERATION_CANCELLED\x10\x05\x12\"\n" +
 	"\x1eDATA_TRANSFER_OPERATION_PAUSED\x10\x06\x12#\n" +
-	"\x1fDATA_TRANSFER_OPERATION_RESUMED\x10\a\"\x94\a\n" +
+	"\x1fDATA_TRANSFER_OPERATION_RESUMED\x10\a\x12#\n" +
+	"\x1fDATA_TRANSFER_OPERATION_DELETED\x10\b\"\x94\a\n" +
 	"\x12StorageDiskPayload\x12\x1b\n" +
 	"\tdevice_id\x18\x01 \x01(\tR\bdeviceId\x12\x1f\n" +
 	"\vdevice_path\x18\x02 \x01(\tR\n" +
