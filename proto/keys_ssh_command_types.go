@@ -12,8 +12,16 @@ const (
 	CmdSSHKeyPairList     = "keys.ssh.list"
 	CmdSSHKeyPairRemove   = "keys.ssh.remove"
 
-	// Peer authorization operations (manages both authorized_keys and known_hosts)
+	// Peer authorization operations (manages authorized_keys on the destination/accepter)
 	CmdSSHPeerAuthorize   = "keys.ssh.peer.authorize"
 	CmdSSHPeerDeauthorize = "keys.ssh.peer.deauthorize"
 	CmdSSHPeerList        = "keys.ssh.peer.list"
+
+	// Host key operations (manages known_hosts on the source/requester)
+	// GetHostKey retrieves this machine's SSH server host public key
+	CmdSSHHostKeyGet = "keys.ssh.hostkey.get"
+	// AddKnownHost adds a remote host's key to this machine's known_hosts
+	CmdSSHKnownHostAdd = "keys.ssh.knownhost.add"
+	// RemoveKnownHost removes a host entry from known_hosts by peering ID
+	CmdSSHKnownHostRemove = "keys.ssh.knownhost.remove"
 )
